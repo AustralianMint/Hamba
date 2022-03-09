@@ -10,18 +10,15 @@ import SwiftUI
 
 struct MapView: View {
     
-    //Gives MapView (which is a view) access to user location (MapViewModel)
+    //Gives MapView (which is a View) access to user location (MapViewModel)
     @StateObject private var viewModel = MapViewModel()
     
-    //variable containing initial load map position, (zoom lvl & Long/Lat)
-    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 52.520008
-                                                                                  , longitude: 13.411000), span: MKCoordinateSpan(latitudeDelta: 0.09, longitudeDelta: 0.09))
-
     //binding variable "region", showing it in "Map" (Model View).
     //"Map" is embedded map interface
     var body: some View {
-        Map(coordinateRegion: $region, showsUserLocation: true)
+        Map(coordinateRegion: $viewModel.region, showsUserLocation: true)
             .ignoresSafeArea()
+            .accentColor(.orange)
             .onAppear {
                 viewModel.checkIfLocationServicesIsEnabled()
             }
@@ -37,6 +34,9 @@ struct MapView_Previews: PreviewProvider {
 
 //ViewModel which handles Location Logic
 final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
+    
+    @Published var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 52.520008
+                                                                                  , longitude: 13.411000), span: MKCoordinateSpan(latitudeDelta: 0.09, longitudeDelta: 0.09))
     
     //creating instance of Location Manager Class
     var locationManager: CLLocationManager?
@@ -63,7 +63,7 @@ final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
         case .denied:
             print("You have denied this app location permissions. Change this in settings")
         case .authorizedAlways, .authorizedWhenInUse:
-            break
+            region = MKCoordinateRegion(center: locationManager.location!.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.09, longitudeDelta: 0.09))
         @unknown default:
             break
         }
