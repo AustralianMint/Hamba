@@ -8,6 +8,7 @@
 import MapKit
 import SwiftUI
 
+//struct is a Value type that encapsulates state & behavior.
 struct MapView: View {
     
     //Gives MapView (which is a View) access to user location (MapViewModel)
