@@ -23,5 +23,8 @@ var locations: [Spots] = [
     Spots(name: "Luisenstädtischer Kirchpark", coordinate: CLLocationCoordinate2D(latitude: 52.508725, longitude: 13.407724)),
     Spots(name: "Märkischer Spot am Water", coordinate: CLLocationCoordinate2D(latitude: 52.514207, longitude: 13.413992)),
     Spots(name: "Osloer North - Bench Spot", coordinate: CLLocationCoordinate2D(latitude: 52.55672, longitude: 13.38133)),
-    Spots(name: "Osloer South - Water Spot", coordinate: CLLocationCoordinate2D(latitude: 52.55498, longitude: 13.38033))
+    Spots(name: "Osloer South - Water Spot", coordinate: CLLocationCoordinate2D(latitude: 52.55498, longitude: 13.38033)),
+    Spots(name: "The Cheeze-man Spot", coordinate: CLLocationCoordinate2D(latitude: 52.497169, longitude: 13.456173)),
+    Spots(name: "Bench am Auswertigen Amt", coordinate: CLLocationCoordinate2D(latitude: 52.512179, longitude: 13.401030)),
+    Spots(name: "Bartholdy Bench", coordinate: CLLocationCoordinate2D(latitude: 52.502560, longitude: 13.376552))
 ]
