@@ -23,6 +23,10 @@ struct ContentView: View {
                 Map(coordinateRegion: $mapViewModel.region, showsUserLocation: true,  annotationItems: locations) { location in
                     MapAnnotation(coordinate: location.coordinate) {
                         NavigationLink {
+                            Image("cheeseManSpotImage")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .blur(radius: CGFloat(1))
                             Text(location.name)
                         } label: {
                             Image(systemName: "star.circle")
