@@ -38,7 +38,7 @@ struct ContentView: View {
                         }
                     }
                 }
-                .navigationTitle("I know a Spot")
+                .navigationTitle("Hamba")
             }
         }
     }
