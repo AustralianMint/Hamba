@@ -14,11 +14,18 @@ import SwiftUI
 //struct is a 'Value type' that encapsulates state & behavior.
 struct ContentView: View {
     
-    @StateObject private var mapViewModel = MapViewModel()
+    @StateObject var mapViewModel = MapViewModel()
     
     var body: some View {
         NavigationView {
             VStack {
+                HStack{
+                    Text("Hamba")
+                        .padding()
+                        .font(.system(.title, design: .serif))
+                    Image(systemName: "figure.walk")
+                        .imageScale(.large)
+                }
                 //Struct displaying the map
                 Map(coordinateRegion: $mapViewModel.region, showsUserLocation: true,  annotationItems: locations) { location in
                     MapAnnotation(coordinate: location.coordinate) {
@@ -40,7 +47,8 @@ struct ContentView: View {
                         }
                     }
                 }
-                .navigationTitle("Hamba")
+                .onAppear(perform: mapViewModel.checkIfLocationServicesIsEnabled)
+                .accentColor(Color(.systemBlue))
             }
         }
     }
