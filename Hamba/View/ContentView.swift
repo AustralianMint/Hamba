@@ -42,6 +42,9 @@ struct ContentView: View {
                 }
                 .navigationTitle("Hamba")
             }
+            .onAppear{
+                mapViewModel.checkIfLocationServicesIsEnabled()
+            }
         }
     }
     
