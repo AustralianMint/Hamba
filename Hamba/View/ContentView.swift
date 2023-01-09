@@ -50,9 +50,6 @@ struct ContentView: View {
                 .onAppear(perform: mapViewModel.checkIfLocationServicesIsEnabled)
                 .accentColor(Color(.systemBlue))
             }
-            .onAppear{
-                mapViewModel.checkIfLocationServicesIsEnabled()
-            }
         }
     }
     
