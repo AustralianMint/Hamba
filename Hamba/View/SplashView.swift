@@ -8,9 +8,32 @@
 import SwiftUI
 
 struct SplashView: View {
+    
+    @State var isActive: Bool = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            if self.isActive {
+                ContentView()
+            } else {
+                Image(systemName: "tree")
+                    .font(.system(size: 100))
+                    .foregroundColor(.green)
+                Text("Hamba")
+                    .padding()
+                    .font(.system(size: 50, weight: .heavy, design: .serif))
+           
+            }
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                withAnimation {
+                    self.isActive = true
+                }
+            }
+        }
     }
+    
 }
 
 struct SplashView_Previews: PreviewProvider {

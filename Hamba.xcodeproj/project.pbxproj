@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		270AD9E72973E4B00090F555 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270AD9E62973E4B00090F555 /* SplashView.swift */; };
 		271C8F5927C27BC7004BCD02 /* HambaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271C8F5827C27BC7004BCD02 /* HambaApp.swift */; };
 		271C8F5B27C27BC7004BCD02 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271C8F5A27C27BC7004BCD02 /* ContentView.swift */; };
 		271C8F6027C27BC8004BCD02 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 271C8F5F27C27BC8004BCD02 /* Preview Assets.xcassets */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		270AD9E62973E4B00090F555 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		271C8F5527C27BC7004BCD02 /* Hamba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hamba.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		271C8F5827C27BC7004BCD02 /* HambaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HambaApp.swift; sourceTree = "<group>"; };
 		271C8F5A27C27BC7004BCD02 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				271C8F5A27C27BC7004BCD02 /* ContentView.swift */,
+				270AD9E62973E4B00090F555 /* SplashView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 			files = (
 				271C8F5B27C27BC7004BCD02 /* ContentView.swift in Sources */,
 				271C8F5927C27BC7004BCD02 /* HambaApp.swift in Sources */,
+				270AD9E72973E4B00090F555 /* SplashView.swift in Sources */,
 				2756DFD327D8DEDD00A2DD98 /* MapViewModel.swift in Sources */,
 				277CA7A228B9FE6C00893757 /* modelForSpots.swift in Sources */,
 			);
