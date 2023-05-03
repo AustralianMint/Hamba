@@ -47,7 +47,10 @@ struct ContentView: View {
                         }
                     }
                 }
-                .onAppear(perform: mapViewModel.checkIfLocationServicesIsEnabled)
+                .onAppear(perform: {
+                    playSound(sound: "focus-loop-corporate-music-114297", type: "mp3");
+                    mapViewModel.checkIfLocationServicesIsEnabled()
+                })
                 .accentColor(Color(.systemBlue))
             }
         }
