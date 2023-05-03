@@ -39,5 +39,6 @@ var locations: [Spots] = [
     Spots(name: "Boiz", coordinate: CLLocationCoordinate2D(latitude: 52.49611, longitude: 13.40912)),
     Spots(name: "TBD", coordinate: CLLocationCoordinate2D(latitude: 52.57264, longitude: 13.36183)),
     Spots(name: "Schäfer Spot", coordinate: CLLocationCoordinate2D(latitude: 52.56517, longitude: 13.35932)),
-    Spots(name: "MUC", coordinate: CLLocationCoordinate2D(latitude: 48.15685, longitude: 11.58068))
+    Spots(name: "MUC", coordinate: CLLocationCoordinate2D(latitude: 48.15685, longitude: 11.58068)),
+    Spots(name: "Sid", coordinate: CLLocationCoordinate2D(latitude: 52.53174, longitude: 13.40844))
 ]
