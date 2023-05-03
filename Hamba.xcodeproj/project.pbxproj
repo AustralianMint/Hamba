@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		270AD9E72973E4B00090F555 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270AD9E62973E4B00090F555 /* SplashView.swift */; };
 		271C8F5927C27BC7004BCD02 /* HambaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271C8F5827C27BC7004BCD02 /* HambaApp.swift */; };
 		271C8F5B27C27BC7004BCD02 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271C8F5A27C27BC7004BCD02 /* ContentView.swift */; };
 		271C8F6027C27BC8004BCD02 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 271C8F5F27C27BC8004BCD02 /* Preview Assets.xcassets */; };
@@ -16,6 +17,8 @@
 		2756DFD327D8DEDD00A2DD98 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2756DFD227D8DEDD00A2DD98 /* MapViewModel.swift */; };
 		277CA04628DBD98100A397B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 277CA04528DBD98000A397B6 /* Assets.xcassets */; };
 		277CA7A228B9FE6C00893757 /* modelForSpots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277CA7A128B9FE6C00893757 /* modelForSpots.swift */; };
+		27EEAAE62A025F12005779C1 /* playSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EEAAE52A025F12005779C1 /* playSound.swift */; };
+		27EEAAEA2A0261A8005779C1 /* focus-loop-corporate-music-114297.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 27EEAAE92A0261A8005779C1 /* focus-loop-corporate-music-114297.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		270AD9E62973E4B00090F555 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		271C8F5527C27BC7004BCD02 /* Hamba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hamba.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		271C8F5827C27BC7004BCD02 /* HambaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HambaApp.swift; sourceTree = "<group>"; };
 		271C8F5A27C27BC7004BCD02 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -48,6 +52,8 @@
 		2756DFD227D8DEDD00A2DD98 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		277CA04528DBD98000A397B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Hamba/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		277CA7A128B9FE6C00893757 /* modelForSpots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = modelForSpots.swift; sourceTree = "<group>"; };
+		27EEAAE52A025F12005779C1 /* playSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = playSound.swift; sourceTree = "<group>"; };
+		27EEAAE92A0261A8005779C1 /* focus-loop-corporate-music-114297.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "focus-loop-corporate-music-114297.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,7 +108,9 @@
 				277CA7A028B9FD8900893757 /* Model */,
 				277CA7A328B9FF0A00893757 /* ViewModel */,
 				277CA79F28B9FD7500893757 /* View */,
+				27EEAAE72A025F16005779C1 /* Helpers */,
 				271C8F5E27C27BC8004BCD02 /* Preview Content */,
+				27EEAAE82A026191005779C1 /* Sounds */,
 			);
 			path = Hamba;
 			sourceTree = "<group>";
@@ -137,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				271C8F5A27C27BC7004BCD02 /* ContentView.swift */,
+				270AD9E62973E4B00090F555 /* SplashView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -155,6 +164,22 @@
 				2756DFD227D8DEDD00A2DD98 /* MapViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		27EEAAE72A025F16005779C1 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				27EEAAE52A025F12005779C1 /* playSound.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		27EEAAE82A026191005779C1 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				27EEAAE92A0261A8005779C1 /* focus-loop-corporate-music-114297.mp3 */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +288,7 @@
 			files = (
 				277CA04628DBD98100A397B6 /* Assets.xcassets in Resources */,
 				271C8F6027C27BC8004BCD02 /* Preview Assets.xcassets in Resources */,
+				27EEAAEA2A0261A8005779C1 /* focus-loop-corporate-music-114297.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,7 +314,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				271C8F5B27C27BC7004BCD02 /* ContentView.swift in Sources */,
+				27EEAAE62A025F12005779C1 /* playSound.swift in Sources */,
 				271C8F5927C27BC7004BCD02 /* HambaApp.swift in Sources */,
+				270AD9E72973E4B00090F555 /* SplashView.swift in Sources */,
 				2756DFD327D8DEDD00A2DD98 /* MapViewModel.swift in Sources */,
 				277CA7A228B9FE6C00893757 /* modelForSpots.swift in Sources */,
 			);
