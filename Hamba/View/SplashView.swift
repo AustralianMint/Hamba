@@ -30,7 +30,7 @@ struct SplashView: View {
                 withAnimation {
                     self.isActive = true
                 }
-            }
+            };
         }
     }
     

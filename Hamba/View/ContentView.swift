@@ -9,23 +9,45 @@
 import Foundation
 import MapKit
 import SwiftUI
+import AVFoundation
 
 
 //struct is a 'Value type' that encapsulates state & behavior.
 struct ContentView: View {
     
     @StateObject var mapViewModel = MapViewModel()
+    @State public var soundIsON: Bool = true
     
     var body: some View {
         NavigationView {
-            VStack {
+            VStack() {
                 HStack{
-                    Text("Hamba")
-                        .padding()
-                        .font(.system(.title, design: .serif))
-                    Image(systemName: "figure.walk")
-                        .imageScale(.large)
+                    HStack{
+                        Text("Hamba")
+                            .padding()
+                            .font(.system(.title, design: .serif))
+                        Image(systemName: "figure.walk")
+                            .imageScale(.large)
+                            .padding(.leading, -15)
+                    }
+                    
+                    Spacer()
+                    
+                    Image(systemName: "speaker.wave.3.fill")
+                    
+                    Toggle("Sound", isOn: $soundIsON)
+                        .onChange(of: soundIsON) { newValue in
+                            if newValue {
+                                audioPlayer?.play()
+                            } else {
+                                audioPlayer?.pause()
+                            }
+                        }
+                        .labelsHidden()
+                        .padding(.trailing)
+
                 }
+                
                 //Struct displaying the map
                 Map(coordinateRegion: $mapViewModel.region, showsUserLocation: true,  annotationItems: locations) { location in
                     MapAnnotation(coordinate: location.coordinate) {
@@ -48,12 +70,14 @@ struct ContentView: View {
                     }
                 }
                 .onAppear(perform: {
-                    playSound(sound: "focus-loop-corporate-music-114297", type: "mp3");
                     mapViewModel.checkIfLocationServicesIsEnabled()
                 })
                 .accentColor(Color(.systemBlue))
             }
         }
+        .onAppear(perform: {
+            playSound(sound: "focus-loop-corporate-music-114297", type: "mp3");
+        })
     }
     
     //Just for Xcode Preview sake
