@@ -52,7 +52,7 @@ struct ContentView: View {
                 Map(coordinateRegion: $mapViewModel.region, showsUserLocation: true,  annotationItems: locations) { location in
                     MapAnnotation(coordinate: location.coordinate) {
                         NavigationLink {
-                            Image("cheeseManSpotImage")
+                            Image(location.spotImage)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .blur(radius: CGFloat(1))
@@ -72,7 +72,8 @@ struct ContentView: View {
                 .onAppear(perform: {
                     mapViewModel.checkIfLocationServicesIsEnabled()
                 })
-                .accentColor(Color(.systemBlue))
+                //.accentColor(Color(.systemBlue))
+                .tint(.blue)
             }
         }
         .onAppear(perform: {
