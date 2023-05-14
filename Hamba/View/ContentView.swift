@@ -55,7 +55,6 @@ struct ContentView: View {
                             Image(location.spotImage)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .blur(radius: CGFloat(1))
                             Text(location.name)
                                 .bold()
                                 .font(.system(size: 27, weight: .heavy, design: .rounded))
