@@ -17,6 +17,7 @@
 		2756DFD327D8DEDD00A2DD98 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2756DFD227D8DEDD00A2DD98 /* MapViewModel.swift */; };
 		277CA04628DBD98100A397B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 277CA04528DBD98000A397B6 /* Assets.xcassets */; };
 		277CA7A228B9FE6C00893757 /* modelForSpots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277CA7A128B9FE6C00893757 /* modelForSpots.swift */; };
+		277E01E22A3C79460014E325 /* mainNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277E01E12A3C79460014E325 /* mainNavBar.swift */; };
 		27EEAAE62A025F12005779C1 /* playSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27EEAAE52A025F12005779C1 /* playSound.swift */; };
 		27EEAAEA2A0261A8005779C1 /* focus-loop-corporate-music-114297.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 27EEAAE92A0261A8005779C1 /* focus-loop-corporate-music-114297.mp3 */; };
 /* End PBXBuildFile section */
@@ -52,6 +53,7 @@
 		2756DFD227D8DEDD00A2DD98 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		277CA04528DBD98000A397B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Hamba/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		277CA7A128B9FE6C00893757 /* modelForSpots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = modelForSpots.swift; sourceTree = "<group>"; };
+		277E01E12A3C79460014E325 /* mainNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainNavBar.swift; sourceTree = "<group>"; };
 		27EEAAE52A025F12005779C1 /* playSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = playSound.swift; sourceTree = "<group>"; };
 		27EEAAE92A0261A8005779C1 /* focus-loop-corporate-music-114297.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "focus-loop-corporate-music-114297.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -145,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				271C8F5A27C27BC7004BCD02 /* ContentView.swift */,
+				277E01E12A3C79460014E325 /* mainNavBar.swift */,
 				270AD9E62973E4B00090F555 /* SplashView.swift */,
 			);
 			path = View;
@@ -317,6 +320,7 @@
 				27EEAAE62A025F12005779C1 /* playSound.swift in Sources */,
 				271C8F5927C27BC7004BCD02 /* HambaApp.swift in Sources */,
 				270AD9E72973E4B00090F555 /* SplashView.swift in Sources */,
+				277E01E22A3C79460014E325 /* mainNavBar.swift in Sources */,
 				2756DFD327D8DEDD00A2DD98 /* MapViewModel.swift in Sources */,
 				277CA7A228B9FE6C00893757 /* modelForSpots.swift in Sources */,
 			);

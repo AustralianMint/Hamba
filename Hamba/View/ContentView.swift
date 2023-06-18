@@ -21,32 +21,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack() {
-                HStack{
-                    HStack{
-                        Text("Hamba")
-                            .padding()
-                            .font(.system(.title, design: .serif))
-                        Image(systemName: "figure.walk")
-                            .imageScale(.large)
-                            .padding(.leading, -15)
-                    }
-                    
-                    Spacer()
-                    
-                    Image(systemName: "speaker.wave.3.fill")
-                    
-                    Toggle("Sound", isOn: $soundIsON)
-                        .onChange(of: soundIsON) { newValue in
-                            if newValue {
-                                audioPlayer?.play()
-                            } else {
-                                audioPlayer?.pause()
-                            }
-                        }
-                        .labelsHidden()
-                        .padding(.trailing)
-
-                }
+                mainNavBar()
                 
                 //Struct displaying the map
                 Map(coordinateRegion: $mapViewModel.region, showsUserLocation: true,  annotationItems: locations) { location in
