@@ -11,6 +11,18 @@ import MapKit
 import SwiftUI
 import AVFoundation
 
+//Forces .stack behaviour for NavigationView (phone/ipad)
+extension View {
+    @ViewBuilder func phoneOnlyNavigationView() -> some View {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            self.navigationViewStyle(.stack)
+        } else if UIDevice.current.userInterfaceIdiom == .pad {
+            self.navigationViewStyle(.stack)
+        } else {
+            self
+        }
+    }
+}
 
 //struct is a 'Value type' that encapsulates state & behavior.
 struct ContentView: View {
@@ -46,12 +58,11 @@ struct ContentView: View {
                 .onAppear(perform: {
                     mapViewModel.checkIfLocationServicesIsEnabled()
                 })
-                //.accentColor(Color(.systemBlue))
-                .tint(.pink)
             }
         }
+        .phoneOnlyNavigationView()
         .onAppear(perform: {
-            //playSound(sound: "focus-loop-corporate-music-114297", type: "mp3");
+            playSound(sound: "focus-loop-corporate-music-114297", type: "mp3");
         })
     }
     
