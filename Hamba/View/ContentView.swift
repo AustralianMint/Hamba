@@ -47,11 +47,11 @@ struct ContentView: View {
                     mapViewModel.checkIfLocationServicesIsEnabled()
                 })
                 //.accentColor(Color(.systemBlue))
-                .tint(.blue)
+                .tint(.pink)
             }
         }
         .onAppear(perform: {
-            playSound(sound: "focus-loop-corporate-music-114297", type: "mp3");
+            //playSound(sound: "focus-loop-corporate-music-114297", type: "mp3");
         })
     }
     
