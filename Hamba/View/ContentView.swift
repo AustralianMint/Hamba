@@ -36,7 +36,10 @@ struct ContentView: View {
                 mainNavBar()
                 
                 //Struct displaying the map
-                Map(coordinateRegion: $mapViewModel.region, showsUserLocation: true,  annotationItems: locations) { location in
+                Map(coordinateRegion: $mapViewModel.region,
+                    showsUserLocation: true,
+                    annotationItems: locations
+                ) { location in
                     MapAnnotation(coordinate: location.coordinate) {
                         NavigationLink {
                             Image(location.spotImage)
