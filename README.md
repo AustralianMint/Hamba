@@ -1,4 +1,4 @@
-# Hamba_SS22
+# Hamba
 NativeMobileDev iOS
 
 Working with MapKit & SwiftUI
