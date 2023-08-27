@@ -58,17 +58,14 @@ struct ContentView: View {
                         }
                     }
                 }
-                //Location Services prompt
-                .onAppear(perform: {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                        mapViewModel.checkIfLocationServicesIsEnabled()
-                    }
-                })
             }
         }
         .phoneOnlyNavigationView()
         .onAppear(perform: {
             playSound(sound: "focus-loop-corporate-music-114297", type: "mp3");
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                mapViewModel.checkIfLocationServicesIsEnabled()
+            }
         })
     }
     
