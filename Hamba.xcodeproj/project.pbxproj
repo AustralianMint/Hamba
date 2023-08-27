@@ -55,6 +55,7 @@
 		277CA7A128B9FE6C00893757 /* modelForSpots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = modelForSpots.swift; sourceTree = "<group>"; };
 		277E01E12A3C79460014E325 /* mainNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainNavBar.swift; sourceTree = "<group>"; };
 		27B90EFF2A4D84AD009621C5 /* Hamba.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Hamba.entitlements; sourceTree = "<group>"; };
+		27E05EE32A9B83580064CB57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		27EEAAE52A025F12005779C1 /* playSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = playSound.swift; sourceTree = "<group>"; };
 		27EEAAE92A0261A8005779C1 /* focus-loop-corporate-music-114297.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "focus-loop-corporate-music-114297.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,6 +108,7 @@
 		271C8F5727C27BC7004BCD02 /* Hamba */ = {
 			isa = PBXGroup;
 			children = (
+				27E05EE32A9B83580064CB57 /* Info.plist */,
 				27B90EFF2A4D84AD009621C5 /* Hamba.entitlements */,
 				271C8F5827C27BC7004BCD02 /* HambaApp.swift */,
 				277CA7A028B9FD8900893757 /* Model */,
@@ -489,6 +491,7 @@
 				DEVELOPMENT_TEAM = WA6Z8H4MD6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Hamba/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs your locaiton to show you on the Map";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -524,6 +527,7 @@
 				DEVELOPMENT_TEAM = WA6Z8H4MD6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Hamba/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs your locaiton to show you on the Map";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
