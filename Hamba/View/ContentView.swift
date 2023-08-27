@@ -58,8 +58,11 @@ struct ContentView: View {
                         }
                     }
                 }
+                //Location Services prompt
                 .onAppear(perform: {
-                    mapViewModel.checkIfLocationServicesIsEnabled()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        mapViewModel.checkIfLocationServicesIsEnabled()
+                    }
                 })
             }
         }
