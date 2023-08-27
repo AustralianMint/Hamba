@@ -45,7 +45,10 @@ var locations: [Spots] = [
     Spots(name: "Waiting for bus", coordinate: CLLocationCoordinate2D(latitude: 52.50399, longitude: 13.41019), spotImage: "waitingForBus"),
     Spots(name: "Post-Volleyball", coordinate: CLLocationCoordinate2D(latitude: 52.49778, longitude: 13.37176), spotImage: "postVolleyball"),
     Spots(name: "Volkspark Friedrichshain", coordinate: CLLocationCoordinate2D(latitude: 52.52460, longitude: 13.43232), spotImage: "volksparkFriedrichshain"),
-    Spots(name: "Sunday", coordinate: CLLocationCoordinate2D(latitude: 52.54249, longitude: 13.40384), spotImage: "sunday")
+    Spots(name: "Sunday", coordinate: CLLocationCoordinate2D(latitude: 52.54249, longitude: 13.40384), spotImage: "sunday"),
+    Spots(name: "LVL 1", coordinate: CLLocationCoordinate2D(latitude: 52.54749, longitude: 13.38808), spotImage: "Lvl1"),
+    Spots(name: "LVL 2", coordinate: CLLocationCoordinate2D(latitude: 52.54721, longitude: 13.38474), spotImage: "Lvl2"),
+    Spots(name: "Mid Haircut", coordinate: CLLocationCoordinate2D(latitude: 52.53060, longitude: 13.39659), spotImage: "midHaircut")
 ]
 
 //Spots(name: "TBD", coordinate: CLLocationCoordinate2D(latitude: 52.57264, longitude: 13.36183)),

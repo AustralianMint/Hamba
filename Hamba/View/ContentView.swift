@@ -11,6 +11,18 @@ import MapKit
 import SwiftUI
 import AVFoundation
 
+//Forces .stack behaviour for NavigationView (phone/ipad)
+extension View {
+    @ViewBuilder func phoneOnlyNavigationView() -> some View {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            self.navigationViewStyle(.stack)
+        } else if UIDevice.current.userInterfaceIdiom == .pad {
+            self.navigationViewStyle(.stack)
+        } else {
+            self
+        }
+    }
+}
 
 //struct is a 'Value type' that encapsulates state & behavior.
 struct ContentView: View {
@@ -21,41 +33,18 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack() {
-                HStack{
-                    HStack{
-                        Text("Hamba")
-                            .padding()
-                            .font(.system(.title, design: .serif))
-                        Image(systemName: "figure.walk")
-                            .imageScale(.large)
-                            .padding(.leading, -15)
-                    }
-                    
-                    Spacer()
-                    
-                    Image(systemName: "speaker.wave.3.fill")
-                    
-                    Toggle("Sound", isOn: $soundIsON)
-                        .onChange(of: soundIsON) { newValue in
-                            if newValue {
-                                audioPlayer?.play()
-                            } else {
-                                audioPlayer?.pause()
-                            }
-                        }
-                        .labelsHidden()
-                        .padding(.trailing)
-
-                }
+                mainNavBar()
                 
                 //Struct displaying the map
-                Map(coordinateRegion: $mapViewModel.region, showsUserLocation: true,  annotationItems: locations) { location in
+                Map(coordinateRegion: $mapViewModel.region,
+                    showsUserLocation: true,
+                    annotationItems: locations
+                ) { location in
                     MapAnnotation(coordinate: location.coordinate) {
                         NavigationLink {
                             Image(location.spotImage)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .blur(radius: CGFloat(1))
                             Text(location.name)
                                 .bold()
                                 .font(.system(size: 27, weight: .heavy, design: .rounded))
@@ -69,15 +58,14 @@ struct ContentView: View {
                         }
                     }
                 }
-                .onAppear(perform: {
-                    mapViewModel.checkIfLocationServicesIsEnabled()
-                })
-                //.accentColor(Color(.systemBlue))
-                .tint(.blue)
             }
         }
+        .phoneOnlyNavigationView()
         .onAppear(perform: {
             playSound(sound: "focus-loop-corporate-music-114297", type: "mp3");
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                mapViewModel.checkIfLocationServicesIsEnabled()
+            }
         })
     }
     
