@@ -30,6 +30,8 @@ struct ContentView: View {
     @StateObject var mapViewModel = MapViewModel()
     @State public var soundIsON: Bool = true
     
+    @State var currentAmmount: CGFloat = 0
+    
     var body: some View {
         NavigationView {
             VStack() {
@@ -45,6 +47,19 @@ struct ContentView: View {
                             Image(location.spotImage)
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
+                                .scaleEffect(1 + currentAmmount)
+                                .gesture(
+                                    MagnificationGesture()
+                                        .onChanged { value in
+                                            currentAmmount = value - 1
+                                        }
+                                        .onEnded { value in
+                                            withAnimation(.default) {
+                                                currentAmmount = 0
+                                            }
+                                        }
+                                )
+                            
                             Text(location.name)
                                 .bold()
                                 .font(.system(size: 27, weight: .heavy, design: .rounded))
