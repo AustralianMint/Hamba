@@ -25,11 +25,20 @@ struct mainNavBar: View {
             
             Spacer()
             
+            Button{
+                print("The button was pressed")
+            } label: {
+                Image(systemName: "square.2.layers.3d.top.filled")
+            }
+            .buttonStyle(.bordered)
+            
+            Spacer()
+            
             Image(systemName: "speaker.wave.3.fill")
             
             Toggle("Sound", isOn: $soundIsON)
-                .onChange(of: soundIsON) { newValue in
-                    if newValue {
+                .onChange(of: soundIsON) {
+                    if soundIsON {
                         audioPlayer?.play()
                     } else {
                         audioPlayer?.pause()
