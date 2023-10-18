@@ -23,7 +23,7 @@ var locations: [Spots] = [
     Spots(name: "James-Simon-Park", coordinate: CLLocationCoordinate2D(latitude: 52.521927, longitude: 13.399313), spotImage: "jamesSimonParkBetter"),
     Spots(name: "Waldeck-Park", coordinate: CLLocationCoordinate2D(latitude: 52.50624, longitude: 13.40340), spotImage: "waldeckPark"),
     Spots(name: "Luisenstädtischer Kirchpark", coordinate: CLLocationCoordinate2D(latitude: 52.508725, longitude: 13.407724), spotImage: "LuisenstaedtischerKirchpark"),
-    Spots(name: "Märkischer Spot am Water", coordinate: CLLocationCoordinate2D(latitude: 52.514207, longitude: 13.413992), spotImage: "maerkischerSpotAmWater"),
+    Spots(name: "Märkischer Spot am Water", coordinate: CLLocationCoordinate2D(latitude: 52.514207, longitude: 13.413992), spotImage: "MaerkischerSpotAmWater"),
     Spots(name: "Osloer North - along water", coordinate: CLLocationCoordinate2D(latitude: 52.55672, longitude: 13.38133), spotImage: "OsloerNorth"),
     Spots(name: "The Cheeze-man Spot", coordinate: CLLocationCoordinate2D(latitude: 52.497169, longitude: 13.456173), spotImage: "cheezeManSpot"),
     Spots(name: "Bench am Auswertigen Amt", coordinate: CLLocationCoordinate2D(latitude: 52.512179, longitude: 13.401030), spotImage: "benchAmAuswertigenAmt"),
