@@ -29,49 +29,75 @@ struct ContentView: View {
     
     @StateObject var mapViewModel = MapViewModel()
     @State public var soundIsON: Bool = true
+    @State public var mapType: MapStyle = .standard
     
     @State var currentAmmount: CGFloat = 0
     
     var body: some View {
         NavigationView {
-            VStack() {
-                mainNavBar()
+            VStack{
+                HStack{
+                    mainNavBar()
+                }
                 
                 //Struct displaying the map
-                Map(coordinateRegion: $mapViewModel.region,
-                    showsUserLocation: true,
-                    annotationItems: locations
-                ) { location in
-                    MapAnnotation(coordinate: location.coordinate) {
-                        NavigationLink {
-                            Image(location.spotImage)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .scaleEffect(1 + currentAmmount)
-                                .gesture(
-                                    MagnificationGesture()
-                                        .onChanged { value in
-                                            currentAmmount = value - 1
-                                        }
-                                        .onEnded { value in
-                                            withAnimation(.default) {
-                                                currentAmmount = 0
+                ZStack(alignment: .bottomTrailing) {
+                    Map(coordinateRegion: $mapViewModel.region,
+                        showsUserLocation: true,
+                        annotationItems: locations
+                    ) { location in
+                        MapAnnotation(coordinate: location.coordinate) {
+                            NavigationLink {
+                                Image(location.spotImage)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .scaleEffect(1 + currentAmmount)
+                                    .gesture(
+                                        MagnificationGesture()
+                                            .onChanged { value in
+                                                currentAmmount = value - 1
                                             }
-                                        }
-                                )
-                            
-                            Text(location.name)
-                                .bold()
-                                .font(.system(size: 27, weight: .heavy, design: .rounded))
-                        } label: {
-                            Image(systemName: "star.circle")
-                                .resizable()
-                                .foregroundColor(.yellow)
-                                .background(.white)
-                                .frame(width: 22, height: 22)
-                                .clipShape(Circle())
+                                            .onEnded { value in
+                                                withAnimation(.default) {
+                                                    currentAmmount = 0
+                                                }
+                                            }
+                                    )
+                                Text(location.name)
+                                    .bold()
+                                    .font(.system(size: 27, weight: .heavy, design: .rounded))
+                            } label: {
+                                Image(systemName: "star.circle")
+                                    .resizable()
+                                    .foregroundColor(.yellow)
+                                    .background(.white)
+                                    .frame(width: 22, height: 22)
+                                    .clipShape(Circle())
+                            }
                         }
                     }
+                    .mapStyle(mapType)
+                    
+                    //Buttons to toggle which map type to display.
+                    //Want to store in diffirent File.
+                    VStack(alignment: .trailing) {
+                        Button(action: {
+                            mapType = MapStyle.imagery
+                        }, label: {
+                            Image(systemName: "square.2.layers.3d.top.filled")
+                        })
+                        .buttonStyle(.bordered)
+                        .controlSize(.large)
+                        
+                        Button(action: {
+                            mapType = MapStyle.standard
+                        }, label: {
+                            Image(systemName: "square.2.layers.3d.bottom.filled")
+                        })
+                        .buttonStyle(.bordered)
+                        .controlSize(.large)
+                    }
+                    .padding(.init(top: 0, leading: 0, bottom: 10, trailing: 10))
                 }
             }
         }
