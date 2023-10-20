@@ -28,8 +28,8 @@ struct mainNavBar: View {
             Image(systemName: "speaker.wave.3.fill")
             
             Toggle("Sound", isOn: $soundIsON)
-                .onChange(of: soundIsON) { newValue in
-                    if newValue {
+                .onChange(of: soundIsON) {
+                    if soundIsON {
                         audioPlayer?.play()
                     } else {
                         audioPlayer?.pause()
