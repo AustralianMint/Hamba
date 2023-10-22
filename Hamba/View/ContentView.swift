@@ -67,9 +67,9 @@ struct ContentView: View {
                                     .bold()
                                     .font(.system(size: 27, weight: .heavy, design: .rounded))
                             } label: {
-                                Image(systemName: "star.circle")
+                                Image(systemName: location.iconType)
                                     .resizable()
-                                    .foregroundColor(.yellow)
+                                    .foregroundStyle(location.iconColor)
                                     .background(.white)
                                     .frame(width: 22, height: 22)
                                     .clipShape(Circle())
