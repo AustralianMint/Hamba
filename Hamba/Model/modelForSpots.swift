@@ -62,6 +62,7 @@ var locations: [Spots] = [
         Spots(name: "MUC", coordinate: CLLocationCoordinate2D(latitude: 48.15685, longitude: 11.58068), iconType: "star.circle", iconColor: yellow),
         
         //PingPongSpots
+        Spots(name: "Die Jute Zwirbelwiese", coordinate: CLLocationCoordinate2D(latitude: 52.50628, longitude: 13.39600), spotImage: "dieJuteZwirbelwiese", iconType: "tennis.racket.circle", iconColor: purple),
         Spots(name: "Gustavo PingPong", coordinate: CLLocationCoordinate2D(latitude: 52.52525, longitude: 13.46388), spotImage: "secondPingPongSpot", iconType: "tennis.racket.circle", iconColor: purple),
         Spots(name: "Pong with Mosaic", coordinate: CLLocationCoordinate2D(latitude: 52.55238, longitude: 13.38673), spotImage: "thirdPingPongSpot", iconType: "tennis.racket.circle", iconColor: purple),
         Spots(name: "PinpPongSpot", coordinate: CLLocationCoordinate2D(latitude: 52.51023, longitude: 13.39979), spotImage: "firstPingPongSpot", iconType: "tennis.racket.circle", iconColor: purple),
