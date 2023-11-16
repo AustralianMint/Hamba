@@ -71,7 +71,7 @@ struct ContentView: View {
                                     .resizable()
                                     .foregroundStyle(location.iconColor)
                                     .background(.white)
-                                    .frame(width: 22, height: 22)
+                                    .frame(width: 23, height: 23)
                                     .clipShape(Circle())
                             }
                         }
@@ -86,7 +86,7 @@ struct ContentView: View {
                         }, label: {
                             Image(systemName: "square.2.layers.3d.top.filled")
                         })
-                        .buttonStyle(.bordered)
+                        .buttonStyle(.borderedProminent)
                         .controlSize(.large)
                         
                         Button(action: {
@@ -94,7 +94,7 @@ struct ContentView: View {
                         }, label: {
                             Image(systemName: "square.2.layers.3d.bottom.filled")
                         })
-                        .buttonStyle(.bordered)
+                        .buttonStyle(.borderedProminent)
                         .controlSize(.large)
                     }
                     .padding(.init(top: 0, leading: 0, bottom: 10, trailing: 10))
