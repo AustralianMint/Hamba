@@ -23,7 +23,7 @@ struct Spots: Identifiable {
 
 var yellow: Color = Color.yellow
 var purple: Color = Color.purple
-var teal: Color = Color.teal
+var blue: Color = Color.blue
 
 var locations: [Spots] = [
         //Normal Spots
@@ -61,6 +61,10 @@ var locations: [Spots] = [
         Spots(name: "Sid", coordinate: CLLocationCoordinate2D(latitude: 52.53174, longitude: 13.40844), spotImage: "sid", iconType: "star.circle", iconColor: yellow),
         Spots(name: "MUC", coordinate: CLLocationCoordinate2D(latitude: 48.15685, longitude: 11.58068), iconType: "star.circle", iconColor: yellow),
         
+        //Turkey Spots
+        Spots(name: "Hulk Overview", coordinate: CLLocationCoordinate2D(latitude: 42.02961, longitude: 35.16478), spotImage: "hulkOverviewHEIC", iconType: "mountain.2.circle", iconColor: blue),
+        Spots(name: "Bariş Manço", coordinate: CLLocationCoordinate2D(latitude: 42.02256, longitude: 35.15440), spotImage: "barishMancoHEIC", iconType: "star.circle", iconColor: yellow),
+        
         //PingPongSpots
         Spots(name: "Die Jute Zwirbelwiese", coordinate: CLLocationCoordinate2D(latitude: 52.50628, longitude: 13.39600), spotImage: "dieJuteZwirbelwiese", iconType: "tennis.racket.circle", iconColor: purple),
         Spots(name: "Gustavo PingPong", coordinate: CLLocationCoordinate2D(latitude: 52.52525, longitude: 13.46388), spotImage: "secondPingPongSpot", iconType: "tennis.racket.circle", iconColor: purple),
@@ -69,10 +73,10 @@ var locations: [Spots] = [
         Spots(name: "C<>DE Pong", coordinate: CLLocationCoordinate2D(latitude: 52.49564, longitude: 13.44820), spotImage: "fourthPingPongSpot", iconType: "tennis.racket.circle", iconColor: purple),
         
         //Sridhar Spots
-        Spots(name: "Märkisches Ufer Spot", coordinate: CLLocationCoordinate2D(latitude: 52.51436, longitude: 13.41584), spotImage: "workInProgress", iconType: "questionmark.circle", iconColor: teal),
-        Spots(name: "Zillepromenade Spot", coordinate: CLLocationCoordinate2D(latitude: 52.49940, longitude: 13.47634), spotImage: "workInProgress", iconType: "questionmark.circle", iconColor: teal),
-        Spots(name: "Spot am Nordhafen", coordinate: CLLocationCoordinate2D(latitude: 52.53773, longitude: 13.36196), spotImage: "workInProgress", iconType: "questionmark.circle", iconColor: teal),
-        Spots(name: "Wasserturm Spot", coordinate: CLLocationCoordinate2D(latitude: 52.53366, longitude: 13.41799), spotImage: "workInProgress", iconType: "questionmark.circle", iconColor: teal),
+        Spots(name: "Märkisches Ufer Spot", coordinate: CLLocationCoordinate2D(latitude: 52.51436, longitude: 13.41584), spotImage: "workInProgress", iconType: "questionmark.circle", iconColor: yellow),
+        Spots(name: "Zillepromenade Spot", coordinate: CLLocationCoordinate2D(latitude: 52.49940, longitude: 13.47634), spotImage: "workInProgress", iconType: "questionmark.circle", iconColor: yellow),
+        Spots(name: "Spot am Nordhafen", coordinate: CLLocationCoordinate2D(latitude: 52.53773, longitude: 13.36196), spotImage: "workInProgress", iconType: "questionmark.circle", iconColor: yellow),
+        Spots(name: "Wasserturm Spot", coordinate: CLLocationCoordinate2D(latitude: 52.53366, longitude: 13.41799), spotImage: "workInProgress", iconType: "questionmark.circle", iconColor: yellow),
 ]
 
 //Spots(name: "TBD", coordinate: CLLocationCoordinate2D(latitude: 52.57264, longitude: 13.36183)),
