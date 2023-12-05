@@ -24,6 +24,7 @@ struct Spots: Identifiable {
 var yellow: Color = Color.yellow
 var purple: Color = Color.purple
 var blue: Color = Color.blue
+var mint: Color = Color.mint
 
 var locations: [Spots] = [
         //Normal Spots
@@ -73,10 +74,10 @@ var locations: [Spots] = [
         Spots(name: "C<>DE Pong", coordinate: CLLocationCoordinate2D(latitude: 52.49564, longitude: 13.44820), spotImage: "fourthPingPongSpot", iconType: "tennis.racket.circle", iconColor: purple),
         
         //Sridhar Spots
-        Spots(name: "Märkisches Ufer Spot", coordinate: CLLocationCoordinate2D(latitude: 52.51436, longitude: 13.41584), spotImage: "workInProgress", iconType: "questionmark.circle", iconColor: yellow),
-        Spots(name: "Zillepromenade Spot", coordinate: CLLocationCoordinate2D(latitude: 52.49940, longitude: 13.47634), spotImage: "workInProgress", iconType: "questionmark.circle", iconColor: yellow),
-        Spots(name: "Spot am Nordhafen", coordinate: CLLocationCoordinate2D(latitude: 52.53773, longitude: 13.36196), spotImage: "workInProgress", iconType: "questionmark.circle", iconColor: yellow),
-        Spots(name: "Wasserturm Spot", coordinate: CLLocationCoordinate2D(latitude: 52.53366, longitude: 13.41799), spotImage: "workInProgress", iconType: "questionmark.circle", iconColor: yellow),
+        Spots(name: "Märkisches Ufer Spot", coordinate: CLLocationCoordinate2D(latitude: 52.51436, longitude: 13.41584), spotImage: "workInProgress", iconType: "questionmark.circle", iconColor: mint),
+        Spots(name: "Zillepromenade Spot", coordinate: CLLocationCoordinate2D(latitude: 52.49940, longitude: 13.47634), spotImage: "workInProgress", iconType: "questionmark.circle", iconColor: mint),
+        Spots(name: "Spot am Nordhafen", coordinate: CLLocationCoordinate2D(latitude: 52.53773, longitude: 13.36196), spotImage: "workInProgress", iconType: "questionmark.circle", iconColor: mint),
+        Spots(name: "Wasserturm Spot", coordinate: CLLocationCoordinate2D(latitude: 52.53366, longitude: 13.41799), spotImage: "workInProgress", iconType: "questionmark.circle", iconColor: mint),
 ]
 
 //Spots(name: "TBD", coordinate: CLLocationCoordinate2D(latitude: 52.57264, longitude: 13.36183)),
