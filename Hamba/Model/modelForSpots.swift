@@ -18,7 +18,7 @@ struct Spots: Identifiable {
     var iconType = String()
     var iconColor = Color(String())
     
-    static var exampleItem = Spots(name: "Example Park", coordinate: CLLocationCoordinate2D(latitude: 52.521927, longitude: 13.399313), spotImage: "B-Day", iconType: "star.circle")
+    static var exampleItem = Spots(name: "Example Park", coordinate: CLLocationCoordinate2D(latitude: 52.521927, longitude: 13.399313), spotImage: "B-Day", iconType: "star.circle", iconColor: purple)
 }
 
 var yellow: Color = Color.yellow
