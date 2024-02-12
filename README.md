@@ -7,6 +7,7 @@
 
 --- 
 
+
 This application is natively developed for iOS Devices.
 
 #### **'Hamba' will**:
@@ -81,3 +82,6 @@ Hamba/
 - Import to Xcode
 - Open Project
 - Run with Xcode included iPhone Simulator
+
+
+Just adding a random comment here. 
