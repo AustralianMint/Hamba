@@ -27,7 +27,7 @@ var blue: Color = Color.blue
 var mint: Color = Color.mint
 
 var locations: [Spots] = [
-        //Normal Spots
+        //Normal Spots
         Spots(name: "Luisenstädtischer Kirchpark", coordinate: CLLocationCoordinate2D(latitude: 52.508725, longitude: 13.407724), spotImage: "LuisenstaedtischerKirchpark", iconType: "star.circle", iconColor: yellow),
         Spots(name: "Märkischer Spot am Water", coordinate: CLLocationCoordinate2D(latitude: 52.514207, longitude: 13.413992), spotImage: "MaerkischerSpotAmWater", iconType: "star.circle", iconColor: yellow),
         Spots(name: "Bench am Auswertigen Amt", coordinate: CLLocationCoordinate2D(latitude: 52.512179, longitude: 13.401030), spotImage: "benchAmAuswertigenAmt", iconType: "star.circle", iconColor: yellow),
