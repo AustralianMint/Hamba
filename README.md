@@ -82,4 +82,3 @@ Hamba/
 - Open Project
 - Run with Xcode included iPhone Simulator
 
-hey this is a test comment. 
