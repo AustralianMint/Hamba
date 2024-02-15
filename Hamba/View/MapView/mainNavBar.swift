@@ -44,7 +44,6 @@ struct mainNavBar: View {
             musicButton
         }
         .padding()
-        .background(Material.ultraThin)
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .frame(maxHeight: 44)
     }
@@ -63,6 +62,7 @@ struct mainNavBar: View {
         } label: {
             Image(systemName: soundIsOn ? "speaker.wave.3.fill" : "speaker.wave.3")
         }
+        .buttonStyle(.plain)
     }
     
     var mapStyleButton: some View {
@@ -73,6 +73,7 @@ struct mainNavBar: View {
         } label: {
             Image(systemName: isImageryMapType ? "square.2.layers.3d.top.filled" : "square.2.layers.3d.bottom.filled")
         }
+        .buttonStyle(.plain)
     }
 }
 
