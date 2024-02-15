@@ -13,12 +13,7 @@ import AVFoundation
 
 //struct is a 'Value type' that encapsulates state & behavior.
 struct ContentView: View {
-    
     @StateObject var mapViewModel = MapViewModel()
-    @State public var soundIsON: Bool = true
-    @State public var mapType: MapStyle = .standard
-    
-    @State var currentAmmount: CGFloat = 0
     
     var body: some View {
         MapView(mapViewModel: MapViewModel())
