@@ -23,7 +23,6 @@
 		45E81DA02B7E39C2008008F5 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E81D9F2B7E39C2008008F5 /* MapView.swift */; };
 		45E81DA22B7E3A1B008008F5 /* mainMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E81DA12B7E3A1B008008F5 /* mainMap.swift */; };
 		45E81DA52B7E3A9E008008F5 /* View+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E81DA42B7E3A9E008008F5 /* View+Navigation.swift */; };
-		45E81DA72B7E4077008008F5 /* mapStyleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E81DA62B7E4077008008F5 /* mapStyleButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +64,6 @@
 		45E81D9F2B7E39C2008008F5 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		45E81DA12B7E3A1B008008F5 /* mainMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainMap.swift; sourceTree = "<group>"; };
 		45E81DA42B7E3A9E008008F5 /* View+Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Navigation.swift"; sourceTree = "<group>"; };
-		45E81DA62B7E4077008008F5 /* mapStyleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapStyleButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,7 +202,6 @@
 				45E81D9F2B7E39C2008008F5 /* MapView.swift */,
 				277E01E12A3C79460014E325 /* mainNavBar.swift */,
 				45E81DA12B7E3A1B008008F5 /* mainMap.swift */,
-				45E81DA62B7E4077008008F5 /* mapStyleButton.swift */,
 			);
 			path = MapView;
 			sourceTree = "<group>";
@@ -355,7 +352,6 @@
 				271C8F5927C27BC7004BCD02 /* HambaApp.swift in Sources */,
 				270AD9E72973E4B00090F555 /* SplashView.swift in Sources */,
 				45E81DA52B7E3A9E008008F5 /* View+Navigation.swift in Sources */,
-				45E81DA72B7E4077008008F5 /* mapStyleButton.swift in Sources */,
 				277E01E22A3C79460014E325 /* mainNavBar.swift in Sources */,
 				2756DFD327D8DEDD00A2DD98 /* MapViewModel.swift in Sources */,
 				277CA7A228B9FE6C00893757 /* modelForSpots.swift in Sources */,

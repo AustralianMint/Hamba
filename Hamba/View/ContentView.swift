@@ -13,10 +13,11 @@ import AVFoundation
 
 //struct is a 'Value type' that encapsulates state & behavior.
 struct ContentView: View {
+//    @State var isActive: Bool = false
     @StateObject var mapViewModel = MapViewModel()
     
     var body: some View {
-        MapView(mapViewModel: MapViewModel())
+        MapView(mapViewModel: mapViewModel)
     }
     //Just for Xcode Preview sake
     struct ContentView_Previews: PreviewProvider {

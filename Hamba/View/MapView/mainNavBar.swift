@@ -66,14 +66,13 @@ struct mainNavBar: View {
     }
     
     var mapStyleButton: some View {
-        Button(action: {
+        Button {
             // 2. Toggle the map type on button press
             isImageryMapType.toggle()
             mapViewModel.mapType = isImageryMapType ? MapStyle.imagery : MapStyle.standard
-        }, label: {
-            // 3. Change the button icon based on the toggle status
+        } label: {
             Image(systemName: isImageryMapType ? "square.2.layers.3d.top.filled" : "square.2.layers.3d.bottom.filled")
-        })
+        }
     }
 }
 
