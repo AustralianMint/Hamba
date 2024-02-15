@@ -11,6 +11,7 @@ import SwiftUI
 
 struct MapView: View {
     @StateObject var mapViewModel: MapViewModel
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
 
     var body: some View {
         NavigationView {
@@ -32,7 +33,7 @@ struct MapView: View {
     var navBar: some View {
         VStack {
             mainNavBar(mapViewModel: mapViewModel)
-                .padding(.top, -15)
+//                .padding(.top, horizontalSizeClass == .compact ? -15 : 0)
                 .background(
                     // Apply a linear gradient with a blur effect
                     LinearGradient(gradient: Gradient(colors: [Color.clear]), startPoint: .top, endPoint: .bottom)

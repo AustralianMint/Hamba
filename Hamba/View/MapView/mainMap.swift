@@ -9,7 +9,6 @@ import _MapKit_SwiftUI
 import SwiftUI
 
 struct mainMap: View {
-    @Environment(\.colorScheme) private var colorScheme
     @ObservedObject var mapViewModel: MapViewModel
 
     var body: some View {
@@ -49,45 +48,8 @@ struct mainMap: View {
                 }
             }
             .mapStyle(mapViewModel.mapType)
-
-            VStack {
-                blurredEdge
-                Spacer()
-            }
         }
         .ignoresSafeArea()
-    }
-
-    var blurredEdge: some View {
-        
-        VisualEffectView(effect: UIBlurEffect(style: colorScheme == .dark ? .dark : .light))
-            .mask {
-                LinearGradient(
-                    stops: [
-                        .init(color: Color.black.opacity(1), location: 0),
-                        .init(color: Color.black.opacity(0.9), location: 0.8),
-                        .init(color: Color.black.opacity(0), location: 1)
-                    ],
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
-            }
-
-            .offset(y:-3) //
-            .frame(height: 110)
-    }
-}
-
-// Custom UIBlurr Effect (to not use UIKit)
-struct VisualEffectView: UIViewRepresentable {
-    var effect: UIVisualEffect?
-    
-    func makeUIView(context: UIViewRepresentableContext<Self>) -> UIVisualEffectView {
-        return UIVisualEffectView()
-    }
-    
-    func updateUIView(_ uiView: UIVisualEffectView, context: UIViewRepresentableContext<Self>) {
-        uiView.effect = effect
     }
 }
 
