@@ -34,28 +34,37 @@ This application is natively developed for iOS Devices.
 Hamba/
 ├── Hamba.xcodeproj/  
 ├── Hamba/             
-│   ├── Assets.xcassets/
-│   ├── Helpers
-│   │   └──playSound.swift
+│   ├── info.plist
+│   ├── Hamba.entitlements
+│   └── HambaApp.swift
 │   │
-│   ├── Model
+│   ├── Model/
 │   │   └──modelForSpots.swift
 │   │
-│   ├── Sounds
-│   │   └──.mp3 file
-│   │
-│   ├── View
-│   │   ├──ContentView.swift
-│   │   ├──SplashView.swift
-│   │   └──mainNavBar.swift
-│   │
-│   ├── ViewModel
+│   ├── ViewModel/
 │   │   └──MapViewModel.swift
 │   │
-│   ├── Hamba.entitlements
-│   ├── HambaApp.swift
-│   └── info.plist
-│
+│   ├── View/
+│   │   ├──ContentView.swift
+│   │   ├──SplashView.swift
+│   │   └──MapView/
+│   │       ├──MapView.swift
+│   │       ├──mainNavBar.swift
+│   │       └──mainMap.swift
+│   │  
+│   ├── Helpers/
+│   │   └──playSound.swift
+│   │
+│   ├── Extensions/
+│   │   └──View+Navigation.swift
+│   │
+│   ├── Preview Content/
+│   │   ├──Preview Assets
+│   │   └──Assets
+│   │
+│   ├── Sounds/
+│   │   └──.mp3 file
+│   │
 ├── HambaTests/
 │   └── HambaTests.swift
 │
@@ -82,6 +91,3 @@ Hamba/
 - Import to Xcode
 - Open Project
 - Run with Xcode included iPhone Simulator
-
-
-Just adding a random comment here. 
