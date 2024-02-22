@@ -10,6 +10,7 @@ import AVFoundation
 import SwiftUI
 
 struct mainNavBar: View {
+    @EnvironmentObject var audioEngine: AudioEngine
     @Environment(\.colorScheme) private var colorScheme
     @ObservedObject var mapViewModel: MapViewModel
     @State private var soundIsOn: Bool = true
@@ -52,11 +53,11 @@ struct mainNavBar: View {
     var musicButton: some View {
         Button {
             if soundIsOn {
-                audioPlayer?.pause()
+                audioEngine.audioPlayer?.pause()
                 self.soundIsOn = false
                 print("soundIsOn = false")
             } else {
-                audioPlayer?.play()
+                audioEngine.audioPlayer?.play()
                 self.soundIsOn = true
                 print("soundIsOn = true")
             }

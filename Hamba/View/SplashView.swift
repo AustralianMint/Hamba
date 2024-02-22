@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SplashView: View {
-    
+    @EnvironmentObject var audioEngine: AudioEngine
     @State var isActive: Bool = false
     
     var body: some View {
