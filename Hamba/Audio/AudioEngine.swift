@@ -3,16 +3,15 @@
 //  Hamba
 //
 //  Created by Péter Sanyó on 22.02.24.
-/// `AudioEngine` is a class designed to encapsulate the functionality for audio related logic..
-/// It provides methods to start and stop the audio engine, play sounds from specified files, and handle audio session activation and deactivation.
-/// - Note: It's important to manage the lifecycle of the `AudioEngine` instance properly to ensure that the audio session is deactivated when not needed.
-///
 
 import AVFoundation
 import SwiftUI
 
+/// A singleton class that encapsulates all audio-related logic within the application.
+/// It manages audio playback, including starting and stopping the engine, playing sounds with specified files,
+/// handling audio session activation, and applying fade-in and fade-out effects.
 public class AudioEngine: ObservableObject {
-    static let shared = AudioEngine() // Provides a global point of access to it -> only one instance referenced
+    static let shared = AudioEngine() // Provides a singleton instance for global access throughout the application
 
     var audioPlayer: AVAudioPlayer?
     
@@ -45,7 +44,6 @@ public class AudioEngine: ObservableObject {
     ///   - file: The name of the sound file to play.
     ///   - type: The file extension/type of the sound file.
     /// - Note: The audio will loop indefinitely until `stopSound` is called.
-    /// - Throws: An `Error` if the audio file cannot be found, loaded, or played.
     private func playSound(file: String, type: String) {
         // safely accessing file to prevent possible crash if file is not found
         guard let path = Bundle.main.path(forResource: file, ofType: type) else {
@@ -63,17 +61,30 @@ public class AudioEngine: ObservableObject {
         }
     }
     
-    /// Plays a sound from a specified file using type-safe audio file references.
-    /// - Parameter audioFile: The `AudioFiles` enum case representing the sound file and the sound format to play.
+    /// Plays a sound with a fade-in effect from a specified audio file.
+    /// The sound playback begins at volume 0 and gradually increases to volume 1 over the specified duration.
+    /// - Parameters:
+    ///   - audioFile: The `AudioFiles` enum case representing the sound file to play.
+    ///   - fadeDuration: The duration over which the volume should fade in to 1.
+    /// This method assumes that an `AVAudioPlayer` instance is already initialized.
     func firstFadeIn(audioFile: AudioFiles, fadeDuration: Float ) {
         playSound(file: audioFile.fileName, type: audioFile.fileType)
         audioPlayer?.setVolume(1, fadeDuration: TimeInterval(fadeDuration))
     }
     
-    
-
-    /// Stops the currently playing sound
-    func stopSound() {
-        audioPlayer?.stop()
+    /// Fades to Volume:0 and then stops the currently playing sound
+    func pauseSoundIn(seconds: TimeInterval) {
+        audioPlayer?.setVolume(0, fadeDuration: seconds)
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+            self.audioPlayer?.pause()
+        }
     }
+    
+    /// starts to play the sound and fades to Volume:1 afterwards
+    func resumeSoundIn(seconds: TimeInterval) {
+        self.audioPlayer?.play()
+        audioPlayer?.setVolume(1, fadeDuration: seconds)
+    }
+    
+    
 }

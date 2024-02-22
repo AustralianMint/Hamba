@@ -5,17 +5,22 @@
 //  Created by Thomas Frey on 16.06.23.
 //
 
+
 import _MapKit_SwiftUI
 import AVFoundation
 import SwiftUI
 
+/// A navigation bar view for the `Hamba` app that includes branding and controls for map style and audio playback.
+///
+/// This view displays the app's name, a thematic image, and buttons for toggling the map style and managing audio playback.
+/// It utilizes an `EnvironmentObject` of `AudioEngine` for audio control and an `ObservedObject` of `MapViewModel` for managing map-related data and actions.
 struct mainNavBar: View {
     @EnvironmentObject var audioEngine: AudioEngine
     @Environment(\.colorScheme) private var colorScheme
     @ObservedObject var mapViewModel: MapViewModel
-    @State private var soundIsOn: Bool = true
     @State private var isImageryMapType: Bool = false
-    
+    @State private var soundIsOn: Bool = true
+
     var body: some View {
         HStack {
             hambaFont
@@ -52,11 +57,11 @@ struct mainNavBar: View {
     var musicButton: some View {
         Button {
             if soundIsOn {
-                audioEngine.audioPlayer?.pause()
+                audioEngine.pauseSoundIn(seconds: 1)
                 self.soundIsOn = false
                 print("soundIsOn = false")
             } else {
-                audioEngine.audioPlayer?.play()
+                audioEngine.resumeSoundIn(seconds: 1)
                 self.soundIsOn = true
                 print("soundIsOn = true")
             }
@@ -77,6 +82,9 @@ struct mainNavBar: View {
         .buttonStyle(.plain)
     }
     
+    /// Applies a background blur effect to the navigation bar.
+    /// This effect adapts to the current color scheme for consistent visual integration.
+    
     var blurredEdge: some View {
         VisualEffectView(effect: UIBlurEffect(style: colorScheme == .dark ? .dark : .light))
             .mask {
@@ -95,7 +103,7 @@ struct mainNavBar: View {
     }
 }
 
-// Custom UIBlurr Effect (to not use UIKit)
+/// A helper view that wraps `UIVisualEffectView` for SwiftUI usage, enabling blur effects.
 struct VisualEffectView: UIViewRepresentable {
     var effect: UIVisualEffect?
     
