@@ -43,10 +43,9 @@ struct mainNavBar: View {
     var buttonCollection: some View {
         HStack(alignment: .center) {
             mapStyleButton
-            Divider()
+            Divider().padding(.vertical)
             musicButton
         }
-        .clipShape(RoundedRectangle(cornerRadius: 16))
         .frame(maxHeight: 44)
     }
     

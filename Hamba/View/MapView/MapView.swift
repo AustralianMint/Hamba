@@ -23,7 +23,7 @@ struct MapView: View {
         }
         .phoneOnlyNavigationView()
         .onAppear(perform: {
-            audioEngine.playSound(sound: "focus-loop-corporate-music-114297", type: "mp3")
+            audioEngine.playSound(audioFile: .focusLoopCorporateMusic)
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                 mapViewModel.checkIfLocationServicesIsEnabled()
             }
