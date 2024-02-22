@@ -9,8 +9,6 @@
 /// `HambaApp` sets up the main scene of the app and injects the `AudioEngine` instance into the SwiftUI environment.
 /// This setup ensures that the `AudioEngine` can be accessed from anywhere within the app, for easy audio management.
 ///
-/// The `SplashView` is presented as the initial view, with the `AudioEngine` available for audio operations across the app.
-
 import SwiftUI
 
 @main
