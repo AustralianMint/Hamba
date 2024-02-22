@@ -16,6 +16,8 @@ public class AudioEngine: ObservableObject {
 
     var audioPlayer: AVAudioPlayer?
     
+    
+    
     // MARK: - Engine
     
     /// Configures and activates the `AVAudioSession` to play audio.
@@ -37,6 +39,7 @@ public class AudioEngine: ObservableObject {
     // MARK: - File handling
     
     /// Plays a sound from a specified file.
+    /// It starts to play the sound at Volume 0 to adjust that with the fade-functions
     /// This method attempts to locate the audio file in the app's main bundle, initializes an `AVAudioPlayer` with it, and starts playback.
     /// - Parameters:
     ///   - file: The name of the sound file to play.
@@ -53,6 +56,7 @@ public class AudioEngine: ObservableObject {
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: path))
             audioPlayer?.numberOfLoops = -1 // Loop indefinitely
+            audioPlayer?.volume = 0 // Start with volume at 0
             audioPlayer?.play()
         } catch {
             print("Error occurred while trying to play the sound: \(error)")
@@ -61,9 +65,12 @@ public class AudioEngine: ObservableObject {
     
     /// Plays a sound from a specified file using type-safe audio file references.
     /// - Parameter audioFile: The `AudioFiles` enum case representing the sound file and the sound format to play.
-    func playSound(audioFile: AudioFiles) {
+    func firstFadeIn(audioFile: AudioFiles, fadeDuration: Float ) {
         playSound(file: audioFile.fileName, type: audioFile.fileType)
+        audioPlayer?.setVolume(1, fadeDuration: TimeInterval(fadeDuration))
     }
+    
+    
 
     /// Stops the currently playing sound
     func stopSound() {
