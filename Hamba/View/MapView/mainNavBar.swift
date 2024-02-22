@@ -47,6 +47,12 @@ struct mainNavBar: View {
     
     var buttonCollection: some View {
         HStack(alignment: .center) {
+            Button {
+                audioEngine.toggleReverb()
+            } label: {
+                Image(systemName: "mic")
+            }
+            Divider().padding(.vertical)
             mapStyleButton
             Divider().padding(.vertical)
             musicButton
@@ -57,11 +63,11 @@ struct mainNavBar: View {
     var musicButton: some View {
         Button {
             if soundIsOn {
-                audioEngine.pauseSoundIn(seconds: 1)
+                audioEngine.pauseSound()
                 self.soundIsOn = false
                 print("soundIsOn = false")
             } else {
-                audioEngine.resumeSoundIn(seconds: 1)
+                audioEngine.resumeSound()
                 self.soundIsOn = true
                 print("soundIsOn = true")
             }
