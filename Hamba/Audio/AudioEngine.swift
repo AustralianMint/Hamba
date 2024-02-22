@@ -26,7 +26,7 @@ public class AudioEngine: ObservableObject {
             try AVAudioSession.sharedInstance().setCategory(
                 AVAudioSession.Category.playback,
                 mode: AVAudioSession.Mode.default,
-                options: [.duckOthers] // silences othe sound sources when app is running 
+                options: [.duckOthers] // silences othe sound sources when app is running
             )
             try AVAudioSession.sharedInstance().setActive(true)
         } catch {
@@ -60,15 +60,13 @@ public class AudioEngine: ObservableObject {
     }
     
     /// Plays a sound from a specified file using type-safe audio file references.
-    /// - Parameter audioFile: The `AudioFiles` enum case representing the sound file to play.
+    /// - Parameter audioFile: The `AudioFiles` enum case representing the sound file and the sound format to play.
     func playSound(audioFile: AudioFiles) {
         playSound(file: audioFile.fileName, type: audioFile.fileType)
     }
 
-    
-    /// Stops the currently playing sound and deactivates the audio session.
+    /// Stops the currently playing sound
     func stopSound() {
         audioPlayer?.stop()
     }
-    
-    }
+}
