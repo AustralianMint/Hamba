@@ -9,16 +9,17 @@ import SwiftUI
 
 /// A singleton class that encapsulates all audio-related logic within the application.
 /// It manages audio playback, including starting and stopping the engine, playing sounds with specified files,
-/// handling audio session activation, and applying fade-in and fade-out effects.
+/// handling audio session activation, and applying fade-in and fade-outs or effects.
 public class AudioEngine: ObservableObject {
-    static let shared = AudioEngine() // Provides a singleton instance for global access throughout the application
+    
+    // TODO: test whether this makes sense
+    static let shared = AudioEngine() // Provides a singleton instance
 
-    // Use AVAudioEngine for more complex audio processing including effects
     var audioEngine: AVAudioEngine
     var audioPlayerNode: AVAudioPlayerNode
     var reverbNode: AVAudioUnitReverb
     
-    var isReverbActive: Bool = false
+    @Published var isReverbActive: Bool = false
     var reverbTimer: Timer?
 
     init() {
@@ -28,22 +29,19 @@ public class AudioEngine: ObservableObject {
         setupAudioEngine()
     }
 
+    ///Sets up audio engine, with colume and effect set to 0
     func setupAudioEngine() {
-        // Attach nodes
         audioEngine.attach(audioPlayerNode)
         audioEngine.attach(reverbNode)
 
-        // Set up reverb with default settings
         reverbNode.loadFactoryPreset(.largeChamber)
-        reverbNode.wetDryMix = 0 // Start with reverb effect turned off
+        reverbNode.wetDryMix = 0
 
-        // Connect nodes
         let format = audioEngine.outputNode.inputFormat(forBus: 0)
         audioEngine.connect(audioPlayerNode, to: reverbNode, format: format)
         audioEngine.connect(reverbNode, to: audioEngine.mainMixerNode, format: format)
         audioEngine.mainMixerNode.outputVolume = 0
 
-        // Start the engine
         do {
             try audioEngine.start()
         } catch {
@@ -53,18 +51,17 @@ public class AudioEngine: ObservableObject {
 
     func toggleReverb() {
         if isReverbActive {
-            // If reverb is active, turn it off by setting wetDryMix to 0
             reverbNode.wetDryMix = 0
-            reverbTimer?.invalidate() // Stop the pulsation timer
+            reverbTimer?.invalidate()
+            isReverbActive = false
         } else {
-            // If reverb is inactive, start the pulsation effect
-            let pulsationPeriod = 20.0 // 20 seconds for a full pulsation cycle
+            let pulsationPeriod = 20.0 // pulsating cycle
             var isIncreasing = true
 
             reverbTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
                 guard let self = self else { return }
-
-                let increment = Float(80.0 / (pulsationPeriod * 10.0)) // Adjust this to change the speed of pulsation
+                
+                let increment = Float(80.0 / (pulsationPeriod * 10.0))
                 self.reverbNode.wetDryMix += isIncreasing ? increment : -increment
 
                 // Reverse the direction of the pulsation at the limits
@@ -72,9 +69,8 @@ public class AudioEngine: ObservableObject {
                     isIncreasing.toggle()
                 }
             }
+            isReverbActive = true
         }
-        // Toggle the reverb state
-        isReverbActive.toggle()
     }
 
     func startEngine() {
@@ -105,7 +101,6 @@ public class AudioEngine: ObservableObject {
     }
 
     func firstFadeIn(audioFile: AudioFiles, fadeDuration: TimeInterval) {
-        // Ensure the audio engine is running.
         if !audioEngine.isRunning {
             do {
                 try audioEngine.start()
@@ -114,28 +109,21 @@ public class AudioEngine: ObservableObject {
                 return
             }
         }
-
-        // Schedule the audio file for playback.
+        
         guard let url = Bundle.main.url(forResource: audioFile.fileName, withExtension: audioFile.fileType) else {
             print("Error: Could not find the audio file.")
             return
         }
 
         let audioFile = try! AVAudioFile(forReading: url)
-        audioPlayerNode.scheduleFile(audioFile, at: nil) {
-            // Completion handler code if needed.
-        }
-
-        // Start playback.
+        audioPlayerNode.scheduleFile(audioFile, at: nil)
         audioPlayerNode.play()
-
-        // Reset the mixer node's output volume to 0 before starting the fade-in effect.
         audioEngine.mainMixerNode.outputVolume = 0
 
-        // Initial conditions for fade-in
+        // TODO: custom fade -> Substract
         let startVolume: Float = 0.0
         let endVolume: Float = 1.0
-        let stepInterval: TimeInterval = 0.05 // Time interval between volume updates
+        let stepInterval: TimeInterval = 0.05
         let totalSteps = Int(fadeDuration / stepInterval)
         let volumeStep = (endVolume - startVolume) / Float(totalSteps)
 
@@ -148,7 +136,6 @@ public class AudioEngine: ObservableObject {
                 self.audioEngine.mainMixerNode.outputVolume = currentVolume
                 currentStep += 1
             } else {
-                // Ensure the volume is set to the final value in case of rounding issues
                 self.audioEngine.mainMixerNode.outputVolume = endVolume
                 timer.invalidate()
             }
@@ -156,10 +143,9 @@ public class AudioEngine: ObservableObject {
     }
 
     func pauseSound() {
-        // Initial conditions for fade-in
         let startVolume: Float = 1.0
         let endVolume: Float = 0.0
-        let stepInterval: TimeInterval = 0.05 // Time interval between volume updates
+        let stepInterval: TimeInterval = 0.05
         let totalSteps = Int(1 / stepInterval)
         let volumeStep = (endVolume - startVolume) / Float(totalSteps)
         var currentStep = 0
@@ -172,13 +158,10 @@ public class AudioEngine: ObservableObject {
                 self.audioEngine.mainMixerNode.outputVolume = currentVolume
                 currentStep += 1
             } else {
-                // Ensure the volume is set to the final value in case of rounding issues
                 self.audioEngine.mainMixerNode.outputVolume = endVolume
                 timer.invalidate()
             }
         }
-
-        // After fading out, pause the player.
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.audioPlayerNode.pause()
         }
@@ -186,7 +169,6 @@ public class AudioEngine: ObservableObject {
 
     // Function to resume audio playback with a specified fade-in duration.
     func resumeSound() {
-        // Initial conditions for fade-in
         let startVolume: Float = 0.0
         let endVolume: Float = 1.0
         let stepInterval: TimeInterval = 0.05 // Time interval between volume updates

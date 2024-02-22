@@ -47,17 +47,23 @@ struct mainNavBar: View {
     
     var buttonCollection: some View {
         HStack(alignment: .center) {
-            Button {
-                audioEngine.toggleReverb()
-            } label: {
-                Image(systemName: "mic")
-            }
-            Divider().padding(.vertical)
-            mapStyleButton
+            filterButton
             Divider().padding(.vertical)
             musicButton
+            Divider().padding(.vertical)
+            mapStyleButton
+
         }
         .frame(maxHeight: 44)
+        .buttonStyle(.plain)
+    }
+    
+    var filterButton : some View {
+        Button {
+            audioEngine.toggleReverb()
+        } label: {
+            Image(systemName: audioEngine.isReverbActive ? "dial.medium.fill" : "dial.medium")
+        }
     }
     
     var musicButton: some View {
@@ -74,7 +80,6 @@ struct mainNavBar: View {
         } label: {
             Image(systemName: soundIsOn ? "speaker.wave.3.fill" : "speaker.wave.3")
         }
-        .buttonStyle(.plain)
     }
     
     var mapStyleButton: some View {
@@ -85,7 +90,6 @@ struct mainNavBar: View {
         } label: {
             Image(systemName: isImageryMapType ? "square.2.layers.3d.top.filled" : "square.2.layers.3d.bottom.filled")
         }
-        .buttonStyle(.plain)
     }
     
     /// Applies a background blur effect to the navigation bar.
