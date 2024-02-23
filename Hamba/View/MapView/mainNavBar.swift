@@ -5,14 +5,11 @@
 //  Created by Thomas Frey on 16.06.23.
 //
 
-
 import _MapKit_SwiftUI
 import AVFoundation
 import SwiftUI
 
 /// A navigation bar view for the `Hamba` app that includes branding and controls for map style and audio playback.
-///
-/// This view displays the app's name, a thematic image, and buttons for toggling the map style and managing audio playback.
 /// It utilizes an `EnvironmentObject` of `AudioEngine` for audio control and an `ObservedObject` of `MapViewModel` for managing map-related data and actions.
 struct mainNavBar: View {
     @EnvironmentObject var audioEngine: AudioEngine
@@ -52,28 +49,27 @@ struct mainNavBar: View {
             musicButton
             Divider().padding(.vertical)
             mapStyleButton
-
         }
         .frame(maxHeight: 44)
         .buttonStyle(.plain)
     }
     
-    var filterButton : some View {
+    var filterButton: some View {
         Button {
-            audioEngine.toggleReverb()
+            audioEngine.pulsatingReverbEffect(in: 20)
         } label: {
-            Image(systemName: audioEngine.isReverbActive ? "dial.medium.fill" : "dial.medium")
+            Image(systemName: audioEngine.isReverbEffectActive ? "dial.medium.fill" : "dial.medium")
         }
     }
     
     var musicButton: some View {
         Button {
             if soundIsOn {
-                audioEngine.pauseSound()
+                audioEngine.pauseSound(in: 1)
                 self.soundIsOn = false
                 print("soundIsOn = false")
             } else {
-                audioEngine.resumeSound()
+                audioEngine.resumeSound(in: 1)
                 self.soundIsOn = true
                 print("soundIsOn = true")
             }
@@ -93,8 +89,6 @@ struct mainNavBar: View {
     }
     
     /// Applies a background blur effect to the navigation bar.
-    /// This effect adapts to the current color scheme for consistent visual integration.
-    
     var blurredEdge: some View {
         VisualEffectView(effect: UIBlurEffect(style: colorScheme == .dark ? .dark : .light))
             .mask {
