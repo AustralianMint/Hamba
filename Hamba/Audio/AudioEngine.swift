@@ -3,24 +3,41 @@
 //  Hamba
 //
 //  Created by Péter Sanyó on 22.02.24.
-
 import AVFoundation
 import SwiftUI
 
-/// A singleton class that encapsulates all audio-related logic within the application.
-/// It manages audio playback, including starting and stopping the engine, playing sounds with specified files,
-/// handling audio session activation, and applying fade-in and fade-outs or effects.
+///  Overview:
+///  `AudioEngine` is a class designed to manage and control audio playback with effects in the Hamba application.
+///  It leverages `AVFoundation` to establish an audio processing graph, which includes playback nodes and effects nodes such as reverb.
+///  A singleton pattern is implemented to ensure global access through a shared instance.
+///
+///  Properties:
+///  - `shared`: A singleton instance of `AudioEngine` for global access.
+///  - `audioEngine`: An instance of `AVAudioEngine` that manages the audio signal processing graph.
+///  - `audioPlayerNode`: An `AVAudioPlayerNode` used for audio file playback.
+///  - `reverbNode`: An `AVAudioUnitReverb` applied to add reverb effects to the audio output.
+///
+///  Initialization:
+///  - `init()`: Initializes the audio engine and configures its components.
+///
+///  Methods:
+///  - `setupAudioEngine()`: Configures the audio engine, attaching nodes and setting initial parameters.
+///  - `startEngine()`: Sets up and activates the `AVAudioSession` for audio playback.
+///  - `playSound(file:type:)`: Plays an audio file specified by its name and type.
+///  - `firstFadeIn(audioFile:fadeDuration:)`: Initiates audio playback with a fade-in effect for the given audio file.
+///  - `pauseSound()`: Pauses the currently playing audio with a fade-out effect.
+///  - `resumeSound()`: Resumes audio playback that was paused, with a fade-in effect.
+///
+///  Reverb Control:
+///  - `toggleReverb()`: Toggles the reverb effect on or off, applying a pulsation effect to the reverb intensity.
+///
+///  Note: The class uses published properties to enable SwiftUI views to react to changes in the audio playback state, including reverb activation.
 public class AudioEngine: ObservableObject {
-    
-    // TODO: test whether this makes sense
-    static let shared = AudioEngine() // Provides a singleton instance
+    static let shared = AudioEngine()
 
     var audioEngine: AVAudioEngine
     var audioPlayerNode: AVAudioPlayerNode
     var reverbNode: AVAudioUnitReverb
-    
-    @Published var isReverbActive: Bool = false
-    var reverbTimer: Timer?
 
     init() {
         audioEngine = AVAudioEngine()
@@ -29,7 +46,6 @@ public class AudioEngine: ObservableObject {
         setupAudioEngine()
     }
 
-    ///Sets up audio engine, with colume and effect set to 0
     func setupAudioEngine() {
         audioEngine.attach(audioPlayerNode)
         audioEngine.attach(reverbNode)
@@ -46,30 +62,6 @@ public class AudioEngine: ObservableObject {
             try audioEngine.start()
         } catch {
             print("Error starting audio engine: \(error)")
-        }
-    }
-
-    func toggleReverb() {
-        if isReverbActive {
-            reverbNode.wetDryMix = 0
-            reverbTimer?.invalidate()
-            isReverbActive = false
-        } else {
-            let pulsationPeriod = 20.0 // pulsating cycle
-            var isIncreasing = true
-
-            reverbTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
-                guard let self = self else { return }
-                
-                let increment = Float(80.0 / (pulsationPeriod * 10.0))
-                self.reverbNode.wetDryMix += isIncreasing ? increment : -increment
-
-                // Reverse the direction of the pulsation at the limits
-                if self.reverbNode.wetDryMix >= 80 || self.reverbNode.wetDryMix <= 0 {
-                    isIncreasing.toggle()
-                }
-            }
-            isReverbActive = true
         }
     }
 
@@ -109,7 +101,7 @@ public class AudioEngine: ObservableObject {
                 return
             }
         }
-        
+
         guard let url = Bundle.main.url(forResource: audioFile.fileName, withExtension: audioFile.fileType) else {
             print("Error: Could not find the audio file.")
             return
@@ -167,17 +159,16 @@ public class AudioEngine: ObservableObject {
         }
     }
 
-    // Function to resume audio playback with a specified fade-in duration.
     func resumeSound() {
         let startVolume: Float = 0.0
         let endVolume: Float = 1.0
-        let stepInterval: TimeInterval = 0.05 // Time interval between volume updates
+        let stepInterval: TimeInterval = 0.05
         let totalSteps = Int(1 / stepInterval)
         let volumeStep = (endVolume - startVolume) / Float(totalSteps)
         var currentStep = 0
-        
-        self.audioPlayerNode.play()
-        
+
+        audioPlayerNode.play()
+
         Timer.scheduledTimer(withTimeInterval: stepInterval, repeats: true) { [weak self] timer in
             guard let self = self else { return }
 
@@ -186,10 +177,38 @@ public class AudioEngine: ObservableObject {
                 self.audioEngine.mainMixerNode.outputVolume = currentVolume
                 currentStep += 1
             } else {
-                // Ensure the volume is set to the final value in case of rounding issues
                 self.audioEngine.mainMixerNode.outputVolume = endVolume
                 timer.invalidate()
             }
+        }
+    }
+
+    // MARK: - REVERB
+
+    @Published var isReverbActive: Bool = false
+    var reverbTimer: Timer?
+
+    func toggleReverb() {
+        if isReverbActive {
+            reverbNode.wetDryMix = 0
+            reverbTimer?.invalidate()
+            isReverbActive = false
+        } else {
+            let pulsationPeriod = 20.0 // pulsating cycle
+            var isIncreasing = true
+
+            reverbTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
+                guard let self = self else { return }
+
+                let increment = Float(80.0 / (pulsationPeriod * 10.0))
+                self.reverbNode.wetDryMix += isIncreasing ? increment : -increment
+
+                // Reverse the direction of the pulsation at the limits
+                if self.reverbNode.wetDryMix >= 80 || self.reverbNode.wetDryMix <= 0 {
+                    isIncreasing.toggle()
+                }
+            }
+            isReverbActive = true
         }
     }
 }
