@@ -17,7 +17,6 @@ enum MapDetails {
 
 final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
-    @Published public var soundIsON: Bool = true
     @Published public var mapType: MapStyle = .standard
     @Published var currentAmmount: CGFloat = 0
     

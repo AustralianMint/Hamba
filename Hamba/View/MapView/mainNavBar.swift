@@ -9,12 +9,15 @@ import _MapKit_SwiftUI
 import AVFoundation
 import SwiftUI
 
+/// A navigation bar view for the `Hamba` app that includes branding and controls for map style and audio playback.
+/// It utilizes an `EnvironmentObject` of `AudioEngine` for audio control and an `ObservedObject` of `MapViewModel` for managing map-related data and actions.
 struct mainNavBar: View {
+    @EnvironmentObject var audioEngine: AudioEngine
     @Environment(\.colorScheme) private var colorScheme
     @ObservedObject var mapViewModel: MapViewModel
-    @State private var soundIsOn: Bool = true
     @State private var isImageryMapType: Bool = false
-    
+    @State private var soundIsOn: Bool = true
+
     var body: some View {
         HStack {
             hambaFont
@@ -41,29 +44,38 @@ struct mainNavBar: View {
     
     var buttonCollection: some View {
         HStack(alignment: .center) {
-            mapStyleButton
-            Divider()
+            filterButton
+            Divider().padding(.vertical)
             musicButton
+            Divider().padding(.vertical)
+            mapStyleButton
         }
-        .clipShape(RoundedRectangle(cornerRadius: 16))
         .frame(maxHeight: 44)
+        .buttonStyle(.plain)
+    }
+    
+    var filterButton: some View {
+        Button {
+            audioEngine.pulsatingReverbEffect(in: 20)
+        } label: {
+            Image(systemName: audioEngine.isReverbEffectActive ? "dial.medium.fill" : "dial.medium")
+        }
     }
     
     var musicButton: some View {
         Button {
             if soundIsOn {
-                audioPlayer?.pause()
+                audioEngine.pauseSound(in: 1)
                 self.soundIsOn = false
                 print("soundIsOn = false")
             } else {
-                audioPlayer?.play()
+                audioEngine.resumeSound(in: 1)
                 self.soundIsOn = true
                 print("soundIsOn = true")
             }
         } label: {
             Image(systemName: soundIsOn ? "speaker.wave.3.fill" : "speaker.wave.3")
         }
-        .buttonStyle(.plain)
     }
     
     var mapStyleButton: some View {
@@ -74,9 +86,9 @@ struct mainNavBar: View {
         } label: {
             Image(systemName: isImageryMapType ? "square.2.layers.3d.top.filled" : "square.2.layers.3d.bottom.filled")
         }
-        .buttonStyle(.plain)
     }
     
+    /// Applies a background blur effect to the navigation bar.
     var blurredEdge: some View {
         VisualEffectView(effect: UIBlurEffect(style: colorScheme == .dark ? .dark : .light))
             .mask {
@@ -95,7 +107,7 @@ struct mainNavBar: View {
     }
 }
 
-// Custom UIBlurr Effect (to not use UIKit)
+/// A helper view that wraps `UIVisualEffectView` for SwiftUI usage, enabling blur effects.
 struct VisualEffectView: UIViewRepresentable {
     var effect: UIVisualEffect?
     

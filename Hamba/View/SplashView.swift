@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SplashView: View {
-    
+    @EnvironmentObject var audioEngine: AudioEngine
     @State var isActive: Bool = false
     
     var body: some View {
@@ -26,6 +26,7 @@ struct SplashView: View {
             }
         }
         .onAppear {
+            audioEngine.setupAudioEngine()
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
                 withAnimation {
                     self.isActive = true
