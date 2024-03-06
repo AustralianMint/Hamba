@@ -86,7 +86,7 @@ final class AudioEngineTests: XCTestCase {
         let expectationEnd = XCTestExpectation(description: "End of fade")
 
         mockAudioEngine.setupAudioEngine()
-        mockAudioEngine.firstFadeIn(audioFile: .focusLoopCorporateMusic, fadeDuration: 1)
+        mockAudioEngine.firstFadeIn(audioFile: .focusLoopCorporateMusic, fadeDuration: 0.5)
 
         XCTAssertTrue(initialReverbPercentage == 0)
 
