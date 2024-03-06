@@ -30,7 +30,6 @@ import SwiftUI
 ///  - `isReverbEffectActive`: A published property that reflects the active state of the reverb effect.
 ///  - `pulsatingReverbEffect(in:)`: Toggles the reverb effect on or off, applying a pulsating effect to the reverb intensity based on a specified cycle time.
 class AudioEngine: ObservableObject {
-//    static let shared = AudioEngine()
 
     var audioEngine: AVAudioEngine
     var audioPlayerNode: AVAudioPlayerNode
@@ -66,7 +65,7 @@ class AudioEngine: ObservableObject {
 
     // MARK: - Private
 
-    private func playSound(file: AudioFiles) {
+    func playSound(file: AudioFiles) {
         guard let url = Bundle.main.url(forResource: file.fileName, withExtension: file.fileType) else {
             print("Error: Could not find the audio file.")
             return
@@ -79,7 +78,7 @@ class AudioEngine: ObservableObject {
         audioPlayerNode.play()
     }
 
-    private func fade(up: Bool, in fadeTime: Double) {
+    func fade(up: Bool, in fadeTime: Double) {
         let startVolume: Float = up ? 0.0 : 1.0
         let endVolume: Float = up ? 1.0 : 0.0
         let stepInterval: TimeInterval = 0.05
