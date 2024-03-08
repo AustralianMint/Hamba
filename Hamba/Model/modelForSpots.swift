@@ -60,6 +60,10 @@ var locations: [Spots] = [
         Spots(name: "LVL 2", coordinate: CLLocationCoordinate2D(latitude: 52.54721, longitude: 13.38474), spotImage: "Lvl2", iconType: "star.circle", iconColor: yellow),
         Spots(name: "Boiz", coordinate: CLLocationCoordinate2D(latitude: 52.49611, longitude: 13.40912), spotImage: "Boiz", iconType: "star.circle", iconColor: yellow),
         Spots(name: "Sid", coordinate: CLLocationCoordinate2D(latitude: 52.53174, longitude: 13.40844), spotImage: "sid", iconType: "star.circle", iconColor: yellow),
+        //52.55151 13.40872 (Mikel & Me)
+        
+        //München Spots
+        Spots(name: "Freimann Wiese", coordinate: CLLocationCoordinate2D(latitude: 48.20186, longitude: 11.60614), spotImage: "freimannWiese", iconType: "star.circle", iconColor: yellow),
         Spots(name: "MUC", coordinate: CLLocationCoordinate2D(latitude: 48.15685, longitude: 11.58068), iconType: "star.circle", iconColor: yellow),
         
         //Turkey Spots
@@ -81,6 +85,12 @@ var locations: [Spots] = [
         Spots(name: "Zillepromenade Spot", coordinate: CLLocationCoordinate2D(latitude: 52.49940, longitude: 13.47634), spotImage: "workInProgress", iconType: "questionmark.circle", iconColor: mint),
         Spots(name: "Spot am Nordhafen", coordinate: CLLocationCoordinate2D(latitude: 52.53773, longitude: 13.36196), spotImage: "workInProgress", iconType: "questionmark.circle", iconColor: mint),
         Spots(name: "Wasserturm Spot", coordinate: CLLocationCoordinate2D(latitude: 52.53366, longitude: 13.41799), spotImage: "workInProgress", iconType: "questionmark.circle", iconColor: mint),
+        
+        //SouthAfrica Spots
+        Spots(name: "Gucci Gang", coordinate: CLLocationCoordinate2D(latitude: -26.156102, longitude: 28.029248), spotImage: "gangHEIC", iconType: "star.circle", iconColor: yellow)
+        //26.15710 28.02904 (Mira & the lake)
+        //26.156102, 28.029248
+        //  (Mira & the bench)
 ]
 
 //Spots I don't have pictures for yet
