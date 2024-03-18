@@ -24,16 +24,10 @@ struct Spots: Identifiable {
 var yellow: Color = Color.yellow
 var purple: Color = Color.purple
 var teal: Color = Color.teal
-<<<<<<< HEAD
 var blue: Color = Color.blue
 
 var locations: [Spots] = [
         //Normal Berlin Spots
-=======
-
-var locations: [Spots] = [
-        //Normal Spots
->>>>>>> ddca676a1f4cd2b2ca0497bd827e097afa66da21
         Spots(name: "Luisenstädtischer Kirchpark", coordinate: CLLocationCoordinate2D(latitude: 52.508725, longitude: 13.407724), spotImage: "LuisenstaedtischerKirchpark", iconType: "star.circle", iconColor: yellow),
         Spots(name: "Märkischer Spot am Water", coordinate: CLLocationCoordinate2D(latitude: 52.514207, longitude: 13.413992), spotImage: "MaerkischerSpotAmWater", iconType: "star.circle", iconColor: yellow),
         Spots(name: "Bench am Auswertigen Amt", coordinate: CLLocationCoordinate2D(latitude: 52.512179, longitude: 13.401030), spotImage: "benchAmAuswertigenAmt", iconType: "star.circle", iconColor: yellow),
@@ -80,13 +74,10 @@ var locations: [Spots] = [
         Spots(name: "Zillepromenade Spot", coordinate: CLLocationCoordinate2D(latitude: 52.49940, longitude: 13.47634), spotImage: "workInProgress", iconType: "questionmark.circle", iconColor: teal),
         Spots(name: "Spot am Nordhafen", coordinate: CLLocationCoordinate2D(latitude: 52.53773, longitude: 13.36196), spotImage: "workInProgress", iconType: "questionmark.circle", iconColor: teal),
         Spots(name: "Wasserturm Spot", coordinate: CLLocationCoordinate2D(latitude: 52.53366, longitude: 13.41799), spotImage: "workInProgress", iconType: "questionmark.circle", iconColor: teal),
-<<<<<<< HEAD
         
         //Turkey Spots
         Spots(name: "Bariş Manço Park", coordinate: CLLocationCoordinate2D(latitude: 42.02252, longitude: 35.15439), spotImage: "barishMancoHEIC", iconType: "star.circle", iconColor: yellow),
         Spots(name: "Hulk Overview", coordinate: CLLocationCoordinate2D(latitude: 42.02961, longitude: 35.16478), spotImage: "hulkOverviewHEIC", iconType: "mountain.2.circle", iconColor: blue),
-=======
->>>>>>> ddca676a1f4cd2b2ca0497bd827e097afa66da21
 ]
 
 //Spots(name: "TBD", coordinate: CLLocationCoordinate2D(latitude: 52.57264, longitude: 13.36183)),
