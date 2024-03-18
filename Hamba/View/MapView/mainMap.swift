@@ -10,7 +10,6 @@ import SwiftUI
 
 struct mainMap: View {
     @ObservedObject var mapViewModel: MapViewModel
-    var images = ["birbIsTheWirb", "B-day", "Boiz"]
     
     var body: some View {
         ZStack {
