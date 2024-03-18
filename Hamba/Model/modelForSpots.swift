@@ -26,14 +26,15 @@ var purple: Color = Color.purple
 var blue: Color = Color.blue
 var mint: Color = Color.mint
 var red: Color = Color.red
+var teal: Color = Color.teal
 
 var locations: [Spots] = [
         //Normal Spots
         Spots(name: "The Cheeze-man Spot", coordinate: CLLocationCoordinate2D(latitude: 52.497169, longitude: 13.456173), spotImage: ["cheezeManSpot","cheezeManSpot1", "cheezeManSpot2"], iconType: "star.circle", iconColor: yellow),
         Spots(name: "Luisenstädtischer Kirchpark", coordinate: CLLocationCoordinate2D(latitude: 52.508725, longitude: 13.407724), spotImage: ["LuisenstaedtischerKirchpark"], iconType: "star.circle", iconColor: yellow),
         Spots(name: "Lohmühlenspot", coordinate: CLLocationCoordinate2D(latitude: 52.49499, longitude: 13.44643), spotImage: ["Lohmühlenspot", "Lohmühlenspot1", "imABird"], iconType: "star.circle", iconColor: yellow),
-        Spots(name: "Smell the Flowers", coordinate: CLLocationCoordinate2D(latitude: 52.49365, longitude: 13.44398), spotImage: "smellTheFlowers", iconType: "camera.macro.circle", iconColor: purple),
-        Spots(name: "Hasenheide roses", coordinate: CLLocationCoordinate2D(latitude: 52.48307, longitude: 13.41635), spotImage: "hasenheideRoses", iconType: "camera.macro.circle", iconColor: purple),
+        Spots(name: "Smell the Flowers", coordinate: CLLocationCoordinate2D(latitude: 52.49365, longitude: 13.44398), spotImage: ["smellTheFlowers"], iconType: "camera.macro.circle", iconColor: purple),
+        Spots(name: "Hasenheide roses", coordinate: CLLocationCoordinate2D(latitude: 52.48307, longitude: 13.41635), spotImage: ["hasenheideRoses"], iconType: "camera.macro.circle", iconColor: purple),
         Spots(name: "Märkischer Spot am Water", coordinate: CLLocationCoordinate2D(latitude: 52.514207, longitude: 13.413992), spotImage: ["MaerkischerSpotAmWater"], iconType: "star.circle", iconColor: yellow),
         Spots(name: "Bench am Auswertigen Amt", coordinate: CLLocationCoordinate2D(latitude: 52.512179, longitude: 13.401030), spotImage: ["benchAmAuswertigenAmt"], iconType: "star.circle", iconColor: yellow),
         Spots(name: "Volkspark Friedrichshain", coordinate: CLLocationCoordinate2D(latitude: 52.52460, longitude: 13.43232), spotImage: ["volksparkFriedrichshain"], iconType: "star.circle", iconColor: yellow),
@@ -80,12 +81,12 @@ var locations: [Spots] = [
         Spots(name: "Zoo Lake", coordinate: CLLocationCoordinate2D(latitude: -26.15710, longitude: 28.02904), spotImage: ["zooLake"], iconType: "star.circle", iconColor: yellow),
   
         //PingPongSpots
-        Spots(name: "Die Jute Zwirbelwiese", coordinate: CLLocationCoordinate2D(latitude: 52.50628, longitude: 13.39600), spotImage: ["dieJuteZwirbelwiese"], iconType: "tennis.racket.circle", iconColor: purple),
-        Spots(name: "Gustavo PingPong", coordinate: CLLocationCoordinate2D(latitude: 52.52525, longitude: 13.46388), spotImage: ["secondPingPongSpot"], iconType: "tennis.racket.circle", iconColor: purple),
-        Spots(name: "Pong with Mosaic", coordinate: CLLocationCoordinate2D(latitude: 52.55238, longitude: 13.38673), spotImage: ["thirdPingPongSpot"], iconType: "tennis.racket.circle", iconColor: purple),
-        Spots(name: "PinpPongSpot", coordinate: CLLocationCoordinate2D(latitude: 52.51023, longitude: 13.39979), spotImage: ["firstPingPongSpot"], iconType: "tennis.racket.circle", iconColor: purple),
-        Spots(name: "C<>DE Pong", coordinate: CLLocationCoordinate2D(latitude: 52.49564, longitude: 13.44820), spotImage: ["fourthPingPongSpot", "fourthPingPongSpot1"], iconType: "tennis.racket.circle", iconColor: purple),
-        Spots(name: "Humanplatz Pong", coordinate: CLLocationCoordinate2D(latitude: 52.54939, longitude: 13.42277), spotImage: ["HumanplatzPong"], iconType: "tennis.racket.circle", iconColor: purple),
+        Spots(name: "Die Jute Zwirbelwiese", coordinate: CLLocationCoordinate2D(latitude: 52.50628, longitude: 13.39600), spotImage: ["dieJuteZwirbelwiese"], iconType: "tennis.racket.circle", iconColor: red),
+        Spots(name: "Gustavo PingPong", coordinate: CLLocationCoordinate2D(latitude: 52.52525, longitude: 13.46388), spotImage: ["secondPingPongSpot"], iconType: "tennis.racket.circle", iconColor: red),
+        Spots(name: "Pong with Mosaic", coordinate: CLLocationCoordinate2D(latitude: 52.55238, longitude: 13.38673), spotImage: ["thirdPingPongSpot"], iconType: "tennis.racket.circle", iconColor: red),
+        Spots(name: "PinpPongSpot", coordinate: CLLocationCoordinate2D(latitude: 52.51023, longitude: 13.39979), spotImage: ["firstPingPongSpot"], iconType: "tennis.racket.circle", iconColor: red),
+        Spots(name: "C<>DE Pong", coordinate: CLLocationCoordinate2D(latitude: 52.49564, longitude: 13.44820), spotImage: ["fourthPingPongSpot", "fourthPingPongSpot1"], iconType: "tennis.racket.circle", iconColor: red),
+        Spots(name: "Humanplatz Pong", coordinate: CLLocationCoordinate2D(latitude: 52.54939, longitude: 13.42277), spotImage: ["HumanplatzPong"], iconType: "tennis.racket.circle", iconColor: red),
         
         //Sridhar Spots
         Spots(name: "Märkisches Ufer Spot", coordinate: CLLocationCoordinate2D(latitude: 52.51436, longitude: 13.41584), spotImage: ["workInProgress"], iconType: "questionmark.circle", iconColor: teal),
