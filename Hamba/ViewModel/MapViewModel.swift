@@ -7,6 +7,7 @@
 
 import MapKit
 import _MapKit_SwiftUI
+import SwiftUI
 
 //Enumirations w/ map details (start point, span)
 enum MapDetails {
@@ -15,6 +16,9 @@ enum MapDetails {
 }
 
 final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
+    
+    @Published public var mapType: MapStyle = .standard
+    @Published var currentAmmount: CGFloat = 0
     
 //    @Published var region1: MapCameraPosition = .region(MKCoordinateRegion(center: MapDetails.startingLocation, span: MapDetails.defaultSpan))
     @Published var region = MKCoordinateRegion(center: MapDetails.startingLocation, span: MapDetails.defaultSpan)

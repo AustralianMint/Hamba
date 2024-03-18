@@ -3,9 +3,11 @@
 <div style="display: flex;">
   <img width="240,5" alt="Screenshot 2022-04-06 at 09 44 25" src="https://user-images.githubusercontent.com/43207309/161922518-e9301690-4d47-4364-a4de-fd4aec1b1528.png">
   <img width="240,5" alt="hambaGitHubProgress" src="https://github.com/AustralianMint/Hamba/assets/43207309/50f54d4e-8900-4d23-b5b3-51d2e1de2bec">
+  <img width="240,5" alt="Screenshot 2024-02-18 at 14 40 40" src="https://github.com/AustralianMint/Hamba/assets/43207309/6e48c2aa-265b-449f-8687-e3a4b901fb4d">
 </div>
 
 --- 
+
 
 This application is natively developed for iOS Devices.
 
@@ -33,28 +35,37 @@ This application is natively developed for iOS Devices.
 Hamba/
 ├── Hamba.xcodeproj/  
 ├── Hamba/             
-│   ├── Assets.xcassets/
-│   ├── Helpers
-│   │   └──playSound.swift
+│   ├── info.plist
+│   ├── Hamba.entitlements
+│   └── HambaApp.swift
 │   │
-│   ├── Model
+│   ├── Model/
 │   │   └──modelForSpots.swift
 │   │
-│   ├── Sounds
-│   │   └──.mp3 file
-│   │
-│   ├── View
-│   │   ├──ContentView.swift
-│   │   ├──SplashView.swift
-│   │   └──mainNavBar.swift
-│   │
-│   ├── ViewModel
+│   ├── ViewModel/
 │   │   └──MapViewModel.swift
 │   │
-│   ├── Hamba.entitlements
-│   ├── HambaApp.swift
-│   └── info.plist
-│
+│   ├── View/
+│   │   ├──ContentView.swift
+│   │   ├──SplashView.swift
+│   │   └──MapView/
+│   │       ├──MapView.swift
+│   │       ├──mainNavBar.swift
+│   │       └──mainMap.swift
+│   │  
+│   ├── Helpers/
+│   │   └──playSound.swift
+│   │
+│   ├── Extensions/
+│   │   └──View+Navigation.swift
+│   │
+│   ├── Preview Content/
+│   │   ├──Preview Assets
+│   │   └──Assets
+│   │
+│   ├── Sounds/
+│   │   └──.mp3 file
+│   │
 ├── HambaTests/
 │   └── HambaTests.swift
 │
