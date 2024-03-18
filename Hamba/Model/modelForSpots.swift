@@ -18,18 +18,22 @@ struct Spots: Identifiable {
     var iconType = String()
     var iconColor = Color(String())
     
-    static var exampleItem = Spots(name: "Example Park", coordinate: CLLocationCoordinate2D(latitude: 52.521927, longitude: 13.399313), spotImage: ["B-Day"], iconType: "star.circle")
+    static var exampleItem = Spots(name: "Example Park", coordinate: CLLocationCoordinate2D(latitude: 52.521927, longitude: 13.399313), spotImage: ["B-Day"], iconType: "star.circle", iconColor: purple)
 }
 
 var yellow: Color = Color.yellow
 var purple: Color = Color.purple
-var teal: Color = Color.teal
+var blue: Color = Color.blue
+var mint: Color = Color.mint
+var red: Color = Color.red
 
 var locations: [Spots] = [
         //Normal Spots
         Spots(name: "The Cheeze-man Spot", coordinate: CLLocationCoordinate2D(latitude: 52.497169, longitude: 13.456173), spotImage: ["cheezeManSpot","cheezeManSpot1", "cheezeManSpot2"], iconType: "star.circle", iconColor: yellow),
         Spots(name: "Luisenstädtischer Kirchpark", coordinate: CLLocationCoordinate2D(latitude: 52.508725, longitude: 13.407724), spotImage: ["LuisenstaedtischerKirchpark"], iconType: "star.circle", iconColor: yellow),
         Spots(name: "Lohmühlenspot", coordinate: CLLocationCoordinate2D(latitude: 52.49499, longitude: 13.44643), spotImage: ["Lohmühlenspot", "Lohmühlenspot1", "imABird"], iconType: "star.circle", iconColor: yellow),
+        Spots(name: "Smell the Flowers", coordinate: CLLocationCoordinate2D(latitude: 52.49365, longitude: 13.44398), spotImage: "smellTheFlowers", iconType: "camera.macro.circle", iconColor: purple),
+        Spots(name: "Hasenheide roses", coordinate: CLLocationCoordinate2D(latitude: 52.48307, longitude: 13.41635), spotImage: "hasenheideRoses", iconType: "camera.macro.circle", iconColor: purple),
         Spots(name: "Märkischer Spot am Water", coordinate: CLLocationCoordinate2D(latitude: 52.514207, longitude: 13.413992), spotImage: ["MaerkischerSpotAmWater"], iconType: "star.circle", iconColor: yellow),
         Spots(name: "Bench am Auswertigen Amt", coordinate: CLLocationCoordinate2D(latitude: 52.512179, longitude: 13.401030), spotImage: ["benchAmAuswertigenAmt"], iconType: "star.circle", iconColor: yellow),
         Spots(name: "Volkspark Friedrichshain", coordinate: CLLocationCoordinate2D(latitude: 52.52460, longitude: 13.43232), spotImage: ["volksparkFriedrichshain"], iconType: "star.circle", iconColor: yellow),
@@ -59,8 +63,22 @@ var locations: [Spots] = [
         Spots(name: "LVL 2", coordinate: CLLocationCoordinate2D(latitude: 52.54721, longitude: 13.38474), spotImage: ["Lvl2"], iconType: "star.circle", iconColor: yellow),
         Spots(name: "Boiz", coordinate: CLLocationCoordinate2D(latitude: 52.49611, longitude: 13.40912), spotImage: ["Boiz"], iconType: "star.circle", iconColor: yellow),
         Spots(name: "Sid", coordinate: CLLocationCoordinate2D(latitude: 52.53174, longitude: 13.40844), spotImage: ["sid"], iconType: "star.circle", iconColor: yellow),
-        Spots(name: "MUC", coordinate: CLLocationCoordinate2D(latitude: 48.15685, longitude: 11.58068), iconType: "star.circle", iconColor: yellow),
+
+        //München Spots
+        Spots(name: "Freimann Wiese", coordinate: CLLocationCoordinate2D(latitude: 48.20186, longitude: 11.60614), spotImage: ["freimannWiese"], iconType: "star.circle", iconColor: yellow),
+        Spots(name: "MUC", coordinate: CLLocationCoordinate2D(latitude: 48.15685, longitude: 11.58068), spotImage: [""], iconType: "star.circle", iconColor: yellow),
         
+        //Turkey Spots
+        Spots(name: "Hulk Overview", coordinate: CLLocationCoordinate2D(latitude: 42.02961, longitude: 35.16478), spotImage: ["hulkOverviewHEIC"], iconType: "mountain.2.circle", iconColor: blue),
+        Spots(name: "Bariş Manço", coordinate: CLLocationCoordinate2D(latitude: 42.02256, longitude: 35.15440), spotImage: ["barishMancoHEIC"], iconType: "star.circle", iconColor: yellow),
+        Spots(name: "I'm a fish morty!", coordinate: CLLocationCoordinate2D(latitude: 42.05926, longitude: 35.05009), spotImage: ["fishMortyHEIC"], iconType: "mountain.2.circle", iconColor: blue),
+        Spots(name: "Poseidon Overview", coordinate: CLLocationCoordinate2D(latitude: 42.05967, longitude: 35.05110), spotImage: ["poseidonSpotHEIC"], iconType: "star.circle", iconColor: yellow),
+        Spots(name: "Wheel bench spot", coordinate: CLLocationCoordinate2D(latitude: 42.05505, longitude: 35.04535), spotImage: ["wheelBenchHEIC"], iconType: "star.circle", iconColor: yellow),
+        
+        //SouthAfrica Spots
+        Spots(name: "Gucci Gang", coordinate: CLLocationCoordinate2D(latitude: -26.156102, longitude: 28.029248), spotImage: ["gangHEIC"], iconType: "star.circle", iconColor: yellow),
+        Spots(name: "Zoo Lake", coordinate: CLLocationCoordinate2D(latitude: -26.15710, longitude: 28.02904), spotImage: ["zooLake"], iconType: "star.circle", iconColor: yellow),
+  
         //PingPongSpots
         Spots(name: "Die Jute Zwirbelwiese", coordinate: CLLocationCoordinate2D(latitude: 52.50628, longitude: 13.39600), spotImage: ["dieJuteZwirbelwiese"], iconType: "tennis.racket.circle", iconColor: purple),
         Spots(name: "Gustavo PingPong", coordinate: CLLocationCoordinate2D(latitude: 52.52525, longitude: 13.46388), spotImage: ["secondPingPongSpot"], iconType: "tennis.racket.circle", iconColor: purple),
@@ -75,6 +93,8 @@ var locations: [Spots] = [
         Spots(name: "Spot am Nordhafen", coordinate: CLLocationCoordinate2D(latitude: 52.53773, longitude: 13.36196), spotImage: ["workInProgress"], iconType: "questionmark.circle", iconColor: teal),
         Spots(name: "Wasserturm Spot", coordinate: CLLocationCoordinate2D(latitude: 52.53366, longitude: 13.41799), spotImage: ["workInProgress"], iconType: "questionmark.circle", iconColor: teal),
 ]
+
+//Spots I don't have pictures for yet
 
 //Spots(name: "TBD", coordinate: CLLocationCoordinate2D(latitude: 52.57264, longitude: 13.36183)),
 //Spots(name: "May the lord be open", coordinate: CLLocationCoordinate2D(latitude: 52.53674, longitude: 13.41829)),
