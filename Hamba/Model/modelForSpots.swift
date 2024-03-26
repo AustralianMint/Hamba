@@ -31,6 +31,7 @@ var teal: Color = Color.teal
 var locations: [Spots] = [
         //Normal Spots
         Spots(name: "The Cheeze-man Spot", coordinate: CLLocationCoordinate2D(latitude: 52.497169, longitude: 13.456173), spotImage: ["cheezeManSpot","cheezeManSpot1", "cheezeManSpot2"], iconType: "star.circle", iconColor: yellow),
+        Spots(name: "Smell the Flowers", coordinate: CLLocationCoordinate2D(latitude: 52.49365, longitude: 13.44398), spotImage: ["smellTheFlowers", "smellTheFlowers1"], iconType: "camera.macro.circle", iconColor: purple),
         Spots(name: "Luisenstädtischer Kirchpark", coordinate: CLLocationCoordinate2D(latitude: 52.508725, longitude: 13.407724), spotImage: ["LuisenstaedtischerKirchpark"], iconType: "star.circle", iconColor: yellow),
         Spots(name: "Lohmühlenspot", coordinate: CLLocationCoordinate2D(latitude: 52.49499, longitude: 13.44643), spotImage: ["Lohmühlenspot", "Lohmühlenspot1", "imABird"], iconType: "star.circle", iconColor: yellow),
         Spots(name: "Osloer North - along water", coordinate: CLLocationCoordinate2D(latitude: 52.55672, longitude: 13.38133), spotImage: ["OsloerNorth", "OsloerNorth1"], iconType: "star.circle", iconColor: yellow),
@@ -39,7 +40,6 @@ var locations: [Spots] = [
         Spots(name: "Volkspark Friedrichshain", coordinate: CLLocationCoordinate2D(latitude: 52.52460, longitude: 13.43232), spotImage: ["volksparkFriedrichshain"], iconType: "star.circle", iconColor: yellow),
         Spots(name: "Birb is the wirb", coordinate: CLLocationCoordinate2D(latitude: 52.50468, longitude: 13.33068), spotImage: ["birbIsTheWirb", "birbIsTheWirb"], iconType: "star.circle", iconColor: yellow),
         Spots(name: "Down Warschauer Steps", coordinate: CLLocationCoordinate2D(latitude: 52.50812, longitude: 13.45140), spotImage: ["downWarschauerSteps"], iconType: "star.circle", iconColor: yellow),
-        Spots(name: "Smell the Flowers", coordinate: CLLocationCoordinate2D(latitude: 52.49365, longitude: 13.44398), spotImage: ["smellTheFlowers"], iconType: "camera.macro.circle", iconColor: purple),
         Spots(name: "Hasenheide roses", coordinate: CLLocationCoordinate2D(latitude: 52.48307, longitude: 13.41635), spotImage: ["hasenheideRoses"], iconType: "camera.macro.circle", iconColor: purple),
         Spots(name: "James-Simon-Park", coordinate: CLLocationCoordinate2D(latitude: 52.521927, longitude: 13.399313), spotImage: ["jamesSimonParkBetter"], iconType: "star.circle", iconColor: yellow),
         Spots(name: "Welcome to B", coordinate: CLLocationCoordinate2D(latitude: 52.52289, longitude: 13.36967), spotImage: ["WelcometoB", "WelcometoB1"], iconType: "star.circle", iconColor: yellow),
