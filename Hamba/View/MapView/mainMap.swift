@@ -10,7 +10,7 @@ import SwiftUI
 
 struct mainMap: View {
     @ObservedObject var mapViewModel: MapViewModel
-    
+
     var body: some View {
         ZStack {
             Map(coordinateRegion: $mapViewModel.region,
@@ -45,6 +45,7 @@ struct mainMap: View {
                 }
             }
             .mapStyle(mapViewModel.mapType)
+            .mapControlVisibility(.hidden)
         }
         .ignoresSafeArea()
     }
@@ -52,12 +53,13 @@ struct mainMap: View {
 
 #Preview {
     mainMap(mapViewModel: MapViewModel())
+        .environmentObject(AudioEngine())
 }
 
 /*
  This is how i previously displayed an image.
  I wanna keep this in case i need the zoom ability
- 
+
                         Image(location.spotImage)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -73,4 +75,4 @@ struct mainMap: View {
                                         }
                                     }
                             )
-*/
+ */

@@ -58,11 +58,7 @@ struct mainNavBar: View {
         Button {
             audioEngine.pulsatingReverbEffect(in: 20)
         } label: {
-            mainNavBarButtonLabel(
-                isActive: audioEngine.isReverbEffectActive,
-                activeImage: "lightspectrum.horizontal",
-                passiveImage: "lightspectrum.horizontal"
-            )
+            filterIcon(isActive: audioEngine.isReverbEffectActive)
         }
     }
     
@@ -78,7 +74,7 @@ struct mainNavBar: View {
                 print("soundIsOn = true")
             }
         } label: {
-            mainNavBarButtonLabel(isActive: soundIsOn, activeImage: "rainbow", passiveImage: "rainbow")
+            musicIcon(isActive: soundIsOn)
         }
     }
     
@@ -88,13 +84,7 @@ struct mainNavBar: View {
             isImageryMapType.toggle()
             mapViewModel.mapType = isImageryMapType ? MapStyle.imagery : MapStyle.standard
         } label: {
-            
-            Image(systemName: isImageryMapType ? "square.2.layers.3d.top.filled" : "square.2.layers.3d.bottom.filled")
-                .resizable()
-                .scaledToFit()
-                .aspectRatio(contentMode: .fit)
-                .padding(5)
-                .frame(width: 55, height: 45)
+          mapStyleIcon(isActive: isImageryMapType)
         }
     }
     
@@ -105,8 +95,8 @@ struct mainNavBar: View {
                 LinearGradient(
                     stops: [
                         .init(color: Color.black.opacity(1), location: 0),
-                        .init(color: Color.black.opacity(0.7), location: 0.9),
-                        .init(color: Color.black.opacity(0), location: 1)
+                        .init(color: Color.black.opacity(0.9), location: 0.9),
+                        .init(color: Color.black.opacity(0.1), location: 1)
                     ],
                     startPoint: .top,
                     endPoint: .bottom
