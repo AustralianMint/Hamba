@@ -45,12 +45,12 @@ struct mainNavBar: View {
     var buttonCollection: some View {
         HStack(alignment: .center) {
             filterButton
-            Divider().padding(.vertical)
+            Divider()
             musicButton
-            Divider().padding(.vertical)
+            Divider()
             mapStyleButton
         }
-        .frame(maxHeight: 44)
+        .frame(maxHeight: 45)
         .buttonStyle(.plain)
     }
     
@@ -58,7 +58,11 @@ struct mainNavBar: View {
         Button {
             audioEngine.pulsatingReverbEffect(in: 20)
         } label: {
-            Image(systemName: audioEngine.isReverbEffectActive ? "dial.medium.fill" : "dial.medium")
+            mainNavBarButtonLabel(
+                isActive: audioEngine.isReverbEffectActive,
+                activeImage: "lightspectrum.horizontal",
+                passiveImage: "lightspectrum.horizontal"
+            )
         }
     }
     
@@ -74,7 +78,7 @@ struct mainNavBar: View {
                 print("soundIsOn = true")
             }
         } label: {
-            Image(systemName: soundIsOn ? "speaker.wave.3.fill" : "speaker.wave.3")
+            mainNavBarButtonLabel(isActive: soundIsOn, activeImage: "rainbow", passiveImage: "rainbow")
         }
     }
     
@@ -84,7 +88,13 @@ struct mainNavBar: View {
             isImageryMapType.toggle()
             mapViewModel.mapType = isImageryMapType ? MapStyle.imagery : MapStyle.standard
         } label: {
+            
             Image(systemName: isImageryMapType ? "square.2.layers.3d.top.filled" : "square.2.layers.3d.bottom.filled")
+                .resizable()
+                .scaledToFit()
+                .aspectRatio(contentMode: .fit)
+                .padding(5)
+                .frame(width: 55, height: 45)
         }
     }
     
@@ -123,5 +133,6 @@ struct VisualEffectView: UIViewRepresentable {
 struct mainNavBar_Previews: PreviewProvider {
     static var previews: some View {
         mainNavBar(mapViewModel: MapViewModel())
+            .environmentObject(AudioEngine())
     }
 }

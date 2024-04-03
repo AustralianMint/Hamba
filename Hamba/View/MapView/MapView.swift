@@ -40,4 +40,5 @@ struct MapView: View {
 
 #Preview {
     MapView(mapViewModel: MapViewModel())
+        .environmentObject(AudioEngine())
 }
