@@ -25,7 +25,8 @@ struct mapStyleIcon: View {
                     .symbolRenderingMode(.palette)
             }
         }
-        .frame(width: 50, height: 30)
+        .frame(width: 50, height: 33)
+        .contentShape(Rectangle())
     }
 }
 

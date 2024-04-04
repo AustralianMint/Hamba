@@ -43,11 +43,11 @@ struct mainNavBar: View {
     }
     
     var buttonCollection: some View {
-        HStack(alignment: .center) {
+        HStack(alignment: .center, spacing: 0) {
             filterButton
-            Divider()
+            Divider().padding(.vertical, 5)
             musicButton
-            Divider()
+            Divider().padding(.vertical, 5)
             mapStyleButton
         }
         .frame(maxHeight: 45)
@@ -80,7 +80,7 @@ struct mainNavBar: View {
     
     var mapStyleButton: some View {
         Button {
-            // 2. Toggle the map type on button press
+            // Toggle the map type on button press
             isImageryMapType.toggle()
             mapViewModel.mapType = isImageryMapType ? MapStyle.imagery : MapStyle.standard
         } label: {
@@ -95,7 +95,7 @@ struct mainNavBar: View {
                 LinearGradient(
                     stops: [
                         .init(color: Color.black.opacity(1), location: 0),
-                        .init(color: Color.black.opacity(0.9), location: 0.9),
+                        .init(color: Color.black.opacity(1), location: 0.95),
                         .init(color: Color.black.opacity(0.1), location: 1)
                     ],
                     startPoint: .top,

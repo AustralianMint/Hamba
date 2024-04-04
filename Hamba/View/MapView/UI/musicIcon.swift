@@ -26,6 +26,20 @@ struct musicIcon: View {
             }
             .rotationEffect(.degrees(90))
         }
+        .padding(.horizontal,1)
+        .padding(.leading, 3)
+        .contentShape(Rectangle())
+    }
+}
+
+struct iconComponent: View {
+    var image: String
+
+    var body: some View {
+        Image(systemName: image)
+            .resizable()
+            .scaledToFit()
+            .frame(width: 25, height: 30)
     }
 }
 

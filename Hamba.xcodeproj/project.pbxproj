@@ -24,9 +24,7 @@
 		45E81DA02B7E39C2008008F5 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E81D9F2B7E39C2008008F5 /* MapView.swift */; };
 		45E81DA22B7E3A1B008008F5 /* mainMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E81DA12B7E3A1B008008F5 /* mainMap.swift */; };
 		45E81DA52B7E3A9E008008F5 /* View+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E81DA42B7E3A9E008008F5 /* View+Navigation.swift */; };
-		45FBAD642BBD61410049C3D5 /* mainNavBarButtonLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FBAD632BBD61410049C3D5 /* mainNavBarButtonLabel.swift */; };
 		45FBAD682BBD99540049C3D5 /* musicIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FBAD672BBD99540049C3D5 /* musicIcon.swift */; };
-		45FBAD6A2BBD9AAA0049C3D5 /* iconComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FBAD692BBD9AAA0049C3D5 /* iconComponent.swift */; };
 		45FBAD6C2BBD9EC50049C3D5 /* filterIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FBAD6B2BBD9EC50049C3D5 /* filterIcon.swift */; };
 		45FBAD6E2BBDBAA10049C3D5 /* mapStyleIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FBAD6D2BBDBAA10049C3D5 /* mapStyleIcon.swift */; };
 		45FBAD702BBDBB930049C3D5 /* Color+DarkGreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FBAD6F2BBDBB930049C3D5 /* Color+DarkGreen.swift */; };
@@ -72,9 +70,7 @@
 		45E81D9F2B7E39C2008008F5 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		45E81DA12B7E3A1B008008F5 /* mainMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainMap.swift; sourceTree = "<group>"; };
 		45E81DA42B7E3A9E008008F5 /* View+Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Navigation.swift"; sourceTree = "<group>"; };
-		45FBAD632BBD61410049C3D5 /* mainNavBarButtonLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainNavBarButtonLabel.swift; sourceTree = "<group>"; };
 		45FBAD672BBD99540049C3D5 /* musicIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = musicIcon.swift; sourceTree = "<group>"; };
-		45FBAD692BBD9AAA0049C3D5 /* iconComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iconComponent.swift; sourceTree = "<group>"; };
 		45FBAD6B2BBD9EC50049C3D5 /* filterIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = filterIcon.swift; sourceTree = "<group>"; };
 		45FBAD6D2BBDBAA10049C3D5 /* mapStyleIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapStyleIcon.swift; sourceTree = "<group>"; };
 		45FBAD6F2BBDBB930049C3D5 /* Color+DarkGreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+DarkGreen.swift"; sourceTree = "<group>"; };
@@ -234,10 +230,8 @@
 		45FBAD622BBD5FF90049C3D5 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				45FBAD632BBD61410049C3D5 /* mainNavBarButtonLabel.swift */,
 				45FBAD6B2BBD9EC50049C3D5 /* filterIcon.swift */,
 				45FBAD672BBD99540049C3D5 /* musicIcon.swift */,
-				45FBAD692BBD9AAA0049C3D5 /* iconComponent.swift */,
 				45FBAD6D2BBDBAA10049C3D5 /* mapStyleIcon.swift */,
 			);
 			path = UI;
@@ -374,7 +368,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45FBAD642BBD61410049C3D5 /* mainNavBarButtonLabel.swift in Sources */,
 				45FBAD6C2BBD9EC50049C3D5 /* filterIcon.swift in Sources */,
 				271C8F5B27C27BC7004BCD02 /* ContentView.swift in Sources */,
 				45E81DA02B7E39C2008008F5 /* MapView.swift in Sources */,
@@ -383,7 +376,6 @@
 				271C8F5927C27BC7004BCD02 /* HambaApp.swift in Sources */,
 				45FBAD702BBDBB930049C3D5 /* Color+DarkGreen.swift in Sources */,
 				270AD9E72973E4B00090F555 /* SplashView.swift in Sources */,
-				45FBAD6A2BBD9AAA0049C3D5 /* iconComponent.swift in Sources */,
 				453354272B8767130045B6E3 /* AudioEngine.swift in Sources */,
 				45FBAD682BBD99540049C3D5 /* musicIcon.swift in Sources */,
 				45E81DA52B7E3A9E008008F5 /* View+Navigation.swift in Sources */,

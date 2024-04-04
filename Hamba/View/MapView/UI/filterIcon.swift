@@ -27,7 +27,9 @@ struct filterIcon: View {
                     .symbolRenderingMode(.palette)
             }
         }
-        .frame(width: 50, height: 30)
+        .frame(width: 40, height: 30)
+        .padding(5)
+        .contentShape(Rectangle())
     }
 }
 
