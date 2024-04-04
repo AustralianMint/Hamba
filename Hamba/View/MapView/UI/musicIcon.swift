@@ -12,8 +12,17 @@ struct musicIcon: View {
 
     var body: some View {
         HStack(spacing: -5) {
-            iconComponent(image: isActive ? "speaker.fill" : "speaker")
-                .contentTransition(.symbolEffect(.replace))
+            Group {
+                if isActive {
+                    iconComponent(image: "speaker")
+                        .foregroundColor(Color.darkGreen)
+
+                } else {
+                    iconComponent(image: "speaker")
+                }
+            }
+            .foregroundStyle(.secondary)
+
             Group {
                 if isActive {
                     iconComponent(image: "rainbow")
@@ -22,17 +31,18 @@ struct musicIcon: View {
 
                 } else {
                     iconComponent(image: "rainbow")
+                        .foregroundStyle(.secondary)
                 }
             }
             .rotationEffect(.degrees(90))
         }
-        .padding(.horizontal,1)
+        .padding(.horizontal, 1)
         .padding(.leading, 3)
         .contentShape(Rectangle())
     }
 }
 
-struct iconComponent: View {
+private struct iconComponent: View {
     var image: String
 
     var body: some View {

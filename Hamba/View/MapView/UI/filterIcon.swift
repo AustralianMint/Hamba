@@ -12,6 +12,12 @@ struct filterIcon: View {
 
     var body: some View {
         ZStack {
+            Image(systemName: "dot.radiowaves.left.and.right")
+                .resizable()
+                .scaledToFit()
+                .symbolRenderingMode(.palette)
+                .foregroundStyle(.secondary)
+            
             if isActive {
                 Image(systemName: "dot.radiowaves.left.and.right")
                     .resizable()
@@ -19,16 +25,10 @@ struct filterIcon: View {
                     .symbolRenderingMode(.palette)
                     .foregroundColor(Color.darkGreen)
                     .symbolEffect(.variableColor.iterative.cumulative.reversing, options: .speed(0.1))
-
-            } else {
-                Image(systemName: "dot.radiowaves.left.and.right")
-                    .resizable()
-                    .scaledToFit()
-                    .symbolRenderingMode(.palette)
             }
         }
         .frame(width: 40, height: 30)
-        .padding(5)
+        .padding(.horizontal, 5)
         .contentShape(Rectangle())
     }
 }

@@ -46,8 +46,10 @@ struct mainNavBar: View {
         HStack(alignment: .center, spacing: 0) {
             filterButton
             Divider().padding(.vertical, 5)
+
             musicButton
             Divider().padding(.vertical, 5)
+
             mapStyleButton
         }
         .frame(maxHeight: 45)
@@ -84,7 +86,7 @@ struct mainNavBar: View {
             isImageryMapType.toggle()
             mapViewModel.mapType = isImageryMapType ? MapStyle.imagery : MapStyle.standard
         } label: {
-          mapStyleIcon(isActive: isImageryMapType)
+            mapStyleIcon(isActive: isImageryMapType)
         }
     }
     

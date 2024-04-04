@@ -23,6 +23,7 @@ struct mapStyleIcon: View {
                     .resizable()
                     .scaledToFit()
                     .symbolRenderingMode(.palette)
+                    .foregroundStyle(.secondary)
             }
         }
         .frame(width: 50, height: 33)

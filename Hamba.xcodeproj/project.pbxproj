@@ -28,6 +28,7 @@
 		45FBAD6C2BBD9EC50049C3D5 /* filterIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FBAD6B2BBD9EC50049C3D5 /* filterIcon.swift */; };
 		45FBAD6E2BBDBAA10049C3D5 /* mapStyleIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FBAD6D2BBDBAA10049C3D5 /* mapStyleIcon.swift */; };
 		45FBAD702BBDBB930049C3D5 /* Color+DarkGreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FBAD6F2BBDBB930049C3D5 /* Color+DarkGreen.swift */; };
+		45FBAD732BBE93430049C3D5 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FBAD722BBE93430049C3D5 /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		45FBAD6B2BBD9EC50049C3D5 /* filterIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = filterIcon.swift; sourceTree = "<group>"; };
 		45FBAD6D2BBDBAA10049C3D5 /* mapStyleIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapStyleIcon.swift; sourceTree = "<group>"; };
 		45FBAD6F2BBDBB930049C3D5 /* Color+DarkGreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+DarkGreen.swift"; sourceTree = "<group>"; };
+		45FBAD722BBE93430049C3D5 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 				271C8F5A27C27BC7004BCD02 /* ContentView.swift */,
 				270AD9E62973E4B00090F555 /* SplashView.swift */,
 				45E81D9E2B7E39B2008008F5 /* MapView */,
+				45FBAD712BBE932A0049C3D5 /* DetailView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -235,6 +238,14 @@
 				45FBAD6D2BBDBAA10049C3D5 /* mapStyleIcon.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		45FBAD712BBE932A0049C3D5 /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				45FBAD722BBE93430049C3D5 /* DetailView.swift */,
+			);
+			path = DetailView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -377,6 +388,7 @@
 				45FBAD702BBDBB930049C3D5 /* Color+DarkGreen.swift in Sources */,
 				270AD9E72973E4B00090F555 /* SplashView.swift in Sources */,
 				453354272B8767130045B6E3 /* AudioEngine.swift in Sources */,
+				45FBAD732BBE93430049C3D5 /* DetailView.swift in Sources */,
 				45FBAD682BBD99540049C3D5 /* musicIcon.swift in Sources */,
 				45E81DA52B7E3A9E008008F5 /* View+Navigation.swift in Sources */,
 				451F74C82B894BD900C105AC /* AudioFiles.swift in Sources */,
