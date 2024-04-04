@@ -86,7 +86,7 @@ struct DetailView: View {
                 .resizable()
                 .scaledToFit()
                 .foregroundColor(spot.iconColor)
-                .background(Color.white.opacity(0.8))
+                .background(Color.white.opacity(0.5))
                 .frame(width: 23, height: 23)
                 .clipShape(Circle())
                 .shadow(radius: 1.5)
@@ -100,7 +100,7 @@ struct DetailView: View {
     }
     
     private var backgroundSpotColor: some View {
-        Color(spot.iconColor.opacity(0.1))
+        Color(spot.iconColor.opacity(0.2))
             .ignoresSafeArea(.all)
     }
 }

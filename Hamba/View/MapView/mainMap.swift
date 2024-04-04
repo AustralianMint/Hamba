@@ -28,10 +28,11 @@ struct mainMap: View {
                             .resizable()
                             .foregroundStyle(spot.iconColor)
                             .shadow(radius: 0.8)
-                            .background(Color.white.opacity(0.9))
+                            .background(Color.white.opacity(0.5))
                             .frame(width: 23, height: 23)
                             .clipShape(Circle())
                     }
+                    .contentShape(Rectangle())
                 }
             }
             .mapStyle(mapViewModel.mapType)
