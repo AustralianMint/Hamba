@@ -17,7 +17,7 @@ struct filterIcon: View {
                 .scaledToFit()
                 .symbolRenderingMode(.palette)
                 .foregroundStyle(.secondary)
-            
+
             if isActive {
                 Image(systemName: "dot.radiowaves.left.and.right")
                     .resizable()

@@ -17,8 +17,6 @@ struct songPicker: View {
     var body: some View {
         VStack {
             songSelectionButton
-            // TODO: doooooiiit
-//                .disabled($audioEngine.mainMixerNode.outputVolume != 1)
             
             if isExpanded {
                 selectionOptions
@@ -39,10 +37,10 @@ struct songPicker: View {
             }
         } label: {
             Text("\(selectedSong.displayName)")
-            Image(systemName:"chevron.down")
+            Image(systemName: "chevron.down")
                 .resizable()
                 .scaledToFit()
-                .rotation3DEffect(.degrees(rotationAngle),axis: (x: 1.0, y: 0.0, z: 0.0))
+                .rotation3DEffect(.degrees(rotationAngle), axis: (x: 1.0, y: 0.0, z: 0.0))
                 .frame(width: 20, height: 10)
         }
         .buttonStyle(.plain)
@@ -50,9 +48,9 @@ struct songPicker: View {
     
     private var selectionOptions: some View {
         VStack {
-        Text("Select your sound").font(.caption)
+            Text("Select your sound").font(.caption)
             ForEach(AudioFiles.allCases.filter { $0 != selectedSong }, id: \.self) { file in
-                Button {   
+                Button {
                     audioEngine.changeSong(to: file, fadeDuration: 1.5)
                     withAnimation(.bouncy) {
                         selectedSong = file
@@ -64,7 +62,6 @@ struct songPicker: View {
                         .padding(.vertical)
                 }
                 .foregroundColor(.gray)
-                
             }
         }
     }

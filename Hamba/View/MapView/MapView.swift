@@ -29,20 +29,20 @@ struct MapView: View {
     }
 
     private var navBar: some View {
-            VStack {
-                mainNavBar(mapViewModel: mapViewModel)
-                HStack {
-                    Spacer()
-                    musicPicker
-                        .padding(.trailing, 5)
-                }
+        VStack {
+            mainNavBar(mapViewModel: mapViewModel)
+            HStack {
                 Spacer()
+                musicPicker
+                    .padding(.trailing, 5)
             }
-    }
-    
-    private var musicPicker: some View {
-            songPicker(selectedSong: $audioEngine.selectedSong)
+            Spacer()
         }
+    }
+
+    private var musicPicker: some View {
+        songPicker(selectedSong: $audioEngine.selectedSong)
+    }
 }
 
 #Preview {
