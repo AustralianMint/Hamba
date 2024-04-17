@@ -2,3 +2,9 @@ Hamba.xcodeproj/project.xcworkspace/xcuserdata/thomasfrey.xcuserdatad/UserInterf
 .DS_Store
 /HambaRemote/.build/
 /HambaRemote/Package.resolved
+/HambaRemote/.vscode/
+/HambaRemote/Sources/App/Secrets/
+/HambaRemote/docker-compose.yml
+/HambaRemote/Dockerfile
+/HambaRemote/.dockerignore
+/HambaRemote/.gitignore
