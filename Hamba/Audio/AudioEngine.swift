@@ -30,7 +30,6 @@ import SwiftUI
 ///  - `isReverbEffectActive`: A published property that reflects the active state of the reverb effect.
 ///  - `pulsatingReverbEffect(in:)`: Toggles the reverb effect on or off, applying a pulsating effect to the reverb intensity based on a specified cycle time.
 class AudioEngine: ObservableObject {
-//    static let shared = AudioEngine()
 
     var audioEngine: AVAudioEngine
     var audioPlayerNode: AVAudioPlayerNode
@@ -40,7 +39,7 @@ class AudioEngine: ObservableObject {
     var reverbTimer: Timer?
     
     @Published var selectedSong: AudioFiles = .focusLoopCorporateMusic
-//    private var playbackSessionID: UUID?
+    private var playbackSessionID: UUID?
 
 
     init() {
@@ -73,36 +72,48 @@ class AudioEngine: ObservableObject {
 
     // MARK: - Loop Playback
 
-    private func playSound(file: AudioFiles, shouldLoop: Bool) {
-        guard let url = Bundle.main.url(forResource: file.rawValue, withExtension: file.fileType) else { // Ensure extension is correct
-            print("Error: Could not find the audio file.")
+    func playSound(file: AudioFiles, shouldLoop: Bool) {
+        guard let url = Bundle.main.url(forResource: file.rawValue, withExtension: file.fileType),
+              let audioFile = try? AVAudioFile(forReading: url) else {
             return
         }
-        do {
-            let audioFile = try AVAudioFile(forReading: url)
-            audioPlayerNode.stop()
-            audioPlayerNode.reset()
 
-            if !audioEngine.isRunning {
-                try audioEngine.start()
+        let sessionID = UUID()
+        playbackSessionID = sessionID
+
+        self.audioPlayerNode.stop()
+        self.scheduleAudioFile(audioFile, shouldLoop: shouldLoop, sessionID: sessionID)
+    }
+
+    private func scheduleAudioFile(_ audioFile: AVAudioFile, shouldLoop: Bool, sessionID: UUID) {
+        DispatchQueue.main.async {
+            self.audioPlayerNode.stop()
+            self.audioPlayerNode.scheduleFile(audioFile, at: nil) {
+                guard self.playbackSessionID == sessionID else { return }
+                if shouldLoop {
+                    self.scheduleAudioFile(audioFile, shouldLoop: shouldLoop, sessionID: sessionID)
+                }
             }
 
-            scheduleAudio(audioFile: audioFile, shouldLoop: shouldLoop)
+            self.ensureEngineIsRunningAndPlay()
+        }
+    }
+    
+    private func ensureEngineIsRunningAndPlay() {
+        if audioEngine.isRunning {
             audioPlayerNode.play()
-        } catch {
-            print("Failed to play sound: \(error)")
-        }
-    }
-
-    private func scheduleAudio(audioFile: AVAudioFile, shouldLoop: Bool) {
-        let playerNode = audioPlayerNode // comment out ??
-        playerNode.scheduleFile(audioFile, at: nil) {
-            if shouldLoop {
-                self.scheduleAudio(audioFile: audioFile, shouldLoop: shouldLoop)
+            print("Audio engine already running - just played.")
+        } else {
+            do {
+                try audioEngine.start()
+                audioPlayerNode.play()
+                print("Audio engine was not running - started and played.")
+            } catch {
+                print("Failed to start audio engine: \(error)")
             }
         }
     }
-
+    
     private func setupAndPlay(audioFile: AVAudioFile, shouldLoop: Bool) {
         if !audioEngine.isRunning {
             do {
@@ -112,7 +123,7 @@ class AudioEngine: ObservableObject {
                 return
             }
         }
-        scheduleAudio(audioFile: audioFile, shouldLoop: shouldLoop)
+//        scheduleAudioFile(selectedSong, shouldLoop: true, sessionID: playbackSessionID)
         audioPlayerNode.play()
     }
 
@@ -155,13 +166,14 @@ class AudioEngine: ObservableObject {
     }
     
     func stopSong() {
-        fade(up: false, in: 0.5)
-        DispatchQueue.main.asyncAfter(deadline: .now()) {
+        fade(up: false, in: 0)
+        DispatchQueue.main.async {
+            print("stopSong: about to stop node ")
             self.audioPlayerNode.stop()
+            print("stopSong: stopped Node ")
+            print("stopSong: about to reset node ")
             self.audioPlayerNode.reset()
-            if self.audioEngine.isRunning {
-                self.audioEngine.stop()
-            }
+            print("stopSong: about to stop node ")
         }
     }
 
@@ -211,6 +223,7 @@ class AudioEngine: ObservableObject {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) { // Ensuring node is ready
                 print("About to reset and play new song: \(newSong.displayName)")
                 self.audioPlayerNode.reset() // Resetting the node again for safety
+                
                 self.playSound(file: newSong, shouldLoop: true) // Now start the new song
                 print("Playing new song: \(newSong.displayName)")
 
