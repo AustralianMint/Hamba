@@ -43,14 +43,16 @@ struct mainNavBar: View {
     }
     
     var buttonCollection: some View {
-        HStack(alignment: .center) {
+        HStack(alignment: .center, spacing: 0) {
             filterButton
-            Divider().padding(.vertical)
+            Divider().padding(.vertical, 5)
+
             musicButton
-            Divider().padding(.vertical)
+            Divider().padding(.vertical, 5)
+
             mapStyleButton
         }
-        .frame(maxHeight: 44)
+        .frame(maxHeight: 45)
         .buttonStyle(.plain)
     }
     
@@ -58,7 +60,7 @@ struct mainNavBar: View {
         Button {
             audioEngine.pulsatingReverbEffect(in: 20)
         } label: {
-            Image(systemName: audioEngine.isReverbEffectActive ? "dial.medium.fill" : "dial.medium")
+            filterIcon(isActive: audioEngine.isReverbEffectActive)
         }
     }
     
@@ -74,17 +76,17 @@ struct mainNavBar: View {
                 print("soundIsOn = true")
             }
         } label: {
-            Image(systemName: soundIsOn ? "speaker.wave.3.fill" : "speaker.wave.3")
+            musicIcon(isActive: soundIsOn)
         }
     }
     
     var mapStyleButton: some View {
         Button {
-            // 2. Toggle the map type on button press
+            // Toggle the map type on button press
             isImageryMapType.toggle()
             mapViewModel.mapType = isImageryMapType ? MapStyle.imagery : MapStyle.standard
         } label: {
-            Image(systemName: isImageryMapType ? "square.2.layers.3d.top.filled" : "square.2.layers.3d.bottom.filled")
+            mapStyleIcon(isActive: isImageryMapType)
         }
     }
     
@@ -95,8 +97,8 @@ struct mainNavBar: View {
                 LinearGradient(
                     stops: [
                         .init(color: Color.black.opacity(1), location: 0),
-                        .init(color: Color.black.opacity(0.7), location: 0.9),
-                        .init(color: Color.black.opacity(0), location: 1)
+                        .init(color: Color.black.opacity(1), location: 0.95),
+                        .init(color: Color.black.opacity(0.1), location: 1)
                     ],
                     startPoint: .top,
                     endPoint: .bottom
@@ -123,5 +125,6 @@ struct VisualEffectView: UIViewRepresentable {
 struct mainNavBar_Previews: PreviewProvider {
     static var previews: some View {
         mainNavBar(mapViewModel: MapViewModel())
+            .environmentObject(AudioEngine())
     }
 }
