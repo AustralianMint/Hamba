@@ -1,5 +1,5 @@
 Hamba.xcodeproj/project.xcworkspace/xcuserdata/thomasfrey.xcuserdatad/UserInterfaceState.xcuserstate
-.DS_Store
+/.DS_Store
 /HambaRemote/.build/
 /HambaRemote/Package.resolved
 /HambaRemote/.vscode/
@@ -9,4 +9,4 @@ Hamba.xcodeproj/project.xcworkspace/xcuserdata/thomasfrey.xcuserdatad/UserInterf
 /HambaRemote/.dockerignore
 /HambaRemote/.gitignore
 /HambaRemote/.swiftpm/
-Hamba.xcodeproj/
+/Hamba.xcodeproj/
