@@ -1,7 +1,8 @@
 import Foundation
 import Fluent
+import Vapor
 
-final class Labels: Model {
+final class Labels: Model, Content {
 
     static let schema = "labels"
 

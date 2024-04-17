@@ -1,7 +1,8 @@
 import Foundation
 import Fluent
+import Vapor
 
-final class Grouped_Spots: Model {
+final class Grouped_Spots: Model, Content {
 
     static let schema = "grouped_spots"
 
