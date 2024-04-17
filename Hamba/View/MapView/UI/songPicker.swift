@@ -17,6 +17,8 @@ struct songPicker: View {
     var body: some View {
         VStack {
             songSelectionButton
+            // TODO: doooooiiit
+//                .disabled($audioEngine.mainMixerNode.outputVolume != 1)
             
             if isExpanded {
                 selectionOptions
@@ -50,8 +52,8 @@ struct songPicker: View {
         VStack {
         Text("Select your sound").font(.caption)
             ForEach(AudioFiles.allCases.filter { $0 != selectedSong }, id: \.self) { file in
-                Button {                 
-                    audioEngine.changeSong(to: file, fadeDuration: 2)
+                Button {   
+                    audioEngine.changeSong(to: file, fadeDuration: 1.5)
                     withAnimation(.bouncy) {
                         selectedSong = file
                         isExpanded.toggle()
@@ -65,17 +67,6 @@ struct songPicker: View {
                 
             }
         }
-    }
-    private var customPickerGradient: some View {
-        LinearGradient(
-            gradient: Gradient(stops: [
-                .init(color: Color.darkGreen.opacity(0.5), location: 0),
-                .init(color: Color.darkGreen.opacity(0.2), location: 0.5),
-                .init(color: Color.darkGreen.opacity(0.5), location: 1)
-            ]),
-            startPoint: .top,
-            endPoint: .bottom
-        )
     }
 }
 
