@@ -16,6 +16,8 @@ final class Users: Model {
   	var name_full: String
   	@Field(key: "spot_count")
   	var spot_count: Int
+	@Siblings(through: Users_ratings.self, from: \.$users_id, to:\.$spots_id)
+  	var spots_id: [Spots]
   	// A default initializer is necessary if using a final class
   	init() {}
   	init(id: Int? = nil, name: String, age: Int) {

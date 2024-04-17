@@ -17,6 +17,9 @@ final class Spots: Model {
 
   @Field(key: "n_ratings")
   var n_ratings: Int
+  
+  @Siblings(through: Users_ratings.self, from: \.$spots_id, to:\.$users_id)
+  var users_id: [Users]
 
   init() {}
   init(id: Int? = nil, name: String) {

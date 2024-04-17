@@ -9,17 +9,17 @@ final class Users_ratings: Model {
   @ID(custom: "id_users_ratings")
   var id: Int?
   // Example fields
-  @Field(key: "users_id")
-  var users_id: Int
-  @Field(key: "spots_id")
-  var spots_id: Int
+  @Parent(key: "users_id")
+  var users_id: Users
+  @Parent(key: "spots_id")
+  var spots_id: Spots
   @Field(key: "given_ratings")
   var given_ratings: Int
   init() {}
   init(id: Int? = nil, users_id: Int, spots_id: Int, given_ratings: Int) {
     self.id = id
-    self.users_id = users_id
-    self.spots_id = spots_id
+    self.$users_id.id = users_id
+    self.$spots_id.id = spots_id
     self.given_ratings = given_ratings
   }
 }

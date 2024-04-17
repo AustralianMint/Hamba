@@ -42,113 +42,96 @@ func routes(_ app: Application) throws {
         return queryResult.name
     }     
     app.get("get", "spots", "all") { 
-        req async throws -> String in
-        // the do clause is optional here actually, so is the catch that comes with it. You can remove them and it will work.
-        do {
-            let queryResult = try await Spots.query(on: req.db).all()
-        
-            var empty_string = ""
-            for each in queryResult {
-                empty_string = empty_string + "\n -- " + each.name
-            }
-            return empty_string
-        } catch {
-            throw Abort(.notFound)
-        }
-    }     
-    app.get("get", "users", "all") { 
-        req async throws -> String in
-        // the do clause is optional here actually, so is the catch that comes with it. You can remove them and it will work.
-        do {
-            let queryResult = try await Users.query(on: req.db).all()
-        
-            var empty_string = ""
-            for each in queryResult {
-                empty_string = empty_string + "\n -- " + each.name_full
-            }
-            return empty_string
-        } catch {
-            throw Abort(.notFound)
-        }
-    }     
-    app.get("get", "users_ratings", "all") { 
-        req async throws -> String in
-        // the do clause is optional here actually, so is the catch that comes with it. You can remove them and it will work.
-        do {
-            let queryResult = try await Users_ratings.query(on: req.db).all()
-        
-            var empty_string = ""
-            for each in queryResult {
-                empty_string = empty_string + "\n -- " + String(each.users_id)
-            }
-            return empty_string
-        } catch {
-            throw Abort(.notFound)
-        }
-    }     
-    app.get("get", "labeled_groupings", "all") { 
-        req async throws -> String in
-        // the do clause is optional here actually, so is the catch that comes with it. You can remove them and it will work.
-        do {
-            let queryResult = try await Labeled_groupings.query(on: req.db).all()
-        
-            var empty_string = ""
-            for each in queryResult {
-                empty_string = empty_string + "\n -- " + String(each.labels_id)
-            }
-            return empty_string
-        } catch {
-            throw Abort(.notFound)
-        }
-    }
+           req async throws -> [Spots] in
+           // the do clause is optional here actually, so is the catch that comes with it. You can remove them and it will work.
+           do {
+               let queryResult = try await Spots.query(on: req.db).all()
+           
+               return queryResult
+           } catch {
+               throw Abort(.notFound)
+           }
+       }     
+       app.get("get", "users", "all") { 
+           req async throws -> [Users] in
+           // the do clause is optional here actually, so is the catch that comes with it. You can remove them and it will work.
+           do {
+               let queryResult = try await Users.query(on: req.db).all()
+           
+               return queryResult
+           } catch {
+               throw Abort(.notFound)
+           }
+       }     
+       app.get("get", "users_ratings", "all") { 
+           req async throws -> [Users_ratings] in
+           // the do clause is optional here actually, so is the catch that comes with it. You can remove them and it will work.
+           do {
+               let queryResult = try await Users_ratings.query(on: req.db).all()
+           
+               return queryResult
+           } catch {
+               throw Abort(.notFound)
+           }
+       }     
+       app.get("get", "labeled_groupings", "all") { 
+           req async throws -> [Labeled_groupings] in
+           // the do clause is optional here actually, so is the catch that comes with it. You can remove them and it will work.
+           do {
+               let queryResult = try await Labeled_groupings.query(on: req.db).all()
+           
+               return queryResult
+           } catch {
+               throw Abort(.notFound)
+           }
+       }    
+       //Async method for locations table
+       app.get("get", "locations", "all") { req async throws -> String in
+           do {
+               let queryResult = try await Location.query(on: req.db).all()
+               
+               var empty_string = ""
+               
+               for each in queryResult {
+                   empty_string = empty_string + "\n -- " + "\(each.street_name)"
+               }
+               return empty_string
+           } catch {
+               throw Abort(.notFound)
+           }
+       }
+       
+       //Async method for groupings table
+       app.get("get", "groupings", "all") { req async throws -> String in
+           do {
+               let queryResult = try await Groupings.query(on: req.db).all()
+               
+               var empty_string = ""
+               
+               for each in queryResult {
+                   empty_string = empty_string + "\n -- " + "\(each.name)"
+               }
+               return empty_string
+           } catch {
+               throw Abort(.notFound)
+           }
+       }
 
-    //Async method for locations table
-    app.get("get", "locations", "all") { req async throws -> String in
-        do {
-            let queryResult = try await Location.query(on: req.db).all()
-            
-            var empty_string = ""
-            
-            for each in queryResult {
-                empty_string = empty_string + "\n -- " + "\(each.street_name)"
-            }
-            return empty_string
-        } catch {
-            throw Abort(.notFound)
-        }
-    }
-    
-    //Async method for groupings table
-    app.get("get", "groupings", "all") { req async throws -> String in
-        do {
-            let queryResult = try await Groupings.query(on: req.db).all()
-            
-            var empty_string = ""
-            
-            for each in queryResult {
-                empty_string = empty_string + "\n -- " + "\(each.name)"
-            }
-            return empty_string
-        } catch {
-            throw Abort(.notFound)
-        }
-    }
-
-    //Async method for spots_labeled table
-    app.get("get", "spots_labeled", "all") { req async throws -> String in
-        do {
-            let queryResult = try await Spots_labeled.query(on: req.db).all()
-            
-            var empty_string = ""
-            
-            for each in queryResult {
-                empty_string = empty_string + "\n -- " + "\(each.labels_id)"
-            }
-            return empty_string
-        } catch {
-            throw Abort(.notFound)
-        }
-    }
+       //Async method for spots_labeled table
+       app.get("get", "spots_labeled", "all") { req async throws -> String in
+           do {
+               let queryResult = try await Spots_labeled.query(on: req.db).all()
+               
+               var empty_string = ""
+               
+               for each in queryResult {
+                   empty_string = empty_string + "\n -- " + "\(each.labels_id)"
+               }
+               return empty_string
+           } catch {
+               throw Abort(.notFound)
+           }
+       }
     
 
     //app.get("test-first") { 

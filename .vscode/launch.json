@@ -1,0 +1,28 @@
+{
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "args": [],
+            "cwd": "${workspaceFolder:Hamba}/HambaRemote",
+            "name": "Debug App (HambaRemote)",
+            "program": "${workspaceFolder:Hamba}/HambaRemote/.build/debug/App",
+            "preLaunchTask": "swift: Build Debug App (HambaRemote)"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "args": [],
+            "cwd": "${workspaceFolder:Hamba}/HambaRemote",
+            "name": "Release App (HambaRemote)",
+            "program": "${workspaceFolder:Hamba}/HambaRemote/.build/release/App",
+            "preLaunchTask": "swift: Build Release App (HambaRemote)"
+        }
+    ]
+}
