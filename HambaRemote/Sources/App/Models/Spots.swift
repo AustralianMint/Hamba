@@ -24,6 +24,9 @@ final class Spots: Model {
     @Siblings(through: Spots_labeled.self, from: \.$spots_id, to: \.$labels_id)
     var labels_id: [Labels]
     
+    @Siblings(through: Users_ratings.self, from: \.$spots_id, to:\.$users_id)
+    var users_id: [Users]
+
     @Children(for: \.$spots_id)
     var pictures_id: [Pictures]
     
