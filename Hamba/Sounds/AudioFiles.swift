@@ -10,7 +10,7 @@ import Foundation
 ///
 /// This enum centralizes the management of audio file resources, ensuring that file names and types are correctly matched
 /// and easily accessible throughout the application.
-enum AudioFiles: String, CaseIterable {
+enum AudioFiles: String, CaseIterable, Identifiable {
     case focusLoopCorporateMusic = "focus-loop-corporate-music-114297"
     case afternoonTension = "firstB3at"
     case starDust = "secondLilBeat"
@@ -34,5 +34,9 @@ enum AudioFiles: String, CaseIterable {
         case .hambaVibes:
             return "Hamba Feels"
         }
+    }
+    
+    var id: String {
+        self.rawValue
     }
 }

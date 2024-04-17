@@ -24,16 +24,25 @@ struct MapView: View {
         .phoneOnlyNavigationView()
         .onAppear(perform: {
             mapViewModel.checkIfLocationServicesIsEnabled()
-            audioEngine.firstFadeIn(audioFile: .hambaVibes, fadeDuration: 7)
+            audioEngine.firstFadeIn(audioFile: audioEngine.selectedSong, fadeDuration: 7)
         })
     }
 
-    var navBar: some View {
-        VStack {
-            mainNavBar(mapViewModel: mapViewModel)
-            Spacer()
-        }
+    private var navBar: some View {
+            VStack {
+                mainNavBar(mapViewModel: mapViewModel)
+                HStack {
+                    Spacer()
+                    musicPicker
+                        .padding(.trailing, 5)
+                }
+                Spacer()
+            }
     }
+    
+    private var musicPicker: some View {
+            songPicker(selectedSong: $audioEngine.selectedSong)
+        }
 }
 
 #Preview {
