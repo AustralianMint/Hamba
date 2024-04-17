@@ -8,3 +8,4 @@ Hamba.xcodeproj/project.xcworkspace/xcuserdata/thomasfrey.xcuserdatad/UserInterf
 /HambaRemote/Dockerfile
 /HambaRemote/.dockerignore
 /HambaRemote/.gitignore
+/HambaRemote/.swiftpm/
