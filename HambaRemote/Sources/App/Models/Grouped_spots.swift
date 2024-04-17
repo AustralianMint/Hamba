@@ -10,18 +10,18 @@ final class Grouped_Spots: Model, Content {
     @ID(custom: "id_grouped_spots")
     var id: Int?
 
-    @Field(key: "groupings_id")
-    var groupings_id: Int
+    @Parent(key: "groupings_id")
+    var groupings_id: Groupings
     
-    @Field(key: "spots_id")
-    var spots_id: Int
+    @Parent(key: "spots_id")
+    var spots_id: Spots
 
 
     init() {}
 
     init(id: Int? = nil, groupings_id: Int, spots_id: Int) {
         self.id = id
-        self.groupings_id = groupings_id
-        self.spots_id = spots_id
+        self.$groupings_id.id = groupings_id
+        self.$spots_id.id = spots_id
     }
 }

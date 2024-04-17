@@ -37,15 +37,15 @@ final class Location: Model, Content {
     @Field(key: "y_coordinates")
     var y_coordinates: (Float)
     
-    @Field(key: "spot_id")
-    var spot_id: Int
+    @Parent(key: "spots_id")
+    var spots_id: Spots
     
     init() {}
     
     init(id: Int? = nil, country: String, city: String,
          zip: String, house_number: Int, street_name: String,
          x_coordinates: Float, y_coordinates: Float,
-         spots_id: Int ) {
+         spot_id: Int ) {
         self.id = id
         self.country = country
         self.city = city
@@ -54,6 +54,6 @@ final class Location: Model, Content {
         self.street_name = street_name
         self.x_coordinates = x_coordinates
         self.y_coordinates = y_coordinates
-        self.spot_id = spot_id
+        self.$spots_id.id = spot_id
     }
 }

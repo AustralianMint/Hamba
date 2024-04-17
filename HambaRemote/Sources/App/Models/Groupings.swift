@@ -19,14 +19,20 @@ final class Groupings: Model, Content {
     @Field(key: "name")
     var name: String
     
-    @Field(key: "users_id")
-    var users_id: Int
+    @OptionalParent(key: "users_id")
+    var users_id: Users?
+    
+    @Siblings(through: Grouped_Spots.self, from: \.$groupings_id, to: \.$spots_id)
+    var spots_id: [Spots]
+    
+    @Siblings(through: Labeled_groupings.self, from: \.$groupings_id, to: \.$labels_id)
+    var labels_id: [Labels]
     
     init() {}
     
-    init(id: Int? = nil, name: String, users_id: Int) {
+    init(id: Int? = nil, name: String, users_id: Int?) {
         self.id = id
         self.name = name
-        self.users_id = users_id
+        self.$users_id.id = users_id
     }
 }

@@ -16,8 +16,8 @@ final class Pictures: Model, Content {
     @Field(key: "created_at")
     var created_at: Date
     
-    @Field(key: "spots_id")
-    var spots_id: Int
+    @Parent(key: "spots_id")
+    var spots_id: Spots
     
     @Field(key: "users_id")
     var users_id: Int
@@ -28,7 +28,7 @@ final class Pictures: Model, Content {
         self.id = id
         self.name = name
         self.created_at = created_at
-        self.spots_id = spots_id
+        self.$spots_id.id = spots_id
         self.users_id = users_id
     }
 }

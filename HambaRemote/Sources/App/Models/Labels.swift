@@ -12,6 +12,12 @@ final class Labels: Model, Content {
 
     @Field(key: "name")
     var name: String
+    
+    @Siblings(through: Spots_labeled.self, from: \.$labels_id, to: \.$spots_id)
+    var spots_id: [Spots]
+    
+    @Siblings(through: Labeled_groupings.self, from: \.$labels_id, to: \.$groupings_id)
+    var groupings_id: [Groupings]
 
     init() {}
 

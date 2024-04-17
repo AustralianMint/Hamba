@@ -16,6 +16,8 @@ final class Users: Model {
   	var name_full: String
   	@Field(key: "spot_count")
   	var spot_count: Int
+    @Children(for: \.$users_id)
+    var groupings_id: [Groupings]
   	// A default initializer is necessary if using a final class
   	init() {}
   	init(id: Int? = nil, name: String, age: Int) {
