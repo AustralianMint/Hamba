@@ -101,7 +101,54 @@ func routes(_ app: Application) throws {
             throw Abort(.notFound)
         }
     }
+
+    //Async method for locations table
+    app.get("get", "locations", "all") { req async throws -> String in
+        do {
+            let queryResult = try await Location.query(on: req.db).all()
+            
+            var empty_string = ""
+            
+            for each in queryResult {
+                empty_string = empty_string + "\n -- " + "\(each.street_name)"
+            }
+            return empty_string
+        } catch {
+            throw Abort(.notFound)
+        }
+    }
     
+    //Async method for groupings table
+    app.get("get", "groupings", "all") { req async throws -> String in
+        do {
+            let queryResult = try await Groupings.query(on: req.db).all()
+            
+            var empty_string = ""
+            
+            for each in queryResult {
+                empty_string = empty_string + "\n -- " + "\(each.name)"
+            }
+            return empty_string
+        } catch {
+            throw Abort(.notFound)
+        }
+    }
+
+    //Async method for spots_labeled table
+    app.get("get", "spots_labeled", "all") { req async throws -> String in
+        do {
+            let queryResult = try await Spots_labeled.query(on: req.db).all()
+            
+            var empty_string = ""
+            
+            for each in queryResult {
+                empty_string = empty_string + "\n -- " + "\(each.labels_id)"
+            }
+            return empty_string
+        } catch {
+            throw Abort(.notFound)
+        }
+    }
     
 
     //app.get("test-first") { 
