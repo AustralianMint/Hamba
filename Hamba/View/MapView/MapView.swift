@@ -23,10 +23,8 @@ struct MapView: View {
         }
         .phoneOnlyNavigationView()
         .onAppear(perform: {
+            mapViewModel.checkIfLocationServicesIsEnabled()
             audioEngine.firstFadeIn(audioFile: .focusLoopCorporateMusic, fadeDuration: 7)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                mapViewModel.checkIfLocationServicesIsEnabled()
-            }
         })
     }
 

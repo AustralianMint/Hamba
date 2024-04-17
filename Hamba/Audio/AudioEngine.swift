@@ -67,7 +67,7 @@ class AudioEngine: ObservableObject {
     // MARK: - Private
 
     private func playSound(file: AudioFiles) {
-        guard let url = Bundle.main.url(forResource: file.fileName, withExtension: file.fileType) else {
+        guard let url = Bundle.main.url(forResource: file.rawValue, withExtension: file.fileType) else {
             print("Error: Could not find the audio file.")
             return
         }
