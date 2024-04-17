@@ -64,20 +64,49 @@ class AudioEngine: ObservableObject {
         }
     }
 
-    // MARK: - Private
+    // MARK: - Loop Playback
 
-    private func playSound(file: AudioFiles) {
+    private func playSound(file: AudioFiles, shouldLoop: Bool = true) {
         guard let url = Bundle.main.url(forResource: file.rawValue, withExtension: file.fileType) else {
             print("Error: Could not find the audio file.")
             return
         }
-        let audioFile = try! AVAudioFile(forReading: url)
-        audioPlayerNode.scheduleFile(audioFile, at: nil, completionHandler: nil)
-        if !audioEngine.isRunning {
-            try! audioEngine.start()
+        do {
+            let audioFile = try AVAudioFile(forReading: url)
+            scheduleAudio(audioFile: audioFile, shouldLoop: shouldLoop)
+
+            if !audioEngine.isRunning {
+                try audioEngine.start()
+            }
+            audioPlayerNode.play()
+        } catch {
+            print("Failed to initialize AVAudioFile or start the audio engine: \(error)")
         }
+    }
+
+    private func scheduleAudio(audioFile: AVAudioFile, shouldLoop: Bool) {
+        let playerNode = audioPlayerNode // Reference to avoid multiple self calls
+        playerNode.scheduleFile(audioFile, at: nil) {
+            if shouldLoop {
+                self.scheduleAudio(audioFile: audioFile, shouldLoop: shouldLoop)
+            }
+        }
+    }
+
+    private func setupAndPlay(audioFile: AVAudioFile, shouldLoop: Bool) {
+        if !audioEngine.isRunning {
+            do {
+                try audioEngine.start()
+            } catch {
+                print("Failed to start audio engine: \(error)")
+                return
+            }
+        }
+        scheduleAudio(audioFile: audioFile, shouldLoop: shouldLoop)
         audioPlayerNode.play()
     }
+
+    // MARK: - Custom Fade
 
     private func fade(up: Bool, in fadeTime: Double) {
         let startVolume: Float = up ? 0.0 : 1.0
@@ -101,11 +130,11 @@ class AudioEngine: ObservableObject {
         }
     }
 
-    // MARK: - Behaviour
+    // MARK: - Start and Stop Playback
 
     func firstFadeIn(audioFile: AudioFiles, fadeDuration: TimeInterval) {
         playSound(file: audioFile)
-        fade(up: true, in: 7)
+        fade(up: true, in: fadeDuration)
     }
 
     func pauseSound(in seconds: Double) {
@@ -120,12 +149,12 @@ class AudioEngine: ObservableObject {
         fade(up: true, in: seconds)
     }
 
-    // MARK: - REVERB
+    // MARK: - Filter: REVERB
 
     @Published var isReverbEffectActive: Bool = false
     var reverbTimer: Timer?
 
-    func pulsatingReverbEffect(in cycleTime: Double) {
+    func pulsatingReverbEffect(in cycleTime: Double, intensity: Float) {
         if isReverbEffectActive {
             reverbNode.wetDryMix = 0
             reverbTimer?.invalidate()
@@ -138,7 +167,7 @@ class AudioEngine: ObservableObject {
                 // Reverse the direction of the pulsation at the limits
                 let increment = Float(80.0 / (cycleTime * 10.0))
                 self.reverbNode.wetDryMix += isIncreasing ? increment : -increment
-                if self.reverbNode.wetDryMix >= 80 || self.reverbNode.wetDryMix <= 0 {
+                if self.reverbNode.wetDryMix >= intensity || self.reverbNode.wetDryMix <= 0 {
                     isIncreasing.toggle()
                 }
             }

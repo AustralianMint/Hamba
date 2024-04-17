@@ -58,7 +58,7 @@ struct mainNavBar: View {
     
     var filterButton: some View {
         Button {
-            audioEngine.pulsatingReverbEffect(in: 20)
+            audioEngine.pulsatingReverbEffect(in: 20, intensity: 55)
         } label: {
             filterIcon(isActive: audioEngine.isReverbEffectActive)
         }

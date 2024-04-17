@@ -24,7 +24,7 @@ struct MapView: View {
         .phoneOnlyNavigationView()
         .onAppear(perform: {
             mapViewModel.checkIfLocationServicesIsEnabled()
-            audioEngine.firstFadeIn(audioFile: .focusLoopCorporateMusic, fadeDuration: 7)
+            audioEngine.firstFadeIn(audioFile: .hambaVibes, fadeDuration: 7)
         })
     }
 
