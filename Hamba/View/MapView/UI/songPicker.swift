@@ -36,6 +36,7 @@ struct songPicker: View {
                 isExpanded.toggle()
             }
         } label: {
+            Image(systemName: "music.note")
             Text("\(selectedSong.displayName)")
             Image(systemName: "chevron.down")
                 .resizable()
