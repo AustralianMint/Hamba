@@ -76,7 +76,7 @@ struct creditScreen: View {
             }
             
             member(name1: "Rory Mason", name2: "Anzhela Schults")
-            member(name1: "Kenan", name2: "")
+            member(name1: "Kenan", name2: "Sridhar Ashok")
         }
     }
     
