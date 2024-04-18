@@ -25,6 +25,8 @@
 		45A1BE532BCFB79900DC3339 /* secondLilBeat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 45A1BE502BCFB79900DC3339 /* secondLilBeat.mp3 */; };
 		45A1BE542BCFB79900DC3339 /* thirdLilBeat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 45A1BE512BCFB79900DC3339 /* thirdLilBeat.mp3 */; };
 		45A1BE562BCFCFC700DC3339 /* songPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A1BE552BCFCFC700DC3339 /* songPicker.swift */; };
+		45A218982BD159460017CF30 /* creditScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A218972BD159460017CF30 /* creditScreen.swift */; };
+		45A2189A2BD178C80017CF30 /* rendezvous.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 45A218992BD178C80017CF30 /* rendezvous.mp3 */; };
 		45E81DA02B7E39C2008008F5 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E81D9F2B7E39C2008008F5 /* MapView.swift */; };
 		45E81DA22B7E3A1B008008F5 /* mainMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E81DA12B7E3A1B008008F5 /* mainMap.swift */; };
 		45E81DA52B7E3A9E008008F5 /* View+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E81DA42B7E3A9E008008F5 /* View+Navigation.swift */; };
@@ -76,6 +78,8 @@
 		45A1BE502BCFB79900DC3339 /* secondLilBeat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = secondLilBeat.mp3; sourceTree = "<group>"; };
 		45A1BE512BCFB79900DC3339 /* thirdLilBeat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = thirdLilBeat.mp3; sourceTree = "<group>"; };
 		45A1BE552BCFCFC700DC3339 /* songPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = songPicker.swift; sourceTree = "<group>"; };
+		45A218972BD159460017CF30 /* creditScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = creditScreen.swift; sourceTree = "<group>"; };
+		45A218992BD178C80017CF30 /* rendezvous.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = rendezvous.mp3; sourceTree = "<group>"; };
 		45E81D9F2B7E39C2008008F5 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		45E81DA12B7E3A1B008008F5 /* mainMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainMap.swift; sourceTree = "<group>"; };
 		45E81DA42B7E3A9E008008F5 /* View+Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Navigation.swift"; sourceTree = "<group>"; };
@@ -205,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				45A1BE4F2BCFB79900DC3339 /* firstB3at.mp3 */,
+				45A218992BD178C80017CF30 /* rendezvous.mp3 */,
 				45A1BE502BCFB79900DC3339 /* secondLilBeat.mp3 */,
 				45A1BE512BCFB79900DC3339 /* thirdLilBeat.mp3 */,
 				27EEAAE92A0261A8005779C1 /* focus-loop-corporate-music-114297.mp3 */,
@@ -248,6 +253,7 @@
 				45FBAD672BBD99540049C3D5 /* musicIcon.swift */,
 				45FBAD6D2BBDBAA10049C3D5 /* mapStyleIcon.swift */,
 				45A1BE552BCFCFC700DC3339 /* songPicker.swift */,
+				45A218972BD159460017CF30 /* creditScreen.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -365,6 +371,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45A1BE542BCFB79900DC3339 /* thirdLilBeat.mp3 in Resources */,
+				45A2189A2BD178C80017CF30 /* rendezvous.mp3 in Resources */,
 				277CA04628DBD98100A397B6 /* Assets.xcassets in Resources */,
 				45A1BE522BCFB79900DC3339 /* firstB3at.mp3 in Resources */,
 				45A1BE532BCFB79900DC3339 /* secondLilBeat.mp3 in Resources */,
@@ -396,6 +403,7 @@
 			files = (
 				45FBAD6C2BBD9EC50049C3D5 /* filterIcon.swift in Sources */,
 				271C8F5B27C27BC7004BCD02 /* ContentView.swift in Sources */,
+				45A218982BD159460017CF30 /* creditScreen.swift in Sources */,
 				45E81DA02B7E39C2008008F5 /* MapView.swift in Sources */,
 				45E81DA22B7E3A1B008008F5 /* mainMap.swift in Sources */,
 				45FBAD6E2BBDBAA10049C3D5 /* mapStyleIcon.swift in Sources */,

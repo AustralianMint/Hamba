@@ -20,6 +20,7 @@ struct MapView: View {
                 mainMap(mapViewModel: mapViewModel)
                     .ignoresSafeArea()
                 navBar
+                creditButton
             }
         }
         .phoneOnlyNavigationView()
@@ -27,6 +28,17 @@ struct MapView: View {
             mapViewModel.checkIfLocationServicesIsEnabled()
             audioEngine.firstFadeIn(audioFile: audioEngine.selectedSong, fadeDuration: 7)
         })
+    }
+    
+    private var creditButton: some View {
+        VStack(alignment: .trailing) {
+            Spacer()
+            HStack {
+                Spacer()
+                creditScreen()
+            }
+        }
+        .padding(.trailing)
     }
 
     private var navBar: some View {

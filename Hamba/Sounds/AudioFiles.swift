@@ -15,10 +15,11 @@ enum AudioFiles: String, CaseIterable, Identifiable {
     case afternoonTension = "firstB3at"
     case starDust = "secondLilBeat"
     case hambaVibes = "thirdLilBeat"
+    case rendezvous = "rendezvous"
 
     var fileType: String {
         switch self {
-        case .focusLoopCorporateMusic, .afternoonTension, .starDust, .hambaVibes:
+        case .focusLoopCorporateMusic, .afternoonTension, .starDust, .hambaVibes, .rendezvous:
             return "mp3"
         }
     }
@@ -33,6 +34,8 @@ enum AudioFiles: String, CaseIterable, Identifiable {
             return "Star Dust"
         case .hambaVibes:
             return "Hamba Feels"
+        case .rendezvous:
+            return "Rendezvous"
         }
     }
     
@@ -46,6 +49,8 @@ enum AudioFiles: String, CaseIterable, Identifiable {
             return "fireworks"
         case .hambaVibes:
             return "sun.haze.fill"
+        case .rendezvous:
+            return "figure.socialdance"
         }
     }
     
