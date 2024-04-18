@@ -12,7 +12,6 @@ struct DetailView: View {
     
     var spot: Spot
 
-    
     init(spot: Spot) {
         self.spot = spot
     }
@@ -44,8 +43,7 @@ struct DetailView: View {
     }
     
     private var coordinates: some View {
-        
-        HStack{
+        HStack {
             Spacer()
 
             Text("Lattitude:")
@@ -59,8 +57,6 @@ struct DetailView: View {
             Text(spot.coordinate.longitude.magnitude.description)
             
             Spacer()
-
-            
         }
         .font(.system(.caption, design: .serif))
         .foregroundStyle(.secondary)
@@ -91,7 +87,6 @@ struct DetailView: View {
                 .clipShape(Circle())
                 .shadow(radius: 1.5)
 
-            
             Text(spot.name)
                 .font(.system(.title2, design: .serif))
                 .foregroundStyle(.primary)

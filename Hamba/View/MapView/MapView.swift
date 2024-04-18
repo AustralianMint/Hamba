@@ -12,6 +12,7 @@ import SwiftUI
 struct MapView: View {
     @EnvironmentObject var audioEngine: AudioEngine
     @StateObject var mapViewModel: MapViewModel
+    @State private var soundIsActive: Bool = true
 
     var body: some View {
         NavigationView {
@@ -23,16 +24,20 @@ struct MapView: View {
         }
         .phoneOnlyNavigationView()
         .onAppear(perform: {
-            audioEngine.firstFadeIn(audioFile: .focusLoopCorporateMusic, fadeDuration: 7)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                mapViewModel.checkIfLocationServicesIsEnabled()
-            }
+            mapViewModel.checkIfLocationServicesIsEnabled()
+            audioEngine.firstFadeIn(audioFile: audioEngine.selectedSong, fadeDuration: 7)
         })
     }
 
-    var navBar: some View {
+    private var navBar: some View {
         VStack {
-            mainNavBar(mapViewModel: mapViewModel)
+            mainNavBar(mapViewModel: mapViewModel, soundIsActive: $soundIsActive)
+            HStack {
+                Spacer()
+
+                songPicker(selectedSong: $audioEngine.selectedSong, soundIsActive: $soundIsActive)
+                    .padding(.trailing, 5)
+            }
             Spacer()
         }
     }

@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct musicIcon: View {
-    var isActive: Bool
+    @Binding var soundIsActive: Bool
 
     var body: some View {
         HStack(spacing: -5) {
             Group {
-                if isActive {
+                if soundIsActive {
                     iconComponent(image: "speaker")
                         .foregroundColor(Color.darkGreen)
 
@@ -24,7 +24,7 @@ struct musicIcon: View {
             .foregroundStyle(.secondary)
 
             Group {
-                if isActive {
+                if soundIsActive {
                     iconComponent(image: "rainbow")
                         .symbolRenderingMode(.multicolor)
                         .symbolEffect(.variableColor.iterative.cumulative.reversing, options: .speed(0.1))
@@ -54,5 +54,6 @@ private struct iconComponent: View {
 }
 
 #Preview {
-    musicIcon(isActive: false)
+    @State var mockIsActive = true
+    return musicIcon(soundIsActive: $mockIsActive)
 }

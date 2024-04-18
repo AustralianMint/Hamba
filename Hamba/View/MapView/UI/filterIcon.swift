@@ -12,19 +12,19 @@ struct filterIcon: View {
 
     var body: some View {
         ZStack {
-            Image(systemName: "dot.radiowaves.left.and.right")
-                .resizable()
-                .scaledToFit()
-                .symbolRenderingMode(.palette)
-                .foregroundStyle(.secondary)
-            
             if isActive {
-                Image(systemName: "dot.radiowaves.left.and.right")
+                Image(systemName: "flame.fill")
                     .resizable()
                     .scaledToFit()
                     .symbolRenderingMode(.palette)
                     .foregroundColor(Color.darkGreen)
                     .symbolEffect(.variableColor.iterative.cumulative.reversing, options: .speed(0.1))
+            } else {
+                Image(systemName: "flame")
+                    .resizable()
+                    .scaledToFit()
+                    .symbolRenderingMode(.palette)
+                    .foregroundStyle(.secondary)
             }
         }
         .frame(width: 40, height: 30)

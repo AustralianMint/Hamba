@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SplashView: View {
     @EnvironmentObject var audioEngine: AudioEngine
-    @State private var animate = false
+    @State private var LaunchAnimation = false
     @State var isActive: Bool = false
 
     var body: some View {
@@ -22,21 +22,20 @@ struct SplashView: View {
                         .font(.system(size: 100))
                         .foregroundColor(.green)
                         .symbolRenderingMode(.palette)
-                        .symbolEffect(.bounce, options: .speed(0.1), value: animate)
+                        .symbolEffect(.bounce, options: .speed(0.1), value: LaunchAnimation)
 
                     Text("Hamba")
                         .padding()
                         .font(.system(size: 50, weight: .heavy, design: .serif))
-                        .opacity(animate ? 1 : 0)
-                        .animation(Animation.smooth(duration: 3, extraBounce: 2.0).delay(1.5), value: animate)
+                        .opacity(LaunchAnimation ? 1 : 0)
+                        .animation(Animation.smooth(duration: 3, extraBounce: 2.0).delay(1.5), value: LaunchAnimation)
                 }
             }
         }
         .onAppear {
             withAnimation {
-                animate = true
+                LaunchAnimation = true
             }
-            audioEngine.setupAudioEngine()
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
                 withAnimation {
                     self.isActive = true

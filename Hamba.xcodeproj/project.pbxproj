@@ -21,6 +21,10 @@
 		27EEAAEA2A0261A8005779C1 /* focus-loop-corporate-music-114297.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 27EEAAE92A0261A8005779C1 /* focus-loop-corporate-music-114297.mp3 */; };
 		451F74C82B894BD900C105AC /* AudioFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F74C72B894BD900C105AC /* AudioFiles.swift */; };
 		453354272B8767130045B6E3 /* AudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453354262B8767130045B6E3 /* AudioEngine.swift */; };
+		45A1BE522BCFB79900DC3339 /* firstB3at.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 45A1BE4F2BCFB79900DC3339 /* firstB3at.mp3 */; };
+		45A1BE532BCFB79900DC3339 /* secondLilBeat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 45A1BE502BCFB79900DC3339 /* secondLilBeat.mp3 */; };
+		45A1BE542BCFB79900DC3339 /* thirdLilBeat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 45A1BE512BCFB79900DC3339 /* thirdLilBeat.mp3 */; };
+		45A1BE562BCFCFC700DC3339 /* songPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A1BE552BCFCFC700DC3339 /* songPicker.swift */; };
 		45E81DA02B7E39C2008008F5 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E81D9F2B7E39C2008008F5 /* MapView.swift */; };
 		45E81DA22B7E3A1B008008F5 /* mainMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E81DA12B7E3A1B008008F5 /* mainMap.swift */; };
 		45E81DA52B7E3A9E008008F5 /* View+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E81DA42B7E3A9E008008F5 /* View+Navigation.swift */; };
@@ -68,6 +72,10 @@
 		27EEAAE92A0261A8005779C1 /* focus-loop-corporate-music-114297.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "focus-loop-corporate-music-114297.mp3"; sourceTree = "<group>"; };
 		451F74C72B894BD900C105AC /* AudioFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFiles.swift; sourceTree = "<group>"; };
 		453354262B8767130045B6E3 /* AudioEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngine.swift; sourceTree = "<group>"; };
+		45A1BE4F2BCFB79900DC3339 /* firstB3at.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = firstB3at.mp3; sourceTree = "<group>"; };
+		45A1BE502BCFB79900DC3339 /* secondLilBeat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = secondLilBeat.mp3; sourceTree = "<group>"; };
+		45A1BE512BCFB79900DC3339 /* thirdLilBeat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = thirdLilBeat.mp3; sourceTree = "<group>"; };
+		45A1BE552BCFCFC700DC3339 /* songPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = songPicker.swift; sourceTree = "<group>"; };
 		45E81D9F2B7E39C2008008F5 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		45E81DA12B7E3A1B008008F5 /* mainMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainMap.swift; sourceTree = "<group>"; };
 		45E81DA42B7E3A9E008008F5 /* View+Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Navigation.swift"; sourceTree = "<group>"; };
@@ -196,6 +204,9 @@
 		27EEAAE82A026191005779C1 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				45A1BE4F2BCFB79900DC3339 /* firstB3at.mp3 */,
+				45A1BE502BCFB79900DC3339 /* secondLilBeat.mp3 */,
+				45A1BE512BCFB79900DC3339 /* thirdLilBeat.mp3 */,
 				27EEAAE92A0261A8005779C1 /* focus-loop-corporate-music-114297.mp3 */,
 				451F74C72B894BD900C105AC /* AudioFiles.swift */,
 			);
@@ -236,6 +247,7 @@
 				45FBAD6B2BBD9EC50049C3D5 /* filterIcon.swift */,
 				45FBAD672BBD99540049C3D5 /* musicIcon.swift */,
 				45FBAD6D2BBDBAA10049C3D5 /* mapStyleIcon.swift */,
+				45A1BE552BCFCFC700DC3339 /* songPicker.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -352,7 +364,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45A1BE542BCFB79900DC3339 /* thirdLilBeat.mp3 in Resources */,
 				277CA04628DBD98100A397B6 /* Assets.xcassets in Resources */,
+				45A1BE522BCFB79900DC3339 /* firstB3at.mp3 in Resources */,
+				45A1BE532BCFB79900DC3339 /* secondLilBeat.mp3 in Resources */,
 				271C8F6027C27BC8004BCD02 /* Preview Assets.xcassets in Resources */,
 				27EEAAEA2A0261A8005779C1 /* focus-loop-corporate-music-114297.mp3 in Resources */,
 			);
@@ -395,6 +410,7 @@
 				277E01E22A3C79460014E325 /* mainNavBar.swift in Sources */,
 				2756DFD327D8DEDD00A2DD98 /* MapViewModel.swift in Sources */,
 				277CA7A228B9FE6C00893757 /* modelForSpots.swift in Sources */,
+				45A1BE562BCFCFC700DC3339 /* songPicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
