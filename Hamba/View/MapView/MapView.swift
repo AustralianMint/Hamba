@@ -34,15 +34,12 @@ struct MapView: View {
             mainNavBar(mapViewModel: mapViewModel, soundIsActive: $soundIsActive)
             HStack {
                 Spacer()
-                musicPicker
+
+                songPicker(selectedSong: $audioEngine.selectedSong, soundIsActive: $soundIsActive)
                     .padding(.trailing, 5)
             }
             Spacer()
         }
-    }
-
-    private var musicPicker: some View {
-        songPicker(selectedSong: $audioEngine.selectedSong, soundIsActive: $soundIsActive)
     }
 }
 

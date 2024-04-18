@@ -36,7 +36,6 @@ struct SplashView: View {
             withAnimation {
                 LaunchAnimation = true
             }
-            audioEngine.setupAudioEngine()
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
                 withAnimation {
                     self.isActive = true

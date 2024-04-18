@@ -51,7 +51,6 @@ class AudioEngine: ObservableObject {
         audioEngine.attach(reverbNode)
         reverbNode.loadFactoryPreset(.largeChamber)
         reverbNode.wetDryMix = 0
-
         let format = audioEngine.outputNode.inputFormat(forBus: 0)
         audioEngine.connect(audioPlayerNode, to: reverbNode, format: format)
         audioEngine.connect(reverbNode, to: audioEngine.mainMixerNode, format: format)

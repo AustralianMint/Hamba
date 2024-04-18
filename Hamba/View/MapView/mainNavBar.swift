@@ -35,12 +35,14 @@ struct mainNavBar: View {
         Text("Hamba")
             .padding()
             .font(.system(.title, design: .serif))
+            .accessibilityLabel(accessibilityIntro)
     }
     
     var hambaImage: some View {
         Image(systemName: "figure.walk")
             .imageScale(.large)
             .padding(.leading, -15)
+            .accessibilityHidden(true)
     }
     
     var buttonCollection: some View {
@@ -63,6 +65,7 @@ struct mainNavBar: View {
         } label: {
             filterIcon(isActive: audioEngine.isReverbEffectActive)
         }
+        .accessibilityLabel("toggle this button to add an effect to the played audio")
     }
     
     var musicButton: some View {
@@ -79,6 +82,7 @@ struct mainNavBar: View {
         } label: {
             musicIcon(soundIsActive: $soundIsActive)
         }
+        .accessibilityLabel("toggle this button to play and stop playing music")
     }
     
     var mapStyleButton: some View {
@@ -89,6 +93,7 @@ struct mainNavBar: View {
         } label: {
             mapStyleIcon(isActive: isImageryMapType)
         }
+        .accessibilityLabel("toggle this button to change the appearance of the map")
     }
     
     /// Applies a background blur effect to the navigation bar.
@@ -108,6 +113,17 @@ struct mainNavBar: View {
             .ignoresSafeArea()
             .offset(y: -3)
     }
+    
+     var accessibilityIntro: String =
+"""
+You have opened the App Hamba.
+It helps you find the best outdoor locations in Berlin.
+This app works mainly by displaying labels on a map.
+There are buttons to select and play audio, add effects and change the presentation of the map.
+We are working on improving the accessibility of our App.
+Thanks for your understanding, and God Bless.
+Bless Jah!
+"""
 }
 
 /// A helper view that wraps `UIVisualEffectView` for SwiftUI usage, enabling blur effects.

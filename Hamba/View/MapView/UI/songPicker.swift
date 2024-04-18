@@ -15,11 +15,11 @@ struct songPicker: View {
     @State private var rotationAngle: Double = 0
     @Binding var soundIsActive: Bool
 
-    
     var body: some View {
         VStack {
             songSelectionButton
-            
+                .accessibilityLabel("toggle this button to select from different songs to play")
+
             if isExpanded {
                 selectionOptions
             }
@@ -51,7 +51,7 @@ struct songPicker: View {
     
     private var selectionOptions: some View {
         VStack {
-                Text("Select your sound").font(.caption)
+            Text("Select your sound").font(.caption)
             ForEach(AudioFiles.allCases.filter { $0 != selectedSong }, id: \.self) { file in
                 
                 Divider().padding(.horizontal)
@@ -70,12 +70,10 @@ struct songPicker: View {
                         title: { Text(file.displayName) },
                         icon: { Image(systemName: file.songIcon) }
                     )
-                        .underline()
-                        .padding(.vertical)
+                    .underline()
+                    .padding(.vertical)
                 }
                 .foregroundColor(.gray)
-                
-                
             }
         }
     }
