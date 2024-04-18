@@ -36,6 +36,19 @@ enum AudioFiles: String, CaseIterable, Identifiable {
         }
     }
     
+    var songIcon: String {
+        switch self {
+        case .focusLoopCorporateMusic:
+            return "music.note"
+        case .afternoonTension:
+            return "moon.dust.fill"
+        case .starDust:
+            return "fireworks"
+        case .hambaVibes:
+            return "sun.haze.fill"
+        }
+    }
+    
     var id: String {
         self.rawValue
     }

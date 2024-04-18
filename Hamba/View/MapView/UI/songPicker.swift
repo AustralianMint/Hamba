@@ -36,7 +36,7 @@ struct songPicker: View {
                 isExpanded.toggle()
             }
         } label: {
-            Image(systemName: "music.note")
+            Image(systemName: selectedSong.songIcon)
             Text("\(selectedSong.displayName)")
             Image(systemName: "chevron.down")
                 .resizable()
@@ -49,8 +49,12 @@ struct songPicker: View {
     
     private var selectionOptions: some View {
         VStack {
-            Text("Select your sound").font(.caption)
+                Text("Select your sound").font(.caption)
             ForEach(AudioFiles.allCases.filter { $0 != selectedSong }, id: \.self) { file in
+                
+                Divider().padding(.horizontal)
+                    .frame(maxWidth: 150)
+                
                 Button {
                     audioEngine.changeSong(to: file, fadeDuration: 1.5)
                     withAnimation(.bouncy) {
@@ -59,10 +63,16 @@ struct songPicker: View {
                     }
                     
                 } label: {
-                    Text("\(file.displayName)")
+                    Label(
+                        title: { Text(file.displayName) },
+                        icon: { Image(systemName: file.songIcon) }
+                    )
+                        .underline()
                         .padding(.vertical)
                 }
                 .foregroundColor(.gray)
+                
+                
             }
         }
     }
