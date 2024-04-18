@@ -10,41 +10,41 @@ import SwiftUI
 
 struct mainMap: View {
     @ObservedObject var mapViewModel: MapViewModel
-    
+    @State private var selectedSpot: Spot?
+    @State private var isDetailViewPresented = false
+
     var body: some View {
         ZStack {
-            Map(coordinateRegion: $mapViewModel.region,
-                showsUserLocation: true,
-                annotationItems: locations)
-            { location in
-                MapAnnotation(coordinate: location.coordinate) {
-                    NavigationLink {
-                        TabView {
-                            ForEach(location.spotImage, id: \.self) { image in
-                                ZStack {
-                                    Image(image)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                }
-                            }
-                        }
-                        .tabViewStyle(.page)
-                        .indexViewStyle(.page(backgroundDisplayMode: .never))
+            Map(coordinateRegion: $mapViewModel.region, showsUserLocation: true, annotationItems: locations) { spot in
 
-                        Text(location.name)
-                            .bold()
-                            .font(.system(size: 27, weight: .heavy, design: .rounded))
+                MapAnnotation(coordinate: spot.coordinate) {
+                    Button {
+                        print("\(spot.name)")
+                        self.selectedSpot = spot
+                        self.isDetailViewPresented = true
+
                     } label: {
-                        Image(systemName: location.iconType)
+                        Image(systemName: spot.iconType)
                             .resizable()
-                            .foregroundStyle(location.iconColor)
-                            .background(.white)
+                            .foregroundStyle(spot.iconColor)
+                            .shadow(radius: 0.8)
+                            .background(Color.white.opacity(0.5))
                             .frame(width: 23, height: 23)
                             .clipShape(Circle())
                     }
+                    .contentShape(Rectangle())
                 }
             }
             .mapStyle(mapViewModel.mapType)
+            .mapControlVisibility(.hidden)
+            .sheet(isPresented: Binding(
+                get: { isDetailViewPresented },
+                set: { isDetailViewPresented = $0 }
+            )) {
+                if let selectedSpot = selectedSpot {
+                    DetailView(spot: selectedSpot)
+                }
+            }
         }
         .ignoresSafeArea()
     }
@@ -52,12 +52,13 @@ struct mainMap: View {
 
 #Preview {
     mainMap(mapViewModel: MapViewModel())
+        .environmentObject(AudioEngine())
 }
 
 /*
  This is how i previously displayed an image.
  I wanna keep this in case i need the zoom ability
- 
+
                         Image(location.spotImage)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -73,4 +74,4 @@ struct mainMap: View {
                                         }
                                     }
                             )
-*/
+ */

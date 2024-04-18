@@ -10,13 +10,13 @@ import AVFoundation
 import SwiftUI
 
 /// A navigation bar view for the `Hamba` app that includes branding and controls for map style and audio playback.
-/// It utilizes an `EnvironmentObject` of `AudioEngine` for audio control and an `ObservedObject` of `MapViewModel` for managing map-related data and actions.
 struct mainNavBar: View {
     @EnvironmentObject var audioEngine: AudioEngine
     @Environment(\.colorScheme) private var colorScheme
     @ObservedObject var mapViewModel: MapViewModel
     @State private var isImageryMapType: Bool = false
-    @State private var soundIsOn: Bool = true
+    @Binding var soundIsActive: Bool
+
 
     var body: some View {
         HStack {
@@ -34,58 +34,65 @@ struct mainNavBar: View {
         Text("Hamba")
             .padding()
             .font(.system(.title, design: .serif))
+            .accessibilityLabel(accessibilityIntro)
     }
     
     var hambaImage: some View {
         Image(systemName: "figure.walk")
             .imageScale(.large)
             .padding(.leading, -15)
+            .accessibilityHidden(true)
     }
     
     var buttonCollection: some View {
-        HStack(alignment: .center) {
+        HStack(alignment: .center, spacing: 0) {
             filterButton
-            Divider().padding(.vertical)
+            Divider().padding(.vertical, 5)
+
             musicButton
-            Divider().padding(.vertical)
+            Divider().padding(.vertical, 5)
+
             mapStyleButton
         }
-        .frame(maxHeight: 44)
+        .frame(maxHeight: 45)
         .buttonStyle(.plain)
     }
     
     var filterButton: some View {
         Button {
-            audioEngine.pulsatingReverbEffect(in: 20)
+            audioEngine.pulsatingReverbEffect(in: 20, intensity: 55)
         } label: {
-            Image(systemName: audioEngine.isReverbEffectActive ? "dial.medium.fill" : "dial.medium")
+            filterIcon(isActive: audioEngine.isReverbEffectActive)
         }
+        .accessibilityLabel("toggle this button to add an effect to the played audio")
     }
     
     var musicButton: some View {
         Button {
-            if soundIsOn {
+            if soundIsActive {
                 audioEngine.pauseSound(in: 1)
-                self.soundIsOn = false
+                self.soundIsActive = false
                 print("soundIsOn = false")
             } else {
                 audioEngine.resumeSound(in: 1)
-                self.soundIsOn = true
+                self.soundIsActive = true
                 print("soundIsOn = true")
             }
         } label: {
-            Image(systemName: soundIsOn ? "speaker.wave.3.fill" : "speaker.wave.3")
+            musicIcon(soundIsActive: $soundIsActive)
         }
+        .accessibilityLabel("toggle this button to play and stop playing music")
     }
     
     var mapStyleButton: some View {
         Button {
-            // 2. Toggle the map type on button press
+            // Toggle the map type on button press
             isImageryMapType.toggle()
             mapViewModel.mapType = isImageryMapType ? MapStyle.imagery : MapStyle.standard
         } label: {
-            Image(systemName: isImageryMapType ? "square.2.layers.3d.top.filled" : "square.2.layers.3d.bottom.filled")
+            mapStyleIcon(isActive: isImageryMapType)
         }
+        .accessibilityLabel("toggle this button to change the appearance of the map")
     }
     
     /// Applies a background blur effect to the navigation bar.
@@ -95,8 +102,8 @@ struct mainNavBar: View {
                 LinearGradient(
                     stops: [
                         .init(color: Color.black.opacity(1), location: 0),
-                        .init(color: Color.black.opacity(0.7), location: 0.9),
-                        .init(color: Color.black.opacity(0), location: 1)
+                        .init(color: Color.black.opacity(1), location: 0.95),
+                        .init(color: Color.black.opacity(0.1), location: 1)
                     ],
                     startPoint: .top,
                     endPoint: .bottom
@@ -105,6 +112,17 @@ struct mainNavBar: View {
             .ignoresSafeArea()
             .offset(y: -3)
     }
+    
+     var accessibilityIntro: String =
+"""
+You have opened the App Hamba.
+It helps you find the best outdoor locations in Berlin.
+This app works mainly by displaying labels on a map.
+There are buttons to select and play audio, add effects and change the presentation of the map.
+We are working on improving the accessibility of our App.
+Thanks for your understanding, and God Bless.
+Bless Jah!
+"""
 }
 
 /// A helper view that wraps `UIVisualEffectView` for SwiftUI usage, enabling blur effects.
@@ -122,6 +140,8 @@ struct VisualEffectView: UIViewRepresentable {
 
 struct mainNavBar_Previews: PreviewProvider {
     static var previews: some View {
-        mainNavBar(mapViewModel: MapViewModel())
+        @State var mockIsActive = true
+        mainNavBar(mapViewModel: MapViewModel(), soundIsActive: $mockIsActive)
+            .environmentObject(AudioEngine())
     }
 }

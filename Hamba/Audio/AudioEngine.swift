@@ -6,57 +6,56 @@
 import AVFoundation
 import SwiftUI
 
-///  Overview:
-///  `AudioEngine` is a specialized class for managing and controlling audio playback with effects in the Hamba application. It utilizes AVFoundation to construct an audio processing graph, including nodes for playback and effects like reverb. The class is designed for easy integration within SwiftUI views and provides functionality for playing sounds, managing playback state, and applying audio effects.
+/// `AudioEngine` is a class designed to manage and manipulate audio playback with various effects within the Hamba application.
+/// It employs `AVFoundation` to build and control an audio processing graph, facilitating the integration of audio functionality in SwiftUI views.
 ///
-///  Properties:
-///  - `audioEngine`: An `AVAudioEngine` instance for managing the audio signal processing graph.
-///  - `audioPlayerNode`: An `AVAudioPlayerNode` used to play audio files.
-///  - `reverbNode`: An `AVAudioUnitReverb` for adding reverb effects to the audio output.
+/// Properties:
+///  - `audioEngine`: Manages the audio signal processing graph.
+///  - `audioPlayerNode`: Plays audio files.
+///  - `reverbNode`: Adds reverb effects to the audio.
 ///
-///  Initialization:
-///  - `init()`: Initializes the audio engine, audio player node, and reverb node. It also calls `setupAudioEngine` to configure the audio processing graph.
+/// Initialization:
+///  - Initializes the audio components and configures the audio processing graph.
 ///
-///  Engine Setup:
-///  - `setupAudioEngine()`: Configures the audio engine by attaching the audio player and reverb nodes, setting the reverb node's factory preset, and connecting nodes within the audio engine's processing graph.
-///
-///  Playback Control:
-///  - `playSound(file:)`: Plays an audio file by scheduling it on the audio player node. It starts the audio engine if it is not already running.
-///  - `firstFadeIn(audioFile:fadeDuration:)`: Starts playback of a specified audio file with an initial fade-in effect.
-///  - `pauseSound(in:)`: Pauses the currently playing sound after fading out over a specified duration.
-///  - `resumeSound(in:)`: Resumes playback of a paused sound with a fade-in effect over a specified duration.
-///
-///  Reverb Effect Control:
-///  - `isReverbEffectActive`: A published property that reflects the active state of the reverb effect.
-///  - `pulsatingReverbEffect(in:)`: Toggles the reverb effect on or off, applying a pulsating effect to the reverb intensity based on a specified cycle time.
+/// Methods:
+///  - `playSound(file:)`: Plays a specified audio file.
+///  - `firstFadeIn(audioFile:fadeDuration:)`: Begins playback with a fade-in effect.
+///  - `pauseSound(in:)`: Pauses the audio with a fade-out effect.
+///  - `resumeSound(in:)`: Resumes the audio with a fade-in effect.
+///  - `pulsatingReverbEffect(in:intensity:)`: Toggles a pulsating reverb effect.
+///  - `changeSong(to:fadeDuration:)`: Changes the currently playing song with a fade effect.
+///  
 class AudioEngine: ObservableObject {
-//    static let shared = AudioEngine()
+    var audioEngine = AVAudioEngine()
+    var audioPlayerNode = AVAudioPlayerNode()
+    var reverbNode = AVAudioUnitReverb()
 
-    var audioEngine: AVAudioEngine
-    var audioPlayerNode: AVAudioPlayerNode
-    var reverbNode: AVAudioUnitReverb
+    @Published var isReverbEffectActive: Bool = false
+    var reverbTimer: Timer?
+
+    @Published var selectedSong: AudioFiles = .focusLoopCorporateMusic
+    private var playbackSessionID: UUID?
 
     init() {
-        audioEngine = AVAudioEngine()
-        audioPlayerNode = AVAudioPlayerNode()
-        reverbNode = AVAudioUnitReverb()
         setupAudioEngine()
     }
 
-    // MARK: - Engine
+    // MARK: - Engine Launch
 
     func setupAudioEngine() {
         audioEngine.attach(audioPlayerNode)
         audioEngine.attach(reverbNode)
-
         reverbNode.loadFactoryPreset(.largeChamber)
         reverbNode.wetDryMix = 0
-
         let format = audioEngine.outputNode.inputFormat(forBus: 0)
         audioEngine.connect(audioPlayerNode, to: reverbNode, format: format)
         audioEngine.connect(reverbNode, to: audioEngine.mainMixerNode, format: format)
         audioEngine.mainMixerNode.outputVolume = 0
+        startEngineIfNeeded()
+    }
 
+    private func startEngineIfNeeded() {
+        guard !audioEngine.isRunning else { return }
         do {
             try audioEngine.start()
         } catch {
@@ -64,20 +63,36 @@ class AudioEngine: ObservableObject {
         }
     }
 
-    // MARK: - Private
+    // MARK: - (Loop) Playback
 
-    private func playSound(file: AudioFiles) {
-        guard let url = Bundle.main.url(forResource: file.fileName, withExtension: file.fileType) else {
-            print("Error: Could not find the audio file.")
+    func playSound(file: AudioFiles, shouldLoop: Bool) {
+        guard let url = Bundle.main.url(forResource: file.rawValue, withExtension: file.fileType),
+              let audioFile = try? AVAudioFile(forReading: url)
+        else {
             return
         }
-        let audioFile = try! AVAudioFile(forReading: url)
-        audioPlayerNode.scheduleFile(audioFile, at: nil, completionHandler: nil)
-        if !audioEngine.isRunning {
-            try! audioEngine.start()
-        }
-        audioPlayerNode.play()
+
+        let sessionID = UUID()
+        playbackSessionID = sessionID
+        audioPlayerNode.stop()
+        scheduleAudioFile(audioFile, shouldLoop: shouldLoop, sessionID: sessionID)
     }
+
+    private func scheduleAudioFile(_ audioFile: AVAudioFile, shouldLoop: Bool, sessionID: UUID) {
+        DispatchQueue.main.async {
+            self.audioPlayerNode.stop()
+            self.audioPlayerNode.scheduleFile(audioFile, at: nil) {
+                guard self.playbackSessionID == sessionID else { return }
+                if shouldLoop {
+                    self.scheduleAudioFile(audioFile, shouldLoop: shouldLoop, sessionID: sessionID)
+                }
+            }
+            self.startEngineIfNeeded()
+            self.audioPlayerNode.play()
+        }
+    }
+
+    // MARK: - Custom Fade
 
     private func fade(up: Bool, in fadeTime: Double) {
         let startVolume: Float = up ? 0.0 : 1.0
@@ -101,11 +116,11 @@ class AudioEngine: ObservableObject {
         }
     }
 
-    // MARK: - Behaviour
+    // MARK: - Start and Stop Playback
 
     func firstFadeIn(audioFile: AudioFiles, fadeDuration: TimeInterval) {
-        playSound(file: audioFile)
-        fade(up: true, in: 7)
+        playSound(file: audioFile, shouldLoop: true)
+        fade(up: true, in: fadeDuration)
     }
 
     func pauseSound(in seconds: Double) {
@@ -115,17 +130,22 @@ class AudioEngine: ObservableObject {
         }
     }
 
+    func stopSong() {
+        fade(up: false, in: 0)
+        DispatchQueue.main.async {
+            self.audioPlayerNode.stop()
+            self.audioPlayerNode.reset()
+        }
+    }
+
     func resumeSound(in seconds: Double) {
         audioPlayerNode.play()
         fade(up: true, in: seconds)
     }
 
-    // MARK: - REVERB
+    // MARK: - Filter: REVERB
 
-    @Published var isReverbEffectActive: Bool = false
-    var reverbTimer: Timer?
-
-    func pulsatingReverbEffect(in cycleTime: Double) {
+    func pulsatingReverbEffect(in cycleTime: Double, intensity: Float) {
         if isReverbEffectActive {
             reverbNode.wetDryMix = 0
             reverbTimer?.invalidate()
@@ -138,11 +158,24 @@ class AudioEngine: ObservableObject {
                 // Reverse the direction of the pulsation at the limits
                 let increment = Float(80.0 / (cycleTime * 10.0))
                 self.reverbNode.wetDryMix += isIncreasing ? increment : -increment
-                if self.reverbNode.wetDryMix >= 80 || self.reverbNode.wetDryMix <= 0 {
+                if self.reverbNode.wetDryMix >= intensity || self.reverbNode.wetDryMix <= 0 {
                     isIncreasing.toggle()
                 }
             }
             isReverbEffectActive = true
+        }
+    }
+
+    // MARK: - Changing Songs
+
+    func changeSong(to newSong: AudioFiles, fadeDuration: TimeInterval) {
+        DispatchQueue.main.async {
+            self.stopSong()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.audioPlayerNode.reset()
+                self.playSound(file: newSong, shouldLoop: true)
+                self.fade(up: true, in: fadeDuration)
+            }
         }
     }
 }
