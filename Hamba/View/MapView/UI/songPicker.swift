@@ -26,7 +26,7 @@ struct songPicker: View {
         }
         .padding(.horizontal, 10)
         .padding(.vertical, 5)
-        .foregroundColor(Color.darkGreen)
+        .foregroundColor(soundIsActive ? Color.darkGreen : .gray)
         .background(Material.ultraThin)
         .cornerRadius(24)
     }
