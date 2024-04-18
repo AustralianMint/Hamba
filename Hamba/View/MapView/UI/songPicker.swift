@@ -13,6 +13,8 @@ struct songPicker: View {
     
     @State private var isExpanded = false
     @State private var rotationAngle: Double = 0
+    @Binding var soundIsActive: Bool
+
     
     var body: some View {
         VStack {
@@ -60,6 +62,7 @@ struct songPicker: View {
                     withAnimation(.bouncy) {
                         selectedSong = file
                         isExpanded.toggle()
+                        soundIsActive = true
                     }
                     
                 } label: {
@@ -78,7 +81,7 @@ struct songPicker: View {
     }
 }
 
-#Preview {
-    @State var selectedSong = AudioFiles.hambaVibes
-    return songPicker(selectedSong: $selectedSong)
-}
+//#Preview {
+//    @State var selectedSong = AudioFiles.hambaVibes
+//    return songPicker(selectedSong: $selectedSong)
+//}

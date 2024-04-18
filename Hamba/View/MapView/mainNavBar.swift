@@ -16,7 +16,8 @@ struct mainNavBar: View {
     @Environment(\.colorScheme) private var colorScheme
     @ObservedObject var mapViewModel: MapViewModel
     @State private var isImageryMapType: Bool = false
-    @State private var soundIsOn: Bool = true
+    @Binding var soundIsActive: Bool
+
 
     var body: some View {
         HStack {
@@ -66,17 +67,17 @@ struct mainNavBar: View {
     
     var musicButton: some View {
         Button {
-            if soundIsOn {
+            if soundIsActive {
                 audioEngine.pauseSound(in: 1)
-                self.soundIsOn = false
+                self.soundIsActive = false
                 print("soundIsOn = false")
             } else {
                 audioEngine.resumeSound(in: 1)
-                self.soundIsOn = true
+                self.soundIsActive = true
                 print("soundIsOn = true")
             }
         } label: {
-            musicIcon(isActive: soundIsOn)
+            musicIcon(soundIsActive: $soundIsActive)
         }
     }
     
@@ -122,9 +123,9 @@ struct VisualEffectView: UIViewRepresentable {
     }
 }
 
-struct mainNavBar_Previews: PreviewProvider {
-    static var previews: some View {
-        mainNavBar(mapViewModel: MapViewModel())
-            .environmentObject(AudioEngine())
-    }
-}
+//struct mainNavBar_Previews: PreviewProvider {
+//    static var previews: some View {
+//        mainNavBar(mapViewModel: MapViewModel())
+//            .environmentObject(AudioEngine())
+//    }
+//}

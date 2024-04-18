@@ -12,6 +12,7 @@ import SwiftUI
 struct MapView: View {
     @EnvironmentObject var audioEngine: AudioEngine
     @StateObject var mapViewModel: MapViewModel
+    @State private var soundIsActive: Bool = true
 
     var body: some View {
         NavigationView {
@@ -30,7 +31,7 @@ struct MapView: View {
 
     private var navBar: some View {
         VStack {
-            mainNavBar(mapViewModel: mapViewModel)
+            mainNavBar(mapViewModel: mapViewModel, soundIsActive: $soundIsActive)
             HStack {
                 Spacer()
                 musicPicker
@@ -41,7 +42,7 @@ struct MapView: View {
     }
 
     private var musicPicker: some View {
-        songPicker(selectedSong: $audioEngine.selectedSong)
+        songPicker(selectedSong: $audioEngine.selectedSong, soundIsActive: $soundIsActive)
     }
 }
 
