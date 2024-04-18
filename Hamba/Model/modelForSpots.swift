@@ -87,6 +87,7 @@ var locations: [Spot] = [
         Spot(name: "Pong with Mosaic", coordinate: CLLocationCoordinate2D(latitude: 52.55238, longitude: 13.38673), spotImage: ["thirdPingPongSpot"], iconType: "tennis.racket.circle", iconColor: red),
         Spot(name: "PinpPongSpot", coordinate: CLLocationCoordinate2D(latitude: 52.51023, longitude: 13.39979), spotImage: ["firstPingPongSpot"], iconType: "tennis.racket.circle", iconColor: red),
         Spot(name: "Humanplatz Pong", coordinate: CLLocationCoordinate2D(latitude: 52.54939, longitude: 13.42277), spotImage: ["HumanplatzPong"], iconType: "tennis.racket.circle", iconColor: red),
+
         
         //Sridhar Spots
         Spot(name: "Märkisches Ufer Spot", coordinate: CLLocationCoordinate2D(latitude: 52.51436, longitude: 13.41584), spotImage: ["workInProgress"], iconType: "questionmark.circle", iconColor: teal),
