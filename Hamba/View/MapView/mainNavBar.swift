@@ -123,9 +123,10 @@ struct VisualEffectView: UIViewRepresentable {
     }
 }
 
-//struct mainNavBar_Previews: PreviewProvider {
-//    static var previews: some View {
-//        mainNavBar(mapViewModel: MapViewModel())
-//            .environmentObject(AudioEngine())
-//    }
-//}
+struct mainNavBar_Previews: PreviewProvider {
+    static var previews: some View {
+        @State var mockIsActive = true
+        mainNavBar(mapViewModel: MapViewModel(), soundIsActive: $mockIsActive)
+            .environmentObject(AudioEngine())
+    }
+}

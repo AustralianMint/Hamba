@@ -81,7 +81,8 @@ struct songPicker: View {
     }
 }
 
-//#Preview {
-//    @State var selectedSong = AudioFiles.hambaVibes
-//    return songPicker(selectedSong: $selectedSong)
-//}
+#Preview {
+    @State var selectedSong = AudioFiles.hambaVibes
+    @State var mockIsActive = true
+    return songPicker(selectedSong: $selectedSong, soundIsActive: $mockIsActive)
+}

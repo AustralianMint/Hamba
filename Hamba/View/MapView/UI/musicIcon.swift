@@ -53,6 +53,7 @@ private struct iconComponent: View {
     }
 }
 
-//#Preview {
-//    musicIcon(isActive: false)
-//}
+#Preview {
+    @State var mockIsActive = true
+    return musicIcon(soundIsActive: $mockIsActive)
+}
