@@ -2,7 +2,7 @@ import Fluent
 import Vapor
 
 // Wessel NOTE: Make SURE that the var name of @ID is "id:", because otherwise it won't conform to "Model"... for some reason...
-final class Users_ratings: Model {
+final class Users_ratings: Model, Content {
   // Define a static string for the table name if you want it different from the default
   static let schema = "users_ratings"
   // Primary key id field

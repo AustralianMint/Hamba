@@ -2,7 +2,7 @@ import Fluent
 import Vapor
 
 
-final class Spots: Model {
+final class Spots: Model, Content {
     // Define a static string for the table name if you want it different from the default
     static let schema = "spots"
     // Primary key id field

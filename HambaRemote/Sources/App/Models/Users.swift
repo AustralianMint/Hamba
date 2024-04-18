@@ -1,7 +1,7 @@
 import Fluent
 import Vapor
 
-final class Users: Model {
+final class Users: Model, Content {
   	// Define a static string for the table name if you want it different from the default
   	static let schema = "users"
   	// Primary key id field
