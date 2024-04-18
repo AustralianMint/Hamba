@@ -9,7 +9,6 @@ import MapKit
 import _MapKit_SwiftUI
 import SwiftUI
 
-//Enumirations w/ map details (start point, span)
 enum MapDetails {
     static let startingLocation = CLLocationCoordinate2D(latitude: 52.520008, longitude: 13.411000)
     static let defaultSpan = MKCoordinateSpan(latitudeDelta: 0.19, longitudeDelta: 0.19)

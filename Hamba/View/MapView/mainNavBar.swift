@@ -10,7 +10,6 @@ import AVFoundation
 import SwiftUI
 
 /// A navigation bar view for the `Hamba` app that includes branding and controls for map style and audio playback.
-/// It utilizes an `EnvironmentObject` of `AudioEngine` for audio control and an `ObservedObject` of `MapViewModel` for managing map-related data and actions.
 struct mainNavBar: View {
     @EnvironmentObject var audioEngine: AudioEngine
     @Environment(\.colorScheme) private var colorScheme

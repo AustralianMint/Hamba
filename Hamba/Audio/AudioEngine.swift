@@ -6,29 +6,25 @@
 import AVFoundation
 import SwiftUI
 
-///  Overview:
-///  `AudioEngine` is a specialized class for managing and controlling audio playback with effects in the Hamba application. It utilizes AVFoundation to construct an audio processing graph, including nodes for playback and effects like reverb. The class is designed for easy integration within SwiftUI views and provides functionality for playing sounds, managing playback state, and applying audio effects.
+/// `AudioEngine` is a class designed to manage and manipulate audio playback with various effects within the Hamba application.
+/// It employs `AVFoundation` to build and control an audio processing graph, facilitating the integration of audio functionality in SwiftUI views.
 ///
-///  Properties:
-///  - `audioEngine`: An `AVAudioEngine` instance for managing the audio signal processing graph.
-///  - `audioPlayerNode`: An `AVAudioPlayerNode` used to play audio files.
-///  - `reverbNode`: An `AVAudioUnitReverb` for adding reverb effects to the audio output.
+/// Properties:
+///  - `audioEngine`: Manages the audio signal processing graph.
+///  - `audioPlayerNode`: Plays audio files.
+///  - `reverbNode`: Adds reverb effects to the audio.
 ///
-///  Initialization:
-///  - `init()`: Initializes the audio engine, audio player node, and reverb node. It also calls `setupAudioEngine` to configure the audio processing graph.
+/// Initialization:
+///  - Initializes the audio components and configures the audio processing graph.
 ///
-///  Engine Setup:
-///  - `setupAudioEngine()`: Configures the audio engine by attaching the audio player and reverb nodes, setting the reverb node's factory preset, and connecting nodes within the audio engine's processing graph.
-///
-///  Playback Control:
-///  - `playSound(file:)`: Plays an audio file by scheduling it on the audio player node. It starts the audio engine if it is not already running.
-///  - `firstFadeIn(audioFile:fadeDuration:)`: Starts playback of a specified audio file with an initial fade-in effect.
-///  - `pauseSound(in:)`: Pauses the currently playing sound after fading out over a specified duration.
-///  - `resumeSound(in:)`: Resumes playback of a paused sound with a fade-in effect over a specified duration.
-///
-///  Reverb Effect Control:
-///  - `isReverbEffectActive`: A published property that reflects the active state of the reverb effect.
-///  - `pulsatingReverbEffect(in:)`: Toggles the reverb effect on or off, applying a pulsating effect to the reverb intensity based on a specified cycle time.
+/// Methods:
+///  - `playSound(file:)`: Plays a specified audio file.
+///  - `firstFadeIn(audioFile:fadeDuration:)`: Begins playback with a fade-in effect.
+///  - `pauseSound(in:)`: Pauses the audio with a fade-out effect.
+///  - `resumeSound(in:)`: Resumes the audio with a fade-in effect.
+///  - `pulsatingReverbEffect(in:intensity:)`: Toggles a pulsating reverb effect.
+///  - `changeSong(to:fadeDuration:)`: Changes the currently playing song with a fade effect.
+///  
 class AudioEngine: ObservableObject {
     var audioEngine = AVAudioEngine()
     var audioPlayerNode = AVAudioPlayerNode()
