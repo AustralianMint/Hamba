@@ -54,16 +54,19 @@ var locations: [Spot] = [
         Spot(name: "Hausburg Spot", coordinate: CLLocationCoordinate2D(latitude: 52.52271, longitude: 13.45856), spotImage: ["hausburgSpot"], iconType: "star.circle", iconColor: yellow),
         Spot(name: "Schäfer Spot", coordinate: CLLocationCoordinate2D(latitude: 52.56517, longitude: 13.35932), spotImage: ["schaeferSpot"], iconType: "star.circle", iconColor: yellow),
         Spot(name: "Waldeck-Park", coordinate: CLLocationCoordinate2D(latitude: 52.50624, longitude: 13.40340), spotImage: ["waldeckPark"], iconType: "star.circle", iconColor: yellow),
+        Spot(name: "Osloer South", coordinate: CLLocationCoordinate2D(latitude: 52.55492, longitude: 13.38014), spotImage: ["OsloerSouth"], iconType: "star.circle", iconColor: yellow),
         Spot(name: "Mid Haircut", coordinate: CLLocationCoordinate2D(latitude: 52.53060, longitude: 13.39659), spotImage: ["midHaircut"], iconType: "star.circle", iconColor: yellow),
         Spot(name: "/w the Boiz", coordinate: CLLocationCoordinate2D(latitude: 52.53960, longitude: 13.35386), spotImage: ["wTheBoiz"], iconType: "star.circle", iconColor: yellow),
         Spot(name: "Overview", coordinate: CLLocationCoordinate2D(latitude: 52.49433, longitude: 13.44299), spotImage: ["Overview"], iconType: "star.circle", iconColor: yellow),
         Spot(name: "V's Ufer", coordinate: CLLocationCoordinate2D(latitude: 52.52190, longitude: 13.36933), spotImage: ["V'sUfer"], iconType: "star.circle", iconColor: yellow),
+        Spot(name: "Lazanja", coordinate: CLLocationCoordinate2D(latitude: 52.51593, longitude: 13.45711), spotImage: ["Lazanja"], iconType: "star.circle", iconColor: yellow),
         Spot(name: "Sunday", coordinate: CLLocationCoordinate2D(latitude: 52.54249, longitude: 13.40384), spotImage: ["sunday"], iconType: "star.circle", iconColor: yellow),
         Spot(name: "B-day", coordinate: CLLocationCoordinate2D(latitude: 52.47705, longitude: 13.40894), spotImage: ["B-day"], iconType: "star.circle", iconColor: yellow),
         Spot(name: "LVL 1", coordinate: CLLocationCoordinate2D(latitude: 52.54749, longitude: 13.38808), spotImage: ["Lvl1"], iconType: "star.circle", iconColor: yellow),
         Spot(name: "LVL 2", coordinate: CLLocationCoordinate2D(latitude: 52.54721, longitude: 13.38474), spotImage: ["Lvl2"], iconType: "star.circle", iconColor: yellow),
         Spot(name: "Boiz", coordinate: CLLocationCoordinate2D(latitude: 52.49611, longitude: 13.40912), spotImage: ["Boiz"], iconType: "star.circle", iconColor: yellow),
         Spot(name: "Sid", coordinate: CLLocationCoordinate2D(latitude: 52.53174, longitude: 13.40844), spotImage: ["sid"], iconType: "star.circle", iconColor: yellow),
+        
 
         //München Spots
         Spot(name: "Freimann Wiese", coordinate: CLLocationCoordinate2D(latitude: 48.20186, longitude: 11.60614), spotImage: ["freimannWiese"], iconType: "star.circle", iconColor: yellow),
