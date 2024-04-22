@@ -93,3 +93,39 @@ Hamba/
 - Open Project
 - Run with Xcode included iPhone Simulator
 
+### Installation Instruction for Assesors
+
+Note: This project has 2 parts. One is the client side which is the app we are developing for IOS and the other is the backend which is our (OS: Ubuntu 22.04.4 LTS x86_64) EC2 instance. The Postgres database and the Vapor based backend are both on this EC2 instance. We will either give you the password to ssh into the EC2 instance where you can see the most up to date code for the backend. In the repository the code that's running on the backend can be found under the "serverside" branch in the path "Hamba/HambaRemote/".   
+
+The following instructions are to setup a local testing environment and to connect to the EC2 instance.  
+
+Step 1: Install swift. We use swift 5.10 in the project, we assume later versions should work too, but have had issues previously with older versions of swift.
+
+- For Mac: Just update to the newest version of Xcode.
+
+- For Linux follow these instructions: https://www.swift.org/install/linux/ 
+
+- For Windows: Our project does not support windows. 
+
+Step 2: If you want to install it locally (It's already on the EC2), clone this repository with: 
+'''git clone https://github.com/AustralianMint/Hamba.git''' 
+
+Step 3: switch to "serverside" branch with:
+'''git checkout serverside'''
+
+Step 4: 
+
+- If you are on the server you can navigate from the "ubuntu" user home directory and into "HambaRemote" with:
+'''
+//step 1 for EC2:
+cd /home/ubuntu/Hamba/HambaRemote
+//step 1 for local, go to where you cloned the repo:
+cd /Hamba/HambaRemote
+
+//step 2, if you want to start the service (the vapor app which serves as a API for our Hamba database):
+swift run 
+// this may take some time and make sure you are in /Hamba/HambaRemote where you will see the Package.swfit file.
+'''
+
+
+
