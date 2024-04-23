@@ -10,3 +10,8 @@ import Vapor
     let user_name: String
     let given_rating: Int
   }
+
+  struct Favourites: Content {
+    let group_name: String
+    let spot_name: [String]
+  }

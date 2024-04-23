@@ -9,6 +9,17 @@ import Foundation
 import Fluent
 import Vapor
 
+struct createLocationRequest: Content {
+    var country: String
+    var city: String
+    var zip: String
+    var house_number: Int
+    var street_name: String
+    var x_coordinates: Float
+    var y_coordinates: Float
+    var spots_id: Int
+}
+
 final class Location: Model, Content {
     
     static let schema: String = "locations"
@@ -45,7 +56,7 @@ final class Location: Model, Content {
     init(id: Int? = nil, country: String, city: String,
          zip: String, house_number: Int, street_name: String,
          x_coordinates: Float, y_coordinates: Float,
-         spot_id: Int ) {
+         spots_id: Int ) {
         self.id = id
         self.country = country
         self.city = city
@@ -54,6 +65,6 @@ final class Location: Model, Content {
         self.street_name = street_name
         self.x_coordinates = x_coordinates
         self.y_coordinates = y_coordinates
-        self.$spots_id.id = spot_id
+        self.$spots_id.id = spots_id
     }
 }
