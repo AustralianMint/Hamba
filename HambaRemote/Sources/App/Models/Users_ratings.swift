@@ -13,13 +13,13 @@ final class Users_ratings: Model, Content {
   var users_id: Users
   @Parent(key: "spots_id")
   var spots_id: Spots
-  @Field(key: "given_ratings")
-  var given_ratings: Int
+  @Field(key: "given_rating")
+  var given_rating: Int
   init() {}
-  init(id: Int? = nil, users_id: Int, spots_id: Int, given_ratings: Int) {
+  init(id: Int? = nil, users_id: Int, spots_id: Int, given_rating: Int) {
     self.id = id
     self.$users_id.id = users_id
     self.$spots_id.id = spots_id
-    self.given_ratings = given_ratings
+    self.given_rating = given_rating
   }
 }

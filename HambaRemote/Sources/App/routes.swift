@@ -114,15 +114,61 @@ func routes(_ app: Application) throws {
             throw Abort(.notFound)
         }
     }
-    
-    
-    //app.get("test-first") {
-    //    req async throws -> String in
-    //    let queryResult = try await Spots.query(on: req.db).first()
-    //
-    //    return queryResult!.name
+    // this gets all the spots with the Users entries which have rated that spot.
+    app.get("spots", "with_rating") { req async throws -> [Spots] in
+      let spots = try await Spots.query(on: req.db)
+        .join(Users_ratings.self, on: \Spots.$id == \Users_ratings.$spots_id.$id)
+        .with(\.$users_id)
+        .all()
+
+        return spots 
+    }
+    //app.get("user_ratings", "get") { req async throws -> [Users_ratings] in 
+    //    let the_ratings = try await Users_ratings.query(on: req.db)
+    //        .join(Spots.self, on: \Users_ratings.$spots_id.$id == \Spots.$id)
+    //        .join(Users.self, on: \Users_ratings.$users_id.$id == \Users.$id)
+    //        .with(\.$spots_id)
+    //        .with(\.$users_id)
+    //        .field(Users_ratings.self, \.$given_rating)
+    //        .all()
+
+    //    return the_ratings
     //}
-    
+    app.get("user_ratings", "get") { req async throws -> [Users_ratings] in 
+        let the_ratings = try await Users_ratings.query(on: req.db)
+            .join(Spots.self, on: \Users_ratings.$spots_id.$id == \Spots.$id)
+            .join(Users.self, on: \Users_ratings.$users_id.$id == \Users.$id)
+            .with(\.$spots_id)
+            .with(\.$users_id)
+            .all()
+
+        return the_ratings
+    }
+    app.get("spots", "with-labelnames") { req async throws -> [SpotWithLabel] in
+      let spots = try await Spots.query(on: req.db)
+        .join(Spots_labeled.self, on: \Spots.$id == \Spots_labeled.$spots_id.$id)
+        .join(Labels.self, on: \Labels.$id == \Spots_labeled.$labels_id.$id)
+        .with(\.$labels_id)
+        .all()
+      // Map the fetched spots to include the associated labels
+      return spots.map { spot -> SpotWithLabel in
+        // Extract labels from each spot, assuming that labels are loaded
+        let labels = spot.labels_id.map { $0.name }
+        return SpotWithLabel(spotName: spot.name, labelName: labels)
+      }
+    }
+    app.get("spots_user_ratings", "get") { req async throws -> [Spots_Users_ratings] in 
+        let the_ratings = try await Users_ratings.query(on: req.db)
+            .join(Spots.self, on: \Users_ratings.$spots_id.$id == \Spots.$id)
+            .join(Users.self, on: \Users_ratings.$users_id.$id == \Users.$id)
+            .with(\.$spots_id)
+            .with(\.$users_id)
+            .all()
+
+        return the_ratings.map {rating -> Spots_Users_ratings in
+            Spots_Users_ratings(spot_name: rating.spots_id.name, user_name: rating.users_id.name_full, given_rating: rating.given_rating)
+        }
+    }
     //Wessel: This is where we register which controllers to use. See the "Controllers" folder if you want to see what controllers are present.
     try app.register(collection: TodoController())
 }
