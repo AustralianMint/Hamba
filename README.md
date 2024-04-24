@@ -51,22 +51,36 @@ Hamba/
 │   │   ├──ContentView.swift
 │   │   ├──SplashView.swift
 │   │   └──MapView/
-│   │       ├──MapView.swift
-│   │       ├──mainNavBar.swift
-│   │       └──mainMap.swift
-│   │  
-│   ├── Helpers/
-│   │   └──playSound.swift
+│   │   │    ├──MapView.swift
+│   │   │    ├──mainNavBar.swift
+│   │   │    ├──mainMap.swift
+│   │   │    └──UI/
+│   │   │        ├──filterIcon.swift
+│   │   │        ├──musicIcon.swift
+│   │   │        ├──mapStyleIcon.swift
+│   │   │        ├──songPicker.swift
+│   │   │        └──creditScreen.swift
+│   │   │
+│   │   └──DetailView/
+│   │        └──DetailView.swift
+│   │   
+│   ├──Audio/
+│   │   └──AudioEngine.swift
 │   │
-│   ├── Extensions/
-│   │   └──View+Navigation.swift
+│   ├──Extensions/
+│   │   ├──View+Navigation.swift
+│   │   └──Color+DarkGreen.swift
 │   │
 │   ├── Preview Content/
 │   │   ├──Preview Assets
 │   │   └──Assets
 │   │
 │   ├── Sounds/
-│   │   └──.mp3 file
+│   │   ├──focus-loop.mp3
+│   │   ├──firstB3at.mp3
+│   │   ├──rendezvous.mp3
+│   │   ├──secondLilBeat.mp3
+│   │   └──thirdLilBeat.mp3
 │   │
 ├── HambaTests/
 │   └── HambaTests.swift
