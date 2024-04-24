@@ -165,7 +165,7 @@ func routes(_ app: Application) throws {
     //        .with(\.$groupings_id)
     //        .all()
 
-    //    // JEEEESSUUUS CHRISST... this is necessary to get only the relevant fields as
+    //    // this is necessary to get only the relevant fields as
     //    // The .filter() does not work on the above and breaks the code. This seems to
     //    // be a 
     //    return the_favourites.map {favourite -> Favourites in
@@ -184,7 +184,7 @@ func routes(_ app: Application) throws {
     //        .with(\.$groupings_id)
     //        .all()
 
-    //    // JEEEESSUUUS CHRISST... this is necessary to get only the relevant fields as
+    //    // this is necessary to get only the relevant fields as
     //    // The .filter() does not work on the above and breaks the code. This seems to
     //    // be a 
     //    return the_favourites.map {favourite -> Favourites in
@@ -202,7 +202,7 @@ func routes(_ app: Application) throws {
             .with(\.$spots_id)
             .all()
 
-        // JEEEESSUUUS CHRISST... this is necessary to get only the relevant fields as
+        // this is necessary to get only the relevant fields as
         // The .filter() does not work on the above and breaks the code. This seems to
         // be a 
         let the_array = the_favourites.map {favourite -> Favourites in
@@ -220,14 +220,60 @@ func routes(_ app: Application) throws {
             .with(\.$users_id)
             .all()
 
-        // JEEEESSUUUS CHRISST... this is necessary to get only the relevant fields as
+        // this is necessary to get only the relevant fields as
         // The .filter() does not work on the above and breaks the code. This seems to
         // be a 
         return the_ratings.map {rating -> Spots_Users_ratings in
             Spots_Users_ratings(spot_name: rating.spots_id.name, user_name: rating.users_id.name_full, given_rating: rating.given_rating)
         }
     }
-    //CREATES 
+    
+    //This JOIN method shows each user and their respective groupings
+    app.get("get", "users_groupings", ":NAME") { req async throws -> Groupings_belonging_to_users in
+        guard let userName = req.parameters.get("NAME", as: String.self) else {
+            throw Abort(.badRequest, reason: "Invalid user name.")
+        }
+        let the_users_groupings = try await Users.query(on: req.db)
+            .filter(\.$name_full == userName)
+            .join(Groupings.self, on: \Users.$id == \Groupings.$users_id.$id)
+        //Eager load the associated groupings
+            .with(\.$groupings_id)
+            .all()
+        
+        
+        let the_array = the_users_groupings.map { user -> Groupings_belonging_to_users in
+            // Extract groupings names from the user's groupings
+            let groupingsNames = user.groupings_id.map {$0.name}
+            
+            return Groupings_belonging_to_users(user_name: user.name_full, groupings_name: groupingsNames)
+        }
+        return the_array[0]
+    }
+    
+    
+    //This JOIN method shows each Grouping, and the labels belonging to it
+    app.get("get", "labeled_groupings", ":NAME") { req async throws -> Labels_in_Groupings in
+        guard let groupName = req.parameters.get("NAME", as: String.self) else {
+            throw Abort(.badRequest, reason: "Invalid user name.")
+        }
+        let theQuery = try await Groupings.query(on: req.db)
+            .filter(\.$name == groupName)
+            .join(Labeled_groupings.self, on: \Groupings.$id == \Labeled_groupings.$groupings_id.$id)
+            .join(Labels.self, on: \Labeled_groupings.$labels_id.$id == \Labels.$id)
+            .with(\.$labels_id)
+            .all()
+        
+        let the_array = theQuery.map {labels -> Labels_in_Groupings in
+            let label_names = labels.labels_id.map {$0.name}
+            
+            return Labels_in_Groupings(groupings_name: labels.name, labels_in_groupings: label_names)
+        }
+        return the_array[0]
+    }
+    
+    
+    //MARK: - CREATES
+    
     app.post("create-location") { req async throws -> HTTPStatus in
         let locationDTO = try req.content.decode(createLocationRequest.self)
         // Validate the input
@@ -241,7 +287,23 @@ func routes(_ app: Application) throws {
         // Return HTTP 201 to indicate successful creation
         return .created
   }
-  // UPDATES
+    
+    app.post("create-label") { req async throws -> HTTPStatus in
+        let labelDTO = try req.content.decode(createLabel.self)
+        // Validate the input
+        guard labelDTO.name.contains("Fav") else {
+            throw Abort(.badRequest, reason: "Invalid label name")
+        }
+        // Create a new user instance from the DTO
+        let label = Labels(name: labelDTO.name)
+        // Save the user to the database
+        try await label.save(on: req.db)
+        // Return HTTP 201 to indicate successful creation
+        return .created
+    }
+    
+  // MARK: - UPDATES
+    
    app.put("update-location", ":locationID") { req async throws -> HTTPStatus in
         guard let locationID = req.parameters.get("locationID", as: Int.self) else {
             throw Abort(.badRequest, reason: "Invalid location ID.")
@@ -261,17 +323,48 @@ func routes(_ app: Application) throws {
         try await updateLocation.save(on: req.db)
         return .ok
   }
-  // DELETE
-  app.delete("delete-location", ":locationID") { req async throws -> HTTPStatus in
-    guard let locationID = req.parameters.get("locationID", as: Int.self) else {
-      throw Abort(.badRequest, reason: "Invalid location ID.")
+    
+    app.put("update-label", ":labelID") { req async throws -> HTTPStatus in
+        guard let labelID = req.parameters.get("labelID", as: Int.self) else {
+            throw Abort(.badRequest, reason: "Invalid label ID.")
+        }
+        let updateData = try req.content.decode(createLabel.self)
+        guard let label = try await Labels.find(labelID, on: req.db) else {
+            throw Abort(.notFound, reason: "Label ID not found.")
+        }
+        label.name = updateData.name
+        try await label.save(on: req.db)
+        return .ok
     }
-    guard let deleteLocation = try await Location.find(locationID, on: req.db) else {
-      throw Abort(.notFound, reason: "location not found.")
+
+    
+  // MARK: -DELETE
+  
+    app.delete("delete-location", ":locationID") { req async throws -> HTTPStatus in
+        guard let locationID = req.parameters.get("locationID", as: Int.self) else {
+            throw Abort(.badRequest, reason: "Invalid location ID.")
+        }
+        guard let deleteLocation = try await Location.find(locationID, on: req.db) else {
+            throw Abort(.notFound, reason: "location not found.")
+        }
+        try await deleteLocation.delete(on: req.db)
+        return .ok
     }
-    try await deleteLocation.delete(on: req.db)
-    return .ok
-  }
+    
+    
+    //DELETE labels
+    app.delete("delete-label", ":labelID") { req async throws -> HTTPStatus in
+        guard let labelID = req.parameters.get("labelID", as: Int.self) else {
+            throw Abort(.badRequest, reason: "Invalid label ID.")
+        }
+        guard let label = try await Labels.find(labelID, on: req.db) else {
+            throw Abort(.notFound, reason: "Label not found.")
+        }
+        try await label.delete(on: req.db)
+        return .ok
+    }
+    
+    
     //Wessel: This is where we register which controllers to use. See the "Controllers" folder if you want to see what controllers are present.
     try app.register(collection: TodoController())
 }
