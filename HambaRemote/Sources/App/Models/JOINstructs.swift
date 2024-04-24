@@ -15,3 +15,15 @@ import Vapor
     let group_name: String
     let spot_name: [String]
   }
+
+//Used to display the labels inside a grouping.
+struct Labels_in_Groupings: Content {
+    let groupings_name: String
+    let labels_in_groupings: [String]
+}
+
+//Used to display the groupings of the users.
+struct Groupings_belonging_to_users: Content {
+    let user_name: String
+    let groupings_name: [String]
+}
