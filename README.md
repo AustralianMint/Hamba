@@ -4,6 +4,7 @@
   <img width="240,5" alt="Screenshot 2022-04-06 at 09 44 25" src="https://user-images.githubusercontent.com/43207309/161922518-e9301690-4d47-4364-a4de-fd4aec1b1528.png">
   <img width="240,5" alt="hambaGitHubProgress" src="https://github.com/AustralianMint/Hamba/assets/43207309/50f54d4e-8900-4d23-b5b3-51d2e1de2bec">
   <img width="240,5" alt="Screenshot 2024-02-18 at 14 40 40" src="https://github.com/AustralianMint/Hamba/assets/43207309/6e48c2aa-265b-449f-8687-e3a4b901fb4d">
+  <img width="225" alt="Gif of current Hamba 2.0 version" src="https://github.com/AustralianMint/Hamba/assets/43207309/c2804663-2dd9-450a-a3f8-6b319de5223e">
 </div>
 
 --- 
