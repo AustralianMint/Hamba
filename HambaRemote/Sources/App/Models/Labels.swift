@@ -26,3 +26,7 @@ final class Labels: Model, Content {
         self.name = name
     }
 }
+
+struct createLabel: Content {
+    var name: String
+}
