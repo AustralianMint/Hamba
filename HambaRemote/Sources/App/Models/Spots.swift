@@ -3,12 +3,11 @@ import Vapor
 
 
 final class Spots: Model, Content {
-    // Define a static string for the table name if you want it different from the default
     static let schema = "spots"
-    // Primary key id field
+    
     @ID(custom: "id_spots")
     var id: Int?
-    // Example fields
+    
     @Field(key: "name")
     var name: String
     
@@ -34,6 +33,7 @@ final class Spots: Model, Content {
     var location_id: [Location]
     
     init() {}
+    
     init(id: Int? = nil, name: String) {
         self.id = id
         self.name = name

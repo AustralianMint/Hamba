@@ -27,3 +27,10 @@ struct Groupings_belonging_to_users: Content {
     let user_name: String
     let groupings_name: [String]
 }
+
+struct SpotWithLocation: Content {
+    var id: Int?
+    var name: String
+    var xCoordinates: Float
+    var yCoordinates: Float
+}

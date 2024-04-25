@@ -1,10 +1,3 @@
-//
-//  File.swift
-//
-//
-//  Created by Thomas Frey on 16.04.24.
-//
-
 import Foundation
 import Fluent
 import Vapor
@@ -21,7 +14,6 @@ struct createLocationRequest: Content {
 }
 
 final class Location: Model, Content {
-    
     static let schema: String = "locations"
     
     @ID(custom: "id_locations")

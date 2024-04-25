@@ -2,11 +2,13 @@ import Foundation
 import Fluent
 import Vapor
 
-final class Labels: Model, Content {
+struct createLabel: Content {
+    var name: String
+}
 
+final class Labels: Model, Content {
     static let schema = "labels"
 
-    // Primary Key
     @ID(custom: "id_labels")
     var id: Int?
 
@@ -25,8 +27,4 @@ final class Labels: Model, Content {
         self.id = id
         self.name = name
     }
-}
-
-struct createLabel: Content {
-    var name: String
 }
