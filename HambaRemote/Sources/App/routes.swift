@@ -271,6 +271,19 @@ func routes(_ app: Application) throws {
     
     //MARK: - CREATES
     
+    /*
+     example CURL code for the terminal to test the route:
+     
+     curl -X POST http://localhost:8080/create-user \
+     -H "Content-Type: application/json" \
+     -d '{
+         "email": "user@example.com",
+         "password": "insertpassword",
+         "nameFull": "HambaJoe",
+         "spotCount": 9
+     }'
+     */
+    
     app.post("create-location") { req async throws -> HTTPStatus in
         let locationDTO = try req.content.decode(createLocationRequest.self)
         // Validate input
@@ -312,6 +325,15 @@ func routes(_ app: Application) throws {
     }
     
     // MARK: - UPDATES
+    
+    /*
+     example CURL code for the terminal to test the route:
+     
+     curl -X PUT http://localhost:8080/update-user/id \
+     -H "Content-Type: application/json" \
+     -d '{"email": "newemail@example.com", "password": "newpassword", "nameFull": "NewName", "spotCount": 10}'
+
+     */
     
     app.put("update-location", ":locationID") { req async throws -> HTTPStatus in
         guard let locationID = req.parameters.get("locationID", as: Int.self) else {
@@ -366,6 +388,13 @@ func routes(_ app: Application) throws {
     }
     
     // MARK: - DELETE
+    
+    /*
+     example CURL code for the terminal to test the route:
+     
+     curl -X DELETE http://localhost:8080/delete-user/123
+     
+     */
 
     app.delete("delete-location", ":locationID") { req async throws -> HTTPStatus in
         guard let locationID = req.parameters.get("locationID", as: Int.self) else {
