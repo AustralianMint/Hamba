@@ -284,6 +284,7 @@ func routes(_ app: Application) throws {
      }'
      */
     
+    // Wessel
     app.post("create-location") { req async throws -> HTTPStatus in
         let locationDTO = try req.content.decode(createLocationRequest.self)
         // Validate input
@@ -297,7 +298,7 @@ func routes(_ app: Application) throws {
 
         return .created
     }
-    
+    // Thomas
     app.post("create-label") { req async throws -> HTTPStatus in
         let labelDTO = try req.content.decode(createLabel.self)
         // Validate the input
@@ -308,7 +309,7 @@ func routes(_ app: Application) throws {
         try await label.save(on: req.db)
         return .created
     }
-    
+    // Paul
     app.post("create-user") { req async throws -> HTTPStatus in
         let userDTO = try req.content.decode(CreateUserRequest.self)
         
@@ -334,7 +335,7 @@ func routes(_ app: Application) throws {
      -d '{"email": "newemail@example.com", "password": "newpassword", "nameFull": "NewName", "spotCount": 10}'
 
      */
-    
+    // Wessel
     app.put("update-location", ":locationID") { req async throws -> HTTPStatus in
         guard let locationID = req.parameters.get("locationID", as: Int.self) else {
             throw Abort(.badRequest, reason: "Invalid location ID.")
@@ -355,6 +356,7 @@ func routes(_ app: Application) throws {
         return .ok
     }
     
+    // Thomas
     app.put("update-label", ":labelID") { req async throws -> HTTPStatus in
         guard let labelID = req.parameters.get("labelID", as: Int.self) else {
             throw Abort(.badRequest, reason: "Invalid label ID.")
@@ -368,6 +370,7 @@ func routes(_ app: Application) throws {
         return .ok
     }
     
+    // Paul
     app.put("update-user", ":userID") { req async throws -> HTTPStatus in
         guard let userID = req.parameters.get("userID", as: Int.self) else {
             throw Abort(.badRequest, reason: "Invalid user ID.")
@@ -395,7 +398,8 @@ func routes(_ app: Application) throws {
      curl -X DELETE http://localhost:8080/delete-user/123
      
      */
-
+    
+    // Wessel
     app.delete("delete-location", ":locationID") { req async throws -> HTTPStatus in
         guard let locationID = req.parameters.get("locationID", as: Int.self) else {
             throw Abort(.badRequest, reason: "Invalid location ID.")
@@ -407,6 +411,7 @@ func routes(_ app: Application) throws {
         return .ok
     }
     
+    // Thomas
     app.delete("delete-label", ":labelID") { req async throws -> HTTPStatus in
         guard let labelID = req.parameters.get("labelID", as: Int.self) else {
             throw Abort(.badRequest, reason: "Invalid label ID.")
@@ -418,6 +423,7 @@ func routes(_ app: Application) throws {
         return .ok
     }
     
+    // Paul
     app.delete("delete-user", ":userID") { req async throws -> HTTPStatus in
         guard let userID = req.parameters.get("userID", as: Int.self) else {
             throw Abort(.badRequest, reason: "Invalid user ID.")
