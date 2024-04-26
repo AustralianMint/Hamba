@@ -152,6 +152,25 @@ func routes(_ app: Application) throws {
             return SpotWithLabel(spotName: spot.name, labelName: labels)
         }
     }
+    
+    //Experimental Code to return the above without duplicates
+    app.get("spots", "with-labelnames2") { req async throws -> [SpotWithLabel] in
+        let spots = try await Spots.query(on: req.db)
+            .with(\.$labels_id)
+            .all()
+
+        var spotsWithLabels: [SpotWithLabel] = []
+        for spot in spots {
+            let labels = spot.labels_id.map { $0.name }
+            if let existingIndex = spotsWithLabels.firstIndex(where: { $0.spotName == spot.name }) {
+                spotsWithLabels[existingIndex].labelName.append(contentsOf: labels)
+            } else {
+                spotsWithLabels.append(SpotWithLabel(spotName: spot.name, labelName: labels))
+            }
+        }
+
+        return spotsWithLabels.unique()
+    }
 
     app.get("favs_group_name", ":NAME") { req async throws -> Favourites in
         guard let groupingNAME = req.parameters.get("NAME", as: String.self) else {

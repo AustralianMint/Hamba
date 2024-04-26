@@ -1,8 +1,8 @@
 import Vapor
 
-  struct SpotWithLabel: Content {
+  struct SpotWithLabel: Content, Hashable {
     let spotName: String
-    let labelName: [String]
+    var labelName: [String]
   }
   
   struct Spots_Users_ratings: Content {
@@ -33,4 +33,11 @@ struct SpotWithLocation: Content {
     var name: String
     var xCoordinates: Float
     var yCoordinates: Float
+}
+
+extension Array where Element: Hashable {
+    func unique() -> [Element] {
+        var seen: Set<Element> = []
+        return filter { seen.insert($0).inserted }
+    }
 }
