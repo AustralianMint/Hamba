@@ -1,16 +1,8 @@
-//
-//  File.swift
-//
-//
-//  Created by Thomas Frey on 16.04.24.
-//
-
 import Foundation
 import Fluent
 import Vapor
 
 final class Groupings: Model, Content {
-    
     static let schema: String = "groupings"
     
     @ID(custom: "id_groupings")

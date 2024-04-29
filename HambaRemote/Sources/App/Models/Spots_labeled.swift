@@ -1,17 +1,8 @@
-//
-//  File.swift
-//
-//
-//  Created by Thomas Frey on 16.04.24.
-//
-
 import Foundation
 import Fluent
-import FluentPostgresDriver
 import Vapor
 
 final class Spots_labeled: Model, Content {
-    
     static let schema: String = "spots_labeled"
     
     @ID(custom: "id_spots_labeled")

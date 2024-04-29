@@ -3,10 +3,8 @@ import Fluent
 import Vapor
 
 final class Pictures: Model, Content {
-    
     static let schema = "pictures"
     
-    // Primary Key
     @ID(custom: "id_pictures")
     var id: Int?
     

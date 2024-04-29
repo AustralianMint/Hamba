@@ -1,32 +1,44 @@
 import Fluent
 import Vapor
 
+struct CreateUserRequest: Content {
+    var email: String
+    var password: String
+    var nameFull: String
+    var spotCount: Int?
+}
+
 final class Users: Model, Content {
-  	// Define a static string for the table name if you want it different from the default
   	static let schema = "users"
-  	// Primary key id field
+
   	@ID(custom: "id_users")
   	var id: Int?
-  	// Example fields
-  	@Field(key: "email")
+
+    @Field(key: "email")
   	var email: String
-  	@Field(key: "password")
+  	
+    @Field(key: "password")
   	var password: String
-  	@Field(key: "name_full")
+  	
+    @Field(key: "name_full")
   	var name_full: String
-  	@Field(key: "spot_count")
+  	
+    @Field(key: "spot_count")
   	var spot_count: Int
+    
     @Children(for: \.$users_id)
     var groupings_id: [Groupings]
-	@Siblings(through: Users_ratings.self, from: \.$users_id, to:\.$spots_id)
+	
+    @Siblings(through: Users_ratings.self, from: \.$users_id, to:\.$spots_id)
   	var spots_id: [Spots]
-  	// A default initializer is necessary if using a final class
+
   	init() {}
-  	init(id: Int? = nil, name: String, age: Int) {
-  	  	self.id = id
-  	  	self.email = email
-  	  	self.password = password
-  	  	self.name_full = name_full
-  	  	self.spot_count = spot_count
-  	}
+    
+    init(id: Int? = nil, email: String, password: String, nameFull: String, spotCount: Int) {
+            self.id = id
+            self.email = email
+            self.password = password
+            self.name_full = nameFull
+            self.spot_count = spotCount
+    }
 }

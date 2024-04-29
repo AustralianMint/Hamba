@@ -24,8 +24,7 @@
 		45E81DA02B7E39C2008008F5 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E81D9F2B7E39C2008008F5 /* MapView.swift */; };
 		45E81DA22B7E3A1B008008F5 /* mainMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E81DA12B7E3A1B008008F5 /* mainMap.swift */; };
 		45E81DA52B7E3A9E008008F5 /* View+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E81DA42B7E3A9E008008F5 /* View+Navigation.swift */; };
-		D2287C0B2BB1CF8B009100D9 /* main.rs in Resources */ = {isa = PBXBuildFile; fileRef = D2287C082BB1CF8B009100D9 /* main.rs */; };
-		D2287C0C2BB1CF8B009100D9 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2287C092BB1CF8B009100D9 /* main.swift */; };
+		D2287C0B2BB1CF8B009100D9 /* HambaRemote in Resources */ = {isa = PBXBuildFile; fileRef = D2287C082BB1CF8B009100D9 /* HambaRemote */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,8 +67,7 @@
 		45E81D9F2B7E39C2008008F5 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		45E81DA12B7E3A1B008008F5 /* mainMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainMap.swift; sourceTree = "<group>"; };
 		45E81DA42B7E3A9E008008F5 /* View+Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Navigation.swift"; sourceTree = "<group>"; };
-		D2287C082BB1CF8B009100D9 /* main.rs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.rs; sourceTree = "<group>"; };
-		D2287C092BB1CF8B009100D9 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		D2287C082BB1CF8B009100D9 /* HambaRemote */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper; path = HambaRemote; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,11 +223,11 @@
 		D2287C0A2BB1CF8B009100D9 /* HambaRemote */ = {
 			isa = PBXGroup;
 			children = (
-				D2287C082BB1CF8B009100D9 /* main.rs */,
-				D2287C092BB1CF8B009100D9 /* main.swift */,
+				D2287C082BB1CF8B009100D9 /* HambaRemote */,
 			);
-			path = HambaRemote;
-			sourceTree = SOURCE_ROOT;
+			name = HambaRemote;
+			path = ../HambaRemote;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -338,7 +336,7 @@
 				277CA04628DBD98100A397B6 /* Assets.xcassets in Resources */,
 				271C8F6027C27BC8004BCD02 /* Preview Assets.xcassets in Resources */,
 				27EEAAEA2A0261A8005779C1 /* focus-loop-corporate-music-114297.mp3 in Resources */,
-				D2287C0B2BB1CF8B009100D9 /* main.rs in Resources */,
+				D2287C0B2BB1CF8B009100D9 /* HambaRemote in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,7 +363,6 @@
 			files = (
 				271C8F5B27C27BC7004BCD02 /* ContentView.swift in Sources */,
 				45E81DA02B7E39C2008008F5 /* MapView.swift in Sources */,
-				D2287C0C2BB1CF8B009100D9 /* main.swift in Sources */,
 				45E81DA22B7E3A1B008008F5 /* mainMap.swift in Sources */,
 				271C8F5927C27BC7004BCD02 /* HambaApp.swift in Sources */,
 				270AD9E72973E4B00090F555 /* SplashView.swift in Sources */,

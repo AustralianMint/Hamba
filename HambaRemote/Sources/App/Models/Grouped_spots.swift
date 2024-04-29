@@ -3,10 +3,8 @@ import Fluent
 import Vapor
 
 final class Grouped_Spots: Model, Content {
-
     static let schema = "grouped_spots"
 
-    // Primary Key
     @ID(custom: "id_grouped_spots")
     var id: Int?
 
@@ -15,7 +13,6 @@ final class Grouped_Spots: Model, Content {
     
     @Parent(key: "spots_id")
     var spots_id: Spots
-
 
     init() {}
 
