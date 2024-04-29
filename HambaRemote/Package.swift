@@ -23,7 +23,7 @@ let package = Package(
                 .product(name: "Vapor", package: "vapor"),
             ],
             resources: [
-                .copy("Secrets/postgresql.json")
+                .copy("Secrets/postgresqllogin.json")
             ],
             swiftSettings: swiftSettings
         ),
