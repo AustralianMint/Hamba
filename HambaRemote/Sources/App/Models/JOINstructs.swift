@@ -41,3 +41,8 @@ extension Array where Element: Hashable {
         return filter { seen.insert($0).inserted }
     }
 }
+struct Basic_Favorites: Content {
+    let group_name: String
+    let spot_name: String
+}
+

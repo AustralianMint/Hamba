@@ -268,6 +268,42 @@ func routes(_ app: Application) throws {
         }
         return results
     }
+    //Wessel: To access this function you got the servers DNS name or public IP and do http://DNS_name_here:8081/all_favourites
+    app.get("all_favourites") { req async throws -> [Basic_Favorites] in
+        let the_favourites = try await Grouped_Spots.query(on: req.db)
+            .join(Spots.self, on: \Grouped_Spots.$spots_id.$id == \Spots.$id)
+            .join(Groupings.self, on: \Grouped_Spots.$groupings_id.$id == \Groupings.$id)
+            .with(\.$spots_id)
+            .with(\.$groupings_id)
+            .all()
+    
+        // this is necessary to get only the relevant fields as
+        // The .filter() does not work on the above and breaks the code. This seems to
+        // be a
+        return the_favourites.map {favourite -> Basic_Favorites in
+            Basic_Favorites(group_name: favourite.groupings_id.name, spot_name: favourite.spots_id.name)
+        }
+    }
+    // Wessel
+    app.get("favs_id", ":ID") { req async throws -> [Basic_Favorites] in
+        guard let groupingID = req.parameters.get("ID", as: Int.self) else {
+            throw Abort(.badRequest, reason: "Invalid user ID.")
+        }
+        let the_favourites = try await Grouped_Spots.query(on: req.db)
+            .filter(\.$groupings_id.$id == groupingID)
+            .join(Spots.self, on: \Grouped_Spots.$spots_id.$id == \Spots.$id)
+            .join(Groupings.self, on: \Grouped_Spots.$groupings_id.$id == \Groupings.$id)
+            .with(\.$spots_id)
+            .with(\.$groupings_id)
+            .all()
+    
+        // this is necessary to get only the relevant fields as
+        // The .filter() does not work on the above and breaks the code. This seems to
+        // be a
+        return the_favourites.map {favourite -> Basic_Favorites in
+            Basic_Favorites(group_name: favourite.groupings_id.name, spot_name: favourite.spots_id.name)
+        }
+    }
     
     //MARK: - CREATES
     
@@ -453,37 +489,3 @@ func routes(_ app: Application) throws {
 //    return the_ratings
 //}
 
-//app.get("all_favourites") { req async throws -> [Favourites] in
-//    let the_favourites = try await Grouped_Spots.query(on: req.db)
-//        .join(Spots.self, on: \Grouped_Spots.$spots_id.$id == \Spots.$id)
-//        .join(Groupings.self, on: \Grouped_Spots.$groupings_id.$id == \Groupings.$id)
-//        .with(\.$spots_id)
-//        .with(\.$groupings_id)
-//        .all()
-
-//    // this is necessary to get only the relevant fields as
-//    // The .filter() does not work on the above and breaks the code. This seems to
-//    // be a
-//    return the_favourites.map {favourite -> Favourites in
-//        Favourites(group_name: favourite.groupings_id.name, spot_name: favourite.spots_id.name)
-//    }
-//}
-//app.get("favs_id", ":ID") { req async throws -> [Favourites] in
-//    guard let groupingID = req.parameters.get("ID", as: Int.self) else {
-//        throw Abort(.badRequest, reason: "Invalid user ID.")
-//    }
-//    let the_favourites = try await Grouped_Spots.query(on: req.db)
-//        .filter(\.$groupings_id.$id == groupingID)
-//        .join(Spots.self, on: \Grouped_Spots.$spots_id.$id == \Spots.$id)
-//        .join(Groupings.self, on: \Grouped_Spots.$groupings_id.$id == \Groupings.$id)
-//        .with(\.$spots_id)
-//        .with(\.$groupings_id)
-//        .all()
-
-//    // this is necessary to get only the relevant fields as
-//    // The .filter() does not work on the above and breaks the code. This seems to
-//    // be a
-//    return the_favourites.map {favourite -> Favourites in
-//        Favourites(group_name: favourite.groupings_id.name, spot_name: favourite.spots_id.name)
-//    }
-//}
