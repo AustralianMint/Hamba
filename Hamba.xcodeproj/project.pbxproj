@@ -21,6 +21,7 @@
 		27EEAAEA2A0261A8005779C1 /* focus-loop-corporate-music-114297.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 27EEAAE92A0261A8005779C1 /* focus-loop-corporate-music-114297.mp3 */; };
 		451F74C82B894BD900C105AC /* AudioFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451F74C72B894BD900C105AC /* AudioFiles.swift */; };
 		453354272B8767130045B6E3 /* AudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453354262B8767130045B6E3 /* AudioEngine.swift */; };
+		457192EB2BEADAFF004ADEB5 /* MockAudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457192E92BEADAFF004ADEB5 /* MockAudioEngine.swift */; };
 		4582FF7B2B98B8F200C98ADC /* AudioEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4582FF7A2B98B8F200C98ADC /* AudioEngineTests.swift */; };
 		45E81DA02B7E39C2008008F5 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E81D9F2B7E39C2008008F5 /* MapView.swift */; };
 		45E81DA22B7E3A1B008008F5 /* mainMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E81DA12B7E3A1B008008F5 /* mainMap.swift */; };
@@ -64,6 +65,7 @@
 		27EEAAE92A0261A8005779C1 /* focus-loop-corporate-music-114297.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "focus-loop-corporate-music-114297.mp3"; sourceTree = "<group>"; };
 		451F74C72B894BD900C105AC /* AudioFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFiles.swift; sourceTree = "<group>"; };
 		453354262B8767130045B6E3 /* AudioEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngine.swift; sourceTree = "<group>"; };
+		457192E92BEADAFF004ADEB5 /* MockAudioEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAudioEngine.swift; sourceTree = "<group>"; };
 		4582FF7A2B98B8F200C98ADC /* AudioEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngineTests.swift; sourceTree = "<group>"; };
 		45E81D9F2B7E39C2008008F5 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		45E81DA12B7E3A1B008008F5 /* mainMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainMap.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			children = (
 				453354262B8767130045B6E3 /* AudioEngine.swift */,
 				4582FF7A2B98B8F200C98ADC /* AudioEngineTests.swift */,
+				457192E92BEADAFF004ADEB5 /* MockAudioEngine.swift */,
 			);
 			path = Audio;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				457192EB2BEADAFF004ADEB5 /* MockAudioEngine.swift in Sources */,
 				4582FF7B2B98B8F200C98ADC /* AudioEngineTests.swift in Sources */,
 				271C8F6A27C27BC8004BCD02 /* HambaTests.swift in Sources */,
 			);
