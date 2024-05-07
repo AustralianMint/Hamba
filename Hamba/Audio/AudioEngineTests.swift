@@ -39,6 +39,7 @@ class AudioEngineTests: XCTestCase {
         mockAudioEngine.audioEngine.mainMixerNode.outputVolume = 0
     }
     
+    /// testing state of setup
     func testAudioEngineSetup() {
         XCTAssertTrue(mockAudioEngine.audioEngine.isRunning, "Audio engine should be running after setup")
     }
@@ -49,28 +50,6 @@ class AudioEngineTests: XCTestCase {
 
     func testReverbNodeSetup() {
         XCTAssertEqual(mockAudioEngine.reverbNode.wetDryMix, 0, "Reverb node wet/dry mix should be initialized to 0")
-    }
-
-    func testLinearFade() {
-        let fadeTime: Double = 7
-        let expectationMiddle = XCTestExpectation(description: "Middle of fade")
-        let expectationEnd = XCTestExpectation(description: "End of fade")
-        
-        mockAudioEngine.fade(up: true, in: fadeTime)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + fadeTime / 2) {
-            let midVolume = self.mockAudioEngine.audioEngine.mainMixerNode.outputVolume
-            XCTAssertEqual(midVolume, 0.5, accuracy: 0.05)
-            expectationMiddle.fulfill()
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + fadeTime) {
-            let endVolume = self.mockAudioEngine.audioEngine.mainMixerNode.outputVolume
-            XCTAssertEqual(endVolume, 1, accuracy: 0.05)
-            expectationEnd.fulfill()
-        }
-        
-        wait(for: [expectationMiddle, expectationEnd], timeout: fadeTime + 1)
     }
 
     func testPlaySound() {
@@ -97,6 +76,28 @@ class AudioEngineTests: XCTestCase {
             XCTAssertEqual(self.mockAudioEngine.audioPlayerNode.volume, 1)
             XCTAssertTrue(self.mockAudioEngine.audioPlayerNode.isPlaying)
         }
+    }
+    
+    func testLinearFade() {
+        let fadeTime: Double = 7
+        let expectationMiddle = XCTestExpectation(description: "Middle of fade")
+        let expectationEnd = XCTestExpectation(description: "End of fade")
+        
+        mockAudioEngine.fade(up: true, in: fadeTime)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + fadeTime / 2) {
+            let midVolume = self.mockAudioEngine.audioEngine.mainMixerNode.outputVolume
+            XCTAssertEqual(midVolume, 0.5, accuracy: 0.05)
+            expectationMiddle.fulfill()
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + fadeTime) {
+            let endVolume = self.mockAudioEngine.audioEngine.mainMixerNode.outputVolume
+            XCTAssertEqual(endVolume, 1, accuracy: 0.05)
+            expectationEnd.fulfill()
+        }
+        
+        wait(for: [expectationMiddle, expectationEnd], timeout: fadeTime + 1)
     }
 }
 

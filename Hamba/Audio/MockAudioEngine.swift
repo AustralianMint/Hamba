@@ -10,9 +10,10 @@ import SwiftUI
 @testable import Hamba
 import XCTest
 
+/// -> Inversion of Control ?
 
 // MARK: - Arrange
-
+/// abstracting implementation details
 protocol AudioEngineProtocol {
     var isRunning: Bool { get }
     var mainMixerNode: AVAudioMixerNode { get }
@@ -25,12 +26,10 @@ protocol AudioEngineProtocol {
 }
 
 // MARK: -  Act
-
+/// injecting dependency, since relying on AudioENgineProtocol
 class MockAudioEngine: AudioEngineProtocol {
     var isRunning: Bool = false
     var mainMixerNode = AVAudioMixerNode()
-
-    // Tracking state for assertions in tests
     var outputVolumeChanges: [(volume: Float, time: Double)] = []
     var lastPlayedFile: AudioFiles?
     var lastFadeDirectionUp: Bool?
@@ -38,14 +37,6 @@ class MockAudioEngine: AudioEngineProtocol {
     var lastPauseTime: Double?
     var lastResumeTime: Double?
     var isPulsatingReverbActive: Bool = false
-    
-    func setup() {
-        // initial setup of each test
-    }
-    
-    func tearDown() {
-        // 
-    }
 
     func setupAudioEngine() {
         simulateEngineSetup()
@@ -71,8 +62,7 @@ class MockAudioEngine: AudioEngineProtocol {
         simulateReverbEffect(in: cycleTime)
     }
 
-    // MARK: - Mock behaviors
-
+    // MARK: - Mock behaviors -> solitary unit tests
     private func simulateEngineSetup() {
         isRunning = true
         mainMixerNode.outputVolume = 0
