@@ -5,6 +5,7 @@
 //  Created by Thomas Frey on 20.02.22.
 //
 import SwiftUI
+import FirebaseCore
 
 /// The root of the Hamba application.
 ///
@@ -14,11 +15,20 @@ import SwiftUI
 @main
 struct HambaApp: App {
     var audioEngine = AudioEngine()
-    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+
     var body: some Scene {
         WindowGroup {
             SplashView()
                 .environmentObject(audioEngine)
         }
+    }
+}
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        FirebaseApp.configure()
+        return true
     }
 }

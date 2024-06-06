@@ -21,7 +21,7 @@ final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
     
 //    @Published var region1: MapCameraPosition = .region(MKCoordinateRegion(center: MapDetails.startingLocation, span: MapDetails.defaultSpan))
     @Published var region = MKCoordinateRegion(center: MapDetails.startingLocation, span: MapDetails.defaultSpan)
-    
+
     //creating instance of Location Manager Class
     var locationManager: CLLocationManager?
     

@@ -8,6 +8,7 @@
 import _MapKit_SwiftUI
 import AVFoundation
 import SwiftUI
+import FirebaseAuth
 
 /// A navigation bar view for the `Hamba` app that includes branding and controls for map style and audio playback.
 struct mainNavBar: View {
@@ -53,6 +54,9 @@ struct mainNavBar: View {
             Divider().padding(.vertical, 5)
 
             mapStyleButton
+            Divider().padding(.vertical, 5)
+
+            signOutButton
         }
         .frame(maxHeight: 45)
         .buttonStyle(.plain)
@@ -66,7 +70,20 @@ struct mainNavBar: View {
         }
         .accessibilityLabel("toggle this button to add an effect to the played audio")
     }
-    
+
+    var signOutButton: some View {
+        Button {
+            do {
+                try Auth.auth().signOut()
+            } catch let signOutError as NSError {
+                print("Error signing out: %@", signOutError)
+            }
+        } label: {
+            SignOutIcon()
+        }
+    }
+
+
     var musicButton: some View {
         Button {
             if soundIsActive {

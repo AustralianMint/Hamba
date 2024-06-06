@@ -21,6 +21,7 @@ struct MapView: View {
                     .ignoresSafeArea()
                 navBar
                 creditButton
+                addSpotButton
             }
         }
         .phoneOnlyNavigationView()
@@ -39,6 +40,15 @@ struct MapView: View {
             }
         }
         .padding(.trailing)
+    }
+
+    private var addSpotButton: some View {
+        VStack(alignment: .center) {
+            Spacer()
+            HStack {
+                AddSpotScreen()
+            }
+        }
     }
 
     private var navBar: some View {

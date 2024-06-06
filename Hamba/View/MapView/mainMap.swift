@@ -10,23 +10,22 @@ import SwiftUI
 
 struct mainMap: View {
     @ObservedObject var mapViewModel: MapViewModel
+    @ObservedObject var locationsViewModel =  LocationsViewModel()
     @State private var selectedSpot: Spot?
     @State private var isDetailViewPresented = false
 
     var body: some View {
         ZStack {
-            Map(coordinateRegion: $mapViewModel.region, showsUserLocation: true, annotationItems: locations) { spot in
-
-                MapAnnotation(coordinate: spot.coordinate) {
+            Map(coordinateRegion: $mapViewModel.region, showsUserLocation: true, annotationItems: locationsViewModel.locations) { spot in
+                MapAnnotation(coordinate: spot.coordinate2D) {
                     Button {
-                        print("\(spot.name)")
                         self.selectedSpot = spot
                         self.isDetailViewPresented = true
 
                     } label: {
                         Image(systemName: spot.iconType)
                             .resizable()
-                            .foregroundStyle(spot.iconColor)
+                            .foregroundStyle(Color(colorName: spot.iconColor) ?? .yellow)
                             .shadow(radius: 0.8)
                             .background(Color.white.opacity(0.5))
                             .frame(width: 23, height: 23)
@@ -59,19 +58,19 @@ struct mainMap: View {
  This is how i previously displayed an image.
  I wanna keep this in case i need the zoom ability
 
-                        Image(location.spotImage)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .scaleEffect(1 + mapViewModel.currentAmmount)
-                            .gesture(
-                                MagnificationGesture()
-                                    .onChanged { value in
-                                        mapViewModel.currentAmmount = value - 1
-                                    }
-                                    .onEnded { _ in
-                                        withAnimation(.default) {
-                                            mapViewModel.currentAmmount = 0
-                                        }
-                                    }
-                            )
+ Image(location.spotImage)
+ .resizable()
+ .aspectRatio(contentMode: .fit)
+ .scaleEffect(1 + mapViewModel.currentAmmount)
+ .gesture(
+ MagnificationGesture()
+ .onChanged { value in
+ mapViewModel.currentAmmount = value - 1
+ }
+ .onEnded { _ in
+ withAnimation(.default) {
+ mapViewModel.currentAmmount = 0
+ }
+ }
+ )
  */
